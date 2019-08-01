@@ -1,0 +1,8 @@
+//import des fonctions utilisées dans variables.scss
+@import "~bootstrap/scss/functions";
+// fichier variables à changer pour customiser les variables bootstrap
+@import "variables.scss";
+
+//ce fichier import tous les plugins de bootstrap, 
+//les importer au cas par cas si trop de plugins intilisés
+@import "~bootstrap/scss/bootstrap";
