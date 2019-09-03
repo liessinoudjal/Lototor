@@ -14,6 +14,10 @@ class Loto implements LotteryInterface {
      */
     public function __construct()
     {
+      
+    }
+
+    public function init(){
         $this->initEmptyGrille();
         $FQN= explode("\\",self::class);
         $this->setState([
@@ -22,13 +26,13 @@ class Loto implements LotteryInterface {
             "nb_etoile" => self::NB_MAX_ETOILE,
             "numeros" => range(self::NUMERO_MIN,self::NUMERO_MAX) ,
             "etoiles" => range(self::NUMERO_MIN,self::ETOILE_MAX),
-            "max"=>self::NUMERO_MAX,
+            "maxNumero"=>self::NUMERO_MAX,
+            "maxEtoile"=>self::ETOILE_MAX,
             "min" => self::NUMERO_MIN,
             "grille" => $this->getGrille()
         ]);
+        return $this;
     }
-
-
 
 
     public function getJsonState(){

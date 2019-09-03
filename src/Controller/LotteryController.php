@@ -21,7 +21,7 @@ class LotteryController extends AbstractController
     public function euromillion(Request $request, $_route)
     {
         $lottery = (new LotteryManager( $_route))->getLottery()->init();
-        // dd($euromillion->getJsonState());
+        // dd($lottery);
          return $this->render('lottery/lottery.html.twig', 
          [
              "stateJson" => $lottery->getJsonState(),

@@ -14,18 +14,7 @@ class Euromillion implements LotteryInterface {
      */
     public function __construct()
     {
-        $this->initEmptyGrille();
-        $FQN= explode("\\",self::class);
-        $this->setState([
-            "lotteryName" => end($FQN),
-            "nb_numero" =>self::NB_MAX_NUMERO,
-            "nb_etoile" => self::NB_MAX_ETOILE,
-            "numeros" => range(self::NUMERO_MIN,self::NUMERO_MAX) ,
-            "etoiles" => range(self::NUMERO_MIN,self::ETOILE_MAX),
-            "max"=>self::NUMERO_MAX,
-            "min" => self::NUMERO_MIN,
-            "grille" => $this->getGrille()
-        ]);
+      
     }
 
  public function init(){
@@ -37,10 +26,12 @@ class Euromillion implements LotteryInterface {
         "nb_etoile" => self::NB_MAX_ETOILE,
         "numeros" => range(self::NUMERO_MIN,self::NUMERO_MAX) ,
         "etoiles" => range(self::NUMERO_MIN,self::ETOILE_MAX),
-        "max"=>self::NUMERO_MAX,
+        "maxNumero"=>self::NUMERO_MAX,
+        "maxEtoile"=>self::ETOILE_MAX,
         "min" => self::NUMERO_MIN,
         "grille" => $this->getGrille()
     ]);
+    return $this;
  }
 
 
