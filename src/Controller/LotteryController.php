@@ -8,63 +8,49 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use App\Entity\Grille;
-use App\Form\GrilleType;
-class DefaultController extends AbstractController
+use App\Lototo\Lottery\LotteryManager;
+
+class LotteryController extends AbstractController
 {
-   
-    /**
-     * @Route("/", name="homepage")
-     * @Method({"GET", "POST"})
-     */
-    public function indexAction (Request $request)
-    {
 
 
-
-
-        return $this->render('default/index.html.twig', [
-
-        ]);
-    }
-
-    /**
-     * @Route("/euromillion_hold", name="euromillion_hold")
+     /**
+     * @Route("/euromillion", name="euromillion")
      * @Method({"POST","GET"})
      */
-    public function euromillionAction (Request $request)
+    public function euromillion(Request $request, $_route)
     {
+        $lottery = (new LotteryManager( $_route))->getLottery()->init();
+        // dd($euromillion->getJsonState());
+         return $this->render('lottery/lottery.html.twig', 
+         [
+             "stateJson" => $lottery->getJsonState(),
+             "state" => $lottery->getState()
+         ]);
+    }
 
-        $grille = new Grille();
-        $form = $this->createForm(GrilleType::class, $grille);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-         //  dump($grille);die;
-           // $grille = $form->getData();
-        
-            $simulateurEuro = new SimulateurEuromillion();
-
-            $simulationEuromillion=$simulateurEuro->simuler($grille->getNums(),$grille->getEtoiles(),$grille->getNbTirage());
-
-             return $this->render('default/euromillionResult.html.twig',[
-               'simulationEuromillion'=>$simulationEuromillion
-             ]);
-
-        }
-
-        return $this->render('default/euromillion.html.twig', [
-
-            'form' => $form->createView(),
-               "lotteryName" => "euromillion"
+     /**
+     * @Route("/loto", name="loto")
+     * @Method({"POST","GET"})
+     */
+    public function loto(Request $request, $_route)
+    {
+     $lottery = (new LotteryManager( $_route))->getLottery();
+       // dd($euromillion->getJsonState());
+        return $this->render('lottery/lottery.html.twig', 
+        [
+            "stateJson" => $lottery->getJsonState(),
+            "state" => $lottery->getState()
         ]);
     }
+
 
      /**
      * @Route("/api/euromillion/{nbTirage}/{num1}/{num2}/{num3}/{num4}/{num5}/{etoile1}/{etoile2}", name="apiEuromillion")
      * @Method({"GET"})
      */
-    public function apiEuromillionAction (Request $request, int $nbTirage,int $num1,int $num2, int $num3, int $num4, int $num5, int $etoile1, int $etoile2)
+    public function apiEuromillion (Request $request, int $nbTirage,int $num1,int $num2, int $num3, int $num4, int $num5, int $etoile1, int $etoile2)
     {
              $grille = new Grille();
        //  dump($request->attributes->get('nbTirage'));

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+ {{parent()}}   -  {{state.lotteryName}}
+{% endblock%}
+{% block body %}
+
+<!-- Services -->
+    <section class="container-fluid">
+        <div id="wrapper">
+            <div class="jumbotron">
+                <div id="root" data-state="{{stateJson}}">
+                     
+                </div>
+
+             <a href="{{path('homepage') }}" class="btn btn-warning">Annuler</a>
+            </div>
+        </div>
+
+    </section>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{parent()}}
+       {{ encore_entry_script_tags('AppComponent') }}
+
+{% endblock %}

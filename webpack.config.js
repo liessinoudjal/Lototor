@@ -25,7 +25,9 @@ Encore
      */
     .addEntry('app', './assets/js/app.js')
     .addEntry('bootstrap',['./assets/js/bootstrap/bootstrap.js'])
-    //.addEntry('page2', './assets/js/page2.js')
+    .addEntry('agency-bootstrap','./assets/css/bootstrap/scss/startboostrap-agency.scss') 
+    .addEntry('fontawesome', './assets/css/fontawesome/scss/fontawesome.scss')
+    .addEntry('AppComponent', './assets/js/components/App.jsx')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -49,10 +51,18 @@ Encore
     .enableVersioning(Encore.isProduction())
 
     // enables @babel/preset-env polyfills
-    .configureBabel(() => {}, {
-        useBuiltIns: 'usage',
-        corejs: 3
-    })
+    .configureBabel((babelConfig) => {
+         // add additional presets
+        // babelConfig.presets.push('env');
+        //babelConfig.presets.push('es2015');
+        //babelConfig.presets.push('stage-0');
+        babelConfig.plugins.push('@babel/plugin-proposal-class-properties');
+        }, 
+        {
+            useBuiltIns: 'usage',
+            corejs: 3
+        }
+    )
 
     // enables Sass/SCSS support
     .enableSassLoader()
@@ -68,7 +78,7 @@ Encore
     .autoProvidejQuery()
 
     // uncomment if you use API Platform Admin (composer req api-admin)
-    //.enableReactPreset()
+    .enableReactPreset()
     //.addEntry('admin', './assets/js/admin.js')
 ;
 
