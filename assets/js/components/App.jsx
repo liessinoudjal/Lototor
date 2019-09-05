@@ -26,12 +26,22 @@ class App extends React.Component {T
     if(newValue.length <= 2 ){
        $( e.currentTarget).popover("dispose")
       if (this.isBonNumero(newValue) >=0 ){
-        const  grilleNumeros  = [...this.state.grilleNumeros];  
-        grilleNumeros[numIndex] = newValue;
-        // update state
-        this.setState({
-            grilleNumeros,
-        });
+        if(this.state.grilleNumeros.indexOf(newValue) < 0 || newValue == ''){
+          const  grilleNumeros  = [...this.state.grilleNumeros];  
+          grilleNumeros[numIndex] = newValue;
+          // update state
+          this.setState({
+              grilleNumeros,
+          });
+        }else{
+           $( e.currentTarget).popover({
+                animation: true,
+                content: "Chiffre "+ newValue+ " déjà seléctionné.",
+                placement: "bottom"
+              })//.show()
+        $( e.currentTarget).popover("show")
+        }
+        
       }else{
        $( e.currentTarget).popover({
                 animation: true,
@@ -51,12 +61,22 @@ setEtoile(e){
     if(newValue.length <= 2){
         $( e.currentTarget).popover("dispose")
         if (this.isBonEtoile(newValue) >=0 ){
-          const  grilleEtoiles  = [...this.state.grilleEtoiles];
-          grilleEtoiles[numIndex] = newValue;
-          // update state
-          this.setState({
-            grilleEtoiles,
-          });
+         if(this.state.grilleEtoiles.indexOf(newValue) < 0 || newValue == ''){
+           const  grilleEtoiles  = [...this.state.grilleEtoiles];
+            grilleEtoiles[numIndex] = newValue;
+            // update state
+            this.setState({
+              grilleEtoiles,
+            });
+         }else{
+            $( e.currentTarget).popover({
+                animation: true,
+                content: "Chiffre "+ newValue+ " déjà seléctionné.",
+                placement: "bottom"
+              })//.show()
+            $( e.currentTarget).popover("show")
+        }
+         
         }else{
               $( e.currentTarget).popover({
                 animation: true,
