@@ -30,7 +30,10 @@ class Euromillion implements LotteryInterface {
         "maxEtoile"=>self::ETOILE_MAX,
         "min" => self::NUMERO_MIN,
         "grilleNumeros" => $this->getGrille()["numeros"],
-        "grilleEtoiles" => $this->getGrille()["etoiles"]
+        "grilleEtoiles" => $this->getGrille()["etoiles"],
+        "anneesDeTirages" =>[
+            "{'selected':true,'value':10}"
+        ]
     ]);
     return $this;
  }
