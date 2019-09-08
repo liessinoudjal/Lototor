@@ -32,7 +32,7 @@ class Euromillion implements LotteryInterface {
         "grilleNumeros" => $this->getGrille()["numeros"],
         "grilleEtoiles" => $this->getGrille()["etoiles"],
         "anneesDeTirages" =>[
-            "{'selected':true,'value':10}"
+            10,20,50,100,200,500
         ]
     ]);
     return $this;

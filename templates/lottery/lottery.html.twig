@@ -2,6 +2,11 @@
 {% block title %}
  {{parent()}}   -  {{state.lotteryName}}
 {% endblock%}
+
+{% block stylesheets %}
+                       {{ encore_entry_link_tags('AppComponent') }}
+
+    {% endblock %}
 {% block body %}
 
 <!-- Services -->

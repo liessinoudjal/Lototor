@@ -3,7 +3,7 @@ namespace App\Lototo\Lottery;
 use App\Lototo\Lottery\LotteryInterface;
 
 class Loto implements LotteryInterface {
-    const  ETOILE_MAX= 12, NUMERO_MAX = 49, NUMERO_MIN=1, NB_MAX_NUMERO = 5, NB_MAX_ETOILE = 1;
+    const  ETOILE_MAX= 10, NUMERO_MAX = 49, NUMERO_MIN=1, NB_MAX_NUMERO = 5, NB_MAX_ETOILE = 1;
     private $state ;
     private $grille= [];
     
@@ -30,7 +30,10 @@ class Loto implements LotteryInterface {
             "maxEtoile"=>self::ETOILE_MAX,
             "min" => self::NUMERO_MIN,
             "grilleNumeros" => $this->getGrille()["numeros"],
-            "grilleEtoiles" => $this->getGrille()["etoiles"]
+            "grilleEtoiles" => $this->getGrille()["etoiles"],
+            "anneesDeTirages" =>[
+                10,20,50,100,200,500
+            ]
         ]);
         return $this;
     }
@@ -45,7 +48,7 @@ class Loto implements LotteryInterface {
             $this->grille["numeros"][]='';
         }
 
-        for($i = 0; $i < self::NB_MAX_NUMERO;$i++){
+        for($i = 0; $i < self::NB_MAX_ETOILE;$i++){
             $this->grille["etoiles"][]='';
         }
     }
