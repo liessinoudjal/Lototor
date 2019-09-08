@@ -1,5 +1,25 @@
 form{
+	.ans {
+		span{
+			text-align: center;
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			border: 1px black solid;
+			background-color: white;
+			vertical-align: middle;
+			line-height: 50px;
+			font-size: 20px;
+			margin: 10px;
 
+			&.checked{
+				background-color: #207FC9;
+				color: #FFFFFF;
+			}
+			
+
+		}
+	}
 	span.numeros{
 		input[type="text"]{
 			text-align: center;

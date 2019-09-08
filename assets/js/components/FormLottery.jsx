@@ -1,6 +1,7 @@
 import React ,{Component} from 'react'
 import TypeNumeroContext, {TypeNumeroProvider} from './TypeNumeroContext'
 import Numero from './Numero'
+import Annees from './Annees'
 
 require('../../css/components/form.scss')
 
@@ -19,6 +20,18 @@ class FormLottery extends Component {
   isBonEtoile(numero){
      return numero != '' ? this.state.etoiles.indexOf(parseInt(numero )) :1
   }
+
+  handleAnnees(e){
+  	//on le modifie que si il n'a pas encore ete checké
+  	if(!e.currentTarget.classList.contains("checked")){
+  		//on déchek l'element qui avait ete checké
+  		e.currentTarget.parentNode.querySelector("span.checked").classList.toggle("checked")
+  		//puis on check l element cible
+  		e.currentTarget.classList.toggle("checked")
+  	}
+  	
+  }
+
   handleChange(e){
     e.preventDefault();
     let target = e.currentTarget;
@@ -118,16 +131,11 @@ render(){
 		        <form>
 		          <h1><span>Simulateur </span> {this.state.lotteryName}</h1> 
 		          <h2>Choisissez sur combien d'années vous voulez simuler</h2>
-		           <div className="d-flex flex-row bd-highlight mb-3">
-				        <div className="">
-				       	<label >10 <input  type="radio" name="annees" value="10"/> </label>
-				       
-				        </div>
-				         <div className="">
+		           <div className="d-flex flex-row bd-highlight mb-1 ans">
+				        {this.state.anneesDeTirages.map((	annees, index) =>
+								<Annees handleAnnees={this.handleAnnees} key={"annees-"+index} annees={annees} checked={(index ==0)?true:false}/>
+				        )}
 				
-				        <label>20 <input type="radio" name="annees" value ="20"/></label>
-
-				        </div>
 				 </div>  
 				 <div className="d-flex flex-column flex-md-row">
 		         	<div className="mt-3 mr-5">
