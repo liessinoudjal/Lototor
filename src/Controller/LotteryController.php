@@ -9,18 +9,39 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use App\Lototo\Lottery\LotteryManager;
+use App\Lototo\Lottery\Grille\Grille;
 
 class LotteryController extends AbstractController
 {
 
 
      /**
-     * @Route("/euromillion", name="euromillion")
+     * @Route("/euromillion",options={"expose"=true}, name="euromillion")
      * @Method({"POST","GET"})
      */
-    public function euromillion(Request $request, $_route)
+    public function euromillion(Request $request, $_route, $_method)
     {
-        $lottery = (new LotteryManager( $_route))->getLottery()->init();
+        
+
+        //en cas de soumission du formulaire
+        if($request->getMethod() == "POST" && $request->isXmlHttpRequest()){
+            //dd($request->request);
+            $nb_tirages= $request->request->get("nb_annees");
+            $numeros = explode(",",$request->request->get("numeros"));
+            $etoiles =  explode(",",$request->request->get("etoiles"));
+                $grille = new Grille($nb_tirages,$numeros,$etoiles);
+            $lotteryManager = (new LotteryManager( $_route));
+            return $this->json([
+                "lotteryName" => $_route,
+                "content" => $lotteryManager->getLottery()->getSimulator()->simuler($grille),
+                "status" => true,
+                "error" => false
+            ]);
+        }
+            
+           //dd($request);
+            
+       $lottery = (new LotteryManager( $_route))->getLottery()->init();
         // dd($lottery);
          return $this->render('lottery/lottery.html.twig', 
          [

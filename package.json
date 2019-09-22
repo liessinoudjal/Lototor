@@ -25,6 +25,7 @@
         "react": "^16.9.0",
         "react-dom": "^16.9.0",
         "react-transition-group": "^4.3.0",
-        "startbootstrap-agency": "^5.2.1"
+        "startbootstrap-agency": "^5.2.1",
+        "whatwg-fetch": "^3.0.0"
     }
 }

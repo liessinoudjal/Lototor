@@ -5,6 +5,10 @@ import Numero from './Numero'
 import Annees from './Annees'
 import _form from './functions/_form'
 
+import Routing from '../../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
+const routes = require('../../../public/js/fos_js_routes.json');
+Routing.setRoutingData(routes);
+
 require('../../css/components/form.scss')
 
 class FormLottery extends Component {
@@ -44,22 +48,57 @@ class FormLottery extends Component {
  	})  
 
  	if(error){
- 		this.setState({error:true})
- 	}
- 	console.log(nb_annees,numeros,etoiles);
+ 		this.setState({error})
+ 	}//pas d'erreur
+ 	else{
+ 			//on affcihe la modal de résultat
 
- }
+			let modal = $("#modal-result").modal("show")
+			let title = document.querySelector("#modal-result .modal-title span")
+			let content = document.querySelector("#modal-result .modal-body")
+			title.innerHTML = this.state.lotteryName
+ 		 	let myHeaders = new Headers({
+			    //'Content-Type': 'application/x-www-form-urlencoded',
+			    "X-Requested-With" : "XMLHttpRequest"
+			});
+ 		 	let form = new FormData();
+ 		 	form.append("nb_annees",nb_annees)
+ 		 	form.append("etoiles",etoiles)
+			form.append("numeros",numeros)
+			let myInit = { method: 'POST',
+			               headers: myHeaders,
+			             //  mode: 'cors',
+			               body:  form
+			           };
+
+			let myRequest = new Request(Routing.generate(this.state.lotteryName));
+
+			fetch(myRequest,myInit)
+			.then(function(response) {
+			  return response.json();
+			})
+			.then(function(data) {
+
+				
+
+				content.innerHTML = data.content
+				
+			  console.log(data, content,modal)
+			});
+	}
+
+
+	 }
 
 render(){
-const alert = this.state.error? <div class="alert alert-danger" role="alert">
-						 Votre grille n'est pas complète ou contient des doublons !
-						 </div> : "";
+
 return	( 
 	    <div>
-	        <form onSubmit={this.simuler}>
+	        <form onSubmit={this.simuler} id="form-lottery">
 	          <h1><span>Simulateur </span> {this.state.lotteryName}</h1>
-	          {alert 
-	          }
+	          <div className={(this.state.error)?"alert alert-danger":"alert alert-danger d-none"} role="alert">
+						 Votre grille n'est pas complète ou contient des doublons !
+				</div>
 			  
 	          <h2>Choisissez sur combien d'années vous voulez simuler</h2>
 	           	<div className="d-flex flex-row bd-highlight mb-1 ans">

@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import FormLottery from './FormLottery'
-
+//utilie pour  ie
+import {fetch as fetchPolify}  from 'whatwg-fetch'
 
 const App = () => {
 

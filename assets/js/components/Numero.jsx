@@ -14,7 +14,8 @@ const typeNumeroContext = useContext(TypeNumeroContext)
 						type ="text" 
 						step="1" 
 						max={props.max}
-						 min = {props.min} />   
+						 min = {props.min} 
+						 name= { typeNumeroContext.typeNumero +"-"+ props.index }/>   
 				</span>
 }
 

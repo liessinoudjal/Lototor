@@ -2,17 +2,18 @@
 namespace App\Lototo\Lottery;
 
 use App\Lototo\Lottery\LotteryInterface; 
+use App\lototo\Lottery\Grille\Grille;
 
 class LotteryManager {
 
     public $lotteryName;
    
 
-    public function __construct(string $name){
+    public function __construct(string $name  ){
         $this->lotteryName = ucfirst($name);
+  
     }
 
-    
     /**
      * getLottery
      *
