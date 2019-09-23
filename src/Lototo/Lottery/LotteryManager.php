@@ -21,7 +21,8 @@ class LotteryManager {
      */
     public function getLottery(): LotteryInterface{
         $class= "App\\Lototo\\Lottery\\".$this->lotteryName;
-        return new $class() ;
+        $simulator = "App\\Lototo\\Lottery\\Simulator\\".$this->lotteryName."Simulator";
+        return new $class(new $simulator() ) ;
     }
 
  

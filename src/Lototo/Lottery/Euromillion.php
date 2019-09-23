@@ -21,9 +21,9 @@ class Euromillion implements LotteryInterface {
      *
      * @return void
      */
-    public function __construct( )
+    public function __construct(EuromillionSimulator $euromillionSimulator )
     {
-      $this->euromillionSimulator = new EuromillionSimulator();
+      $this->euromillionSimulator = $euromillionSimulator;
     }
 
  public function init(){
@@ -55,11 +55,11 @@ class Euromillion implements LotteryInterface {
 
     public function initEmptyGrille():void{
         for($i = 0; $i < self::NB_MAX_NUMERO;$i++){
-            $this->emptyGrille["numeros"][]='';
+            $this->emptyGrille["numeros"][]=$i+1;
         }
 
         for($i = 0; $i < self::NB_MAX_ETOILE;$i++){
-            $this->emptyGrille["etoiles"][]='';
+            $this->emptyGrille["etoiles"][]=$i+1;
         }
     }
 

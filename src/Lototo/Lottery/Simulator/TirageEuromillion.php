@@ -20,23 +20,24 @@ class TirageEuromillion {
 	} 
 
 	/**
+     * fontcion qui retourne une grille de numeros et d'etoiles prisent au hasard 
      * @return Grille
      */
     public function tirage ():Grille
     {
-            $tabTirage=[];
-        $tabNum=$this->numeros;
-      shuffle( $tabNum );
-      $tabEtoile=$this->etoiles;
+        $tirage=[];
+        $tabNum = $this->numeros;
+        shuffle( $tabNum );
+        $tabEtoile = $this->etoiles;
         shuffle( $tabEtoile );
 
         for ( $i = 0 ; $i < Euromillion::NB_MAX_NUMERO ; $i++ ){
-            $tabTirage["5num"][] = array_shift($tabNum);
+            $tirage["5num"][] = array_shift($tabNum);
             if( $i < Euromillion::NB_MAX_ETOILE ){
-                $tabTirage["2etoiles"][]=array_shift($tabEtoile);
+                $tirage["2etoiles"][]=array_shift($tabEtoile);
             }
         }
-        $this->grille = new Grille(1, $tabTirage["5num"],$tabTirage["2etoiles"]);
+        $this->grille = new Grille(0, $tirage["5num"], $tirage["2etoiles"]);
         return $this->grille ;
     }
 

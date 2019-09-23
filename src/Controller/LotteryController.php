@@ -31,9 +31,10 @@ class LotteryController extends AbstractController
             $etoiles =  explode(",",$request->request->get("etoiles"));
                 $grille = new Grille($nb_tirages,$numeros,$etoiles);
             $lotteryManager = (new LotteryManager( $_route));
+            $resultatSimulation = $lotteryManager->getLottery()->getSimulator()->simuler($grille);
             return $this->json([
                 "lotteryName" => $_route,
-                "content" => $lotteryManager->getLottery()->getSimulator()->simuler($grille),
+                "content" => $this->render("lottery/result_simulation.html.twig",["simulationEuromillion" => $resultatSimulation]) ,
                 "status" => true,
                 "error" => false
             ]);

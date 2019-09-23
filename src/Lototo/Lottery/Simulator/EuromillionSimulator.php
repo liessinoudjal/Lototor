@@ -4,12 +4,14 @@ namespace App\Lototo\Lottery\Simulator;
 use App\Lototo\Lottery\Grille\Grille;
 use Symfony\Component\Templating\EngineInterface;
 use App\Lototo\Lottery\Euromillion;
+use App\Lototo\Lottery\Simulator\SimulatorAbstract;
 
-class EuromillionSimulator {
-
+class EuromillionSimulator //extends SimulatorAbstract
+{
+    public $name = "Euromillion";
 	private $tirageEuromillion;
 
-	 const PRIX_GRILLE = 2.5;
+	const PRIX_GRILLE = 2.5;
     const PRIZE_POOL_MIN = 17000000;
     const PRIZE_POOL_MAX = 190000000;
     public $prizePool = 0;
@@ -29,17 +31,15 @@ class EuromillionSimulator {
         "2,0" => 4.08
     ];
 
-   private $rang1=0,$rang2=0,$rang3=0,$rang4=0,$rang5=0,$rang6=0,$rang7=0,$rang8=0,$rang9=0,$rang10=0,$rang11=0,$rang12=0,$rang13=0;
-     private $gainsrang1=0,$gainsrang2=0,$gainsrang3=0,$gainsrang4=0,$gainsrang5=0,$gainsrang6=0,$gainsrang7=0,$gainsrang8=0,$gainsrang9=0,$gainsrang10=0,$gainsrang11=0,$gainsrang12=0,$gainsrang13=0;
+    private $rang1=0,$rang2=0,$rang3=0,$rang4=0,$rang5=0,$rang6=0,$rang7=0,$rang8=0,$rang9=0,$rang10=0,$rang11=0,$rang12=0,$rang13=0;
+    private $gainsrang1=0,$gainsrang2=0,$gainsrang3=0,$gainsrang4=0,$gainsrang5=0,$gainsrang6=0,$gainsrang7=0,$gainsrang8=0,$gainsrang9=0,$gainsrang10=0,$gainsrang11=0,$gainsrang12=0,$gainsrang13=0;
 
     private $nbAnnees;
     private $nbTirages;
 
 	public function __construct(){
+     // Parent::__construct();
 		$this->tirageEuromillion = new TirageEuromillion();
-
-
-		
 	
 	}
 
@@ -109,8 +109,11 @@ class EuromillionSimulator {
         $this->benef=$this->gains-$this->miseTotale;
 // dd($nbTirageSimu,$grilleTirage,$grille,$this);
         return $this;
+       // return $this->getTemplating()->render("Lottery/result_simulation.html.twig",['simulator',$this]);
 		
 	}
+
+
 
 	public function getTirageEuromillion(): TirageEuromillion
 	{
