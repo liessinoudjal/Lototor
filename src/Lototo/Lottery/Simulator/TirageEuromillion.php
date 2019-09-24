@@ -31,6 +31,10 @@ class TirageEuromillion {
         $tabEtoile = $this->etoiles;
         shuffle( $tabEtoile );
 
+        //on garde les tableaux deja melangé pour les remelanger au prochain tirage
+        $this->numeros = $tabNum;
+        $this->etoiles = $tabEtoile;
+
         for ( $i = 0 ; $i < Euromillion::NB_MAX_NUMERO ; $i++ ){
             $tirage["5num"][] = array_shift($tabNum);
             if( $i < Euromillion::NB_MAX_ETOILE ){

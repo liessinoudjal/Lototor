@@ -1,2 +1,17 @@
 //recharger les route pour fosUSerB Routing
 bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
+transfert ftp
+// install le .htacccess
+ composer require symfony/apache-pack
+
+ // metttre à jour le vendor avant de transferer les fichiers
+ composer install --no-dev --optimize-autoloader
+
+//a installer sur le server si le serveur uitilise les variable d'environnemt
+  composer require symfony/dotenv
+
+  // met l'environnement en prod et clear le cache
+   APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear
+
+   // compile tout le js et ccs pour la prod
+   yarn build

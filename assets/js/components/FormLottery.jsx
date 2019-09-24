@@ -78,9 +78,7 @@ class FormLottery extends Component {
 			  return response.json();
 			})
 			.then(function(data) {
-
-				
-
+				console.log(data);
 				content.innerHTML = data.content.content
 				
 			  console.log(data, content,modal)
@@ -94,7 +92,7 @@ render(){
 
 return	( 
 	    <div>
-	        <form onSubmit={this.simuler} id="form-lottery"  autocomplete="off">
+	        <form onSubmit={this.simuler} id="form-lottery"  autoComplete="off">
 	          <h1><span>Simulateur </span> {this.state.lotteryName}</h1>
 	          <div className={(this.state.error)?"alert alert-danger":"alert alert-danger d-none"} role="alert">
 						 Votre grille n'est pas complète ou contient des doublons !

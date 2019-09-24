@@ -10,7 +10,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
          {{ encore_entry_link_tags('app') }}
                {{ encore_entry_link_tags('bootstrap') }}
-                   {{ encore_entry_link_tags('agency-bootstrap') }}
+                  {#} {{ encore_entry_link_tags('agency-bootstrap') }}#}
                  {{ encore_entry_link_tags('fontawesome') }}
         {% block stylesheets %}
               
@@ -21,7 +21,6 @@
         <div class="container">
             <a class="navbar-brand js-scroll-trigger" href="{{ path('homepage') }}"><i class="fas fa-futbol" aria-hidden="true"></i> <i class="fas fa-futbol" aria-hidden="true"></i> Lototo <i class="fas fa-futbol" aria-hidden="true"></i> <i class="fas fa-futbol" aria-hidden="true"></i></a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                Menu
                 <i class="fa fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">

@@ -1,5 +1,8 @@
 
     <a href="{{path('euromillion') }}" class="btn btn-warning">Recommencer</a>
+    <a href="https://www.fdj.fr/jeux-de-tirage/euromillions-my-million/" class="btn btn-success" onclick="window.open(this.href);return false">
+    	Jouer sur <img width="50"src="{{asset('img/fdj-logo.svg')}}">
+    </a>
     <div class="card ">
         {% if simulationEuromillion.gagnant%}
       <div class="card-header bg-success text-white ">
@@ -10,9 +13,9 @@
              <h2>Vous n'avez pas touché le gros lot !</h2>
              
              {% for number in simulationEuromillion.tabNums %}
-             <span class="fa-stack fa-2x">
+             <span class="fa-stack fa-1x">
                 <!-- The icon that will wrap the number -->
-                <i class="far fa-circle fa-stack-1x"></i>
+                <i class="fas fa-futbol fa-stack-1x" aria-hidden="true"></i>
                 <!-- a strong element with the custom content, in this case a number -->
                 <i class="">
                     {{number}}   
@@ -20,7 +23,7 @@
             </span> 
             {% endfor%}
              {% for number in simulationEuromillion.tabEtoiles %}
-             <span class="fa-stack fa-2x">
+             <span class="fa-stack fa-1x">
 
                 <!-- The icon that will wrap the number -->
                 <i class="far fa-star fa-stack-1x"></i>
@@ -124,7 +127,4 @@
                 </table>
             </div>
         </div>
-
-
     </div>
-    {{ dump(simulationEuromillion) }}

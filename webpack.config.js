@@ -25,7 +25,7 @@ Encore
      */
     .addEntry('app', './assets/js/app.js')
     .addEntry('bootstrap',['./assets/js/bootstrap/bootstrap.js'])
-    .addEntry('agency-bootstrap','./assets/css/bootstrap/scss/startboostrap-agency.scss') 
+   // .addEntry('agency-bootstrap','./assets/css/bootstrap/scss/startboostrap-agency.scss') 
     .addEntry('fontawesome', './assets/css/fontawesome/scss/fontawesome.scss')
     .addEntry('AppComponent', './assets/js/components/App.jsx')
 
