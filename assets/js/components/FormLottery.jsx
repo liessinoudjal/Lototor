@@ -13,16 +13,23 @@ require('../../css/components/form.scss')
 
 class FormLottery extends Component {
 
+
+
  constructor(props) {
   super(props);
   this.state = JSON.parse(this.props.root);
   this.state.error=false; 
-  _form.handleChange = _form.handleChange.bind(this)
-  _form.isBonNumero = _form.isBonNumero.bind(this)
-  _form.isBonEtoile = _form.isBonEtoile.bind(this)
+  _form.handleChange = _form.handleChange.bind(this);
+  _form.isBonNumero = _form.isBonNumero.bind(this);
+  _form.isBonEtoile = _form.isBonEtoile.bind(this);
   this.simuler = this.simuler.bind(this);
+
+  
+
+ 
 }
-	
+	 
+
 
  
  simuler(e){
@@ -53,7 +60,7 @@ class FormLottery extends Component {
  	else{
  			//on affcihe la modal de résultat
 
-			let modal = $("#modal-result").modal("show")
+			$("#modal-result").modal("show")
 			let title = document.querySelector("#modal-result .modal-title span")
 			let content = document.querySelector("#modal-result .modal-body")
 			title.innerHTML = this.state.lotteryName
@@ -81,7 +88,7 @@ class FormLottery extends Component {
 				console.log(data);
 				content.innerHTML = data.content.content
 				
-			  console.log(data, content,modal)
+			  console.log(data, content)
 			});
 	}
 
