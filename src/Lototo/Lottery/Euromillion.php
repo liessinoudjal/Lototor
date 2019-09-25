@@ -52,14 +52,19 @@ class Euromillion implements LotteryInterface {
         return json_encode ( $this->getState());
     }
 
-
-    public function initEmptyGrille():void{
-        for($i = 0; $i < self::NB_MAX_NUMERO;$i++){
-            $this->emptyGrille["numeros"][]=$i+1;
-        }
-
-        for($i = 0; $i < self::NB_MAX_ETOILE;$i++){
-            $this->emptyGrille["etoiles"][]=$i+1;
+    /**
+     * fonction qui initialise une grille vide
+     * @return void
+     **/
+    public function initEmptyGrille() : void
+    {
+        
+        for($i = 0 ; $i < self::NB_MAX_NUMERO ; $i++){
+            $this->emptyGrille["numeros"][] = "";
+            
+            if($i < self::NB_MAX_ETOILE){
+                $this->emptyGrille["etoiles"][] = "";
+            }
         }
     }
 

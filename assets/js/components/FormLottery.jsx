@@ -113,7 +113,7 @@ return	(
 			
 				</div>  
 				<div className="d-flex flex-column flex-md-row">
-		         	<div className="mt-3 mr-5">
+		         	<div className="mt-3">
 		         		 <h2>Saisir {this.state.nb_numero} numeros entre {this.state.min} et {this.state.maxNumero}</h2>
 				          <TypeNumeroProvider value= {{typeNumero:'numero'}}>
 				            <div className="row ">

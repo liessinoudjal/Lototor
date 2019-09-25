@@ -4,125 +4,148 @@
     	Jouer sur <img width="50"src="{{asset('img/fdj-logo.svg')}}">
     </a>
     <div class="card ">
-        {% if simulationEuromillion.gagnant%}
-      <div class="card-header bg-success text-white ">
-        <h2>Vous touché le gros lot ! </h2>
-          {% else %}
-          <div class="card-header bg-danger text-white ">
-           
-             <h2>Vous n'avez pas touché le gros lot !</h2>
-             
+   
+      <div class="card-header {{ simulationEuromillion.gagnant? "bg-success" : "bg-danger" }}  text-white ">
+        <h2>{{ simulationEuromillion.gagnant? "Jackpot !" : "Perdu !"  }} </h2> 
+   
              {% for number in simulationEuromillion.tabNums %}
-             <span class="fa-stack fa-1x">
+             <span class="fa-stack fa-2x">
                 <!-- The icon that will wrap the number -->
-                <i class="fas fa-futbol fa-stack-1x" aria-hidden="true"></i>
+                <i class="fas fa-futbol fa-stack-1x text-success" aria-hidden="true"></i>
                 <!-- a strong element with the custom content, in this case a number -->
-                <i class="">
+                <i class="fa-stack-1x  font-weight-bold">
                     {{number}}   
                 </i>
             </span> 
             {% endfor%}
              {% for number in simulationEuromillion.tabEtoiles %}
-             <span class="fa-stack fa-1x">
+             <span class="fa-stack fa-2x">
 
                 <!-- The icon that will wrap the number -->
-                <i class="far fa-star fa-stack-1x"></i>
+                <i class="far fa-star fa-stack-1x text-success"></i>
                 <!-- a strong element with the custom content, in this case a number -->
-                <i class="">
+                <i class="fa-stack-1x  font-weight-bold">
                     {{number}}   
                 </i>
            
             </span> {% endfor%}
       </div>
-          {% endif %}
+
         <div class="card-body">
             <div class="table-responsive-sm">
-                <h3>Résultats simulation</h3>
-                <table class="table table-striped text-center table-sm">
-                    <thead>
-                    <tr>
-                        <th class=""> {{ simulationEuromillion.nbAnnees }} ans</th>
-                        <th class="">{{ simulationEuromillion.nbTirages|number_format(0,',',' ') }} tirages</th>
-                        <th class="">{{ simulationEuromillion.miseTotale|number_format(2, ',', ' ') }} € misés</th>
-                        <th class="">{{ simulationEuromillion.gains|number_format(2, ',', ' ') }} € gagnés</th>
-                        {% if simulationEuromillion.benef <=0 %}
-                        <th class="">{{ simulationEuromillion.benef|number_format(2, ',', ' ') }} € perdu !</th>
+                <h2>Résultats simulation</h3>
+                    <ul class="list-group">
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Nombre d'années jouées
+                        <span class="badge badge-primary badge-pill">
+                            {{ simulationEuromillion.nbAnnees }} ans
+                        </span>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Nombre de tirages simulés
+                        <span class="badge badge-primary badge-pill">
+                            {{ simulationEuromillion.nbTirages|number_format(0,',',' ') }}
+                        </span>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Mise totale
+                        <span class="badge badge-danger badge-pill">
+                            {{ simulationEuromillion.miseTotale|number_format(2, ',', ' ') }} € 
+                        </span>
+                      </li>
+                       <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Somme gagnées lors des tirages
+                        <span class="badge badge-primary badge-pill">
+                            {{ simulationEuromillion.gains|number_format(2, ',', ' ') }} €
+                        </span>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Gains total
+                      {% if simulationEuromillion.benef <=0 %}
+                        <span class="badge badge-danger badge-pill">
+                             {{ simulationEuromillion.benef|number_format(2, ',', ' ') }} €
+                        </span>
                         {% else %}
-                        <th class="">{{ simulationEuromillion.benef|number_format(2, ',', ' ') }} € gagné !</th>
+                            <span class="badge badge-primary badge-pill">
+                                {{ simulationEuromillion.benef|number_format(2, ',', ' ') }} €
+                            </span>
                         {% endif %}
-                    </tr>
+                      </li>
+                    </ul>
+                    <table class="table table-striped text-center table-sm">
+                    <thead>
+                         <tr class="bg-dark text-white">
+                            <th>Combinaisons</th>
+                            <th colspan="2">Combinaisons touchée</th>
+                            <th colspan="2">gains </th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr class="bg-dark text-white">
-                        <th>Combinaisons</th>
-                        <th colspan="2">nombre de fois touché à ce rang</th>
-                        <th colspan="2">gains au rang</th>
-                    </tr>
-                    <tr>
-                        <th>rang 1</th>
-                        <td colspan="2">{{ simulationEuromillion.rang1 }} </td>
-                         <td colspan="2">{{ simulationEuromillion.gainsrang1 }} </td>
-                    </tr>
-                    <tr>
-                        <th>rang 2</th>
-                        <td colspan="2">{{ simulationEuromillion.rang2 }} </td>
-                         <td colspan="2">{{ simulationEuromillion.gainsrang2 }} </td>
-                    </tr>
-                    <tr>
-                        <th>rang 3</th>
-                        <td colspan="2">{{ simulationEuromillion.rang3 }} </td>
-                         <td colspan="2">{{ simulationEuromillion.gainsrang3 }} </td>
-                    </tr>
-                    <tr>
-                        <th>rang 4</th>
-                        <td colspan="2">{{ simulationEuromillion.rang4 }} </td>
-                         <td colspan="2">{{ simulationEuromillion.gainsrang4 }} </td>
-                    </tr>
-                    <tr>
-                        <th>rang 5</th>
-                        <td colspan="2">{{ simulationEuromillion.rang5 }} </td>
-                         <td colspan="2">{{ simulationEuromillion.gainsrang5 }} </td>
-                    </tr>
-                    <tr>
-                        <th>rang 6</th>
-                        <td colspan="2">{{ simulationEuromillion.rang6 }} </td>
-                        <td colspan="2">{{ simulationEuromillion.gainsrang6 }} </td>
-                    </tr>
-                    <tr>
-                        <th>rang 7</th>
-                        <td colspan="2">{{ simulationEuromillion.rang7 }} </td>
-                        <td colspan="2">{{ simulationEuromillion.gainsrang7 }} </td>
-                    </tr>
-                    <tr>
-                        <th>rang 8</th>
-                        <td colspan="2">{{ simulationEuromillion.rang8 }} </td>
-                        <td colspan="2">{{ simulationEuromillion.gainsrang8 }} </td>
-                    </tr>
-                    <tr>
-                        <th>rang 9</th>
-                        <td colspan="2">{{ simulationEuromillion.rang9 }} </td>
-                        <td colspan="2">{{ simulationEuromillion.gainsrang9 }} </td>
-                    </tr>
-                    <tr>
-                        <th>rang 10</th>
-                        <td colspan="2">{{ simulationEuromillion.rang10 }} </td>
-                        <td colspan="2">{{ simulationEuromillion.gainsrang10 }} </td>
-                    </tr>
-                    <tr>
-                        <th>rang 11</th>
-                        <td colspan="2">{{ simulationEuromillion.rang11 }} </td>
-                        <td colspan="2">{{ simulationEuromillion.gainsrang11 }} </td>
-                    </tr>
-                    <tr>
-                        <th>rang 12</th>
-                        <td colspan="2">{{ simulationEuromillion.rang12 }} </td>
-                        <td colspan="2">{{ simulationEuromillion.gainsrang12 }} </td>
-                    </tr>
-                    <tr>
-                        <th>rang 13</th>
-                        <td colspan="2">{{ simulationEuromillion.rang13 }} </td>
-                        <td colspan="2">{{ simulationEuromillion.gainsrang13 }} </td>
-                    </tr>
+                        <tr>
+                            <th>rang 1</th>
+                            <td colspan="2">{{ simulationEuromillion.rang1 }} </td>
+                             <td colspan="2">{{ simulationEuromillion.gainsrang1 }} € </td>
+                        </tr>
+                        <tr>
+                            <th>rang 2</th>
+                            <td colspan="2">{{ simulationEuromillion.rang2 }} </td>
+                             <td colspan="2">{{ simulationEuromillion.gainsrang2 }} €</td>
+                        </tr>
+                        <tr>
+                            <th>rang 3</th>
+                            <td colspan="2">{{ simulationEuromillion.rang3 }} </td>
+                             <td colspan="2">{{ simulationEuromillion.gainsrang3 }} €</td>
+                        </tr>
+                        <tr>
+                            <th>rang 4</th>
+                            <td colspan="2">{{ simulationEuromillion.rang4 }} </td>
+                             <td colspan="2">{{ simulationEuromillion.gainsrang4 }} €</td>
+                        </tr>
+                        <tr>
+                            <th>rang 5</th>
+                            <td colspan="2">{{ simulationEuromillion.rang5 }} </td>
+                             <td colspan="2">{{ simulationEuromillion.gainsrang5 }} €</td>
+                        </tr>
+                        <tr>
+                            <th>rang 6</th>
+                            <td colspan="2">{{ simulationEuromillion.rang6 }} </td>
+                            <td colspan="2">{{ simulationEuromillion.gainsrang6 }} €</td>
+                        </tr>
+                        <tr>
+                            <th>rang 7</th>
+                            <td colspan="2">{{ simulationEuromillion.rang7 }} </td>
+                            <td colspan="2">{{ simulationEuromillion.gainsrang7 }} €</td>
+                        </tr>
+                        <tr>
+                            <th>rang 8</th>
+                            <td colspan="2">{{ simulationEuromillion.rang8 }} </td>
+                            <td colspan="2">{{ simulationEuromillion.gainsrang8 }} €</td>
+                        </tr>
+                        <tr>
+                            <th>rang 9</th>
+                            <td colspan="2">{{ simulationEuromillion.rang9 }} </td>
+                            <td colspan="2">{{ simulationEuromillion.gainsrang9 }} €</td>
+                        </tr>
+                        <tr>
+                            <th>rang 10</th>
+                            <td colspan="2">{{ simulationEuromillion.rang10 }} </td>
+                            <td colspan="2">{{ simulationEuromillion.gainsrang10 }} €</td>
+                        </tr>
+                        <tr>
+                            <th>rang 11</th>
+                            <td colspan="2">{{ simulationEuromillion.rang11 }} </td>
+                            <td colspan="2">{{ simulationEuromillion.gainsrang11 }} €</td>
+                        </tr>
+                        <tr>
+                            <th>rang 12</th>
+                            <td colspan="2">{{ simulationEuromillion.rang12 }} </td>
+                            <td colspan="2">{{ simulationEuromillion.gainsrang12 }} €</td>
+                        </tr>
+                        <tr>
+                            <th>rang 13</th>
+                            <td colspan="2">{{ simulationEuromillion.rang13 }} </td>
+                            <td colspan="2">{{ simulationEuromillion.gainsrang13 }} €</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
