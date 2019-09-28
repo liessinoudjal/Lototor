@@ -1,0 +1,22 @@
+body{
+	//.rgbd-container{
+		position: relative; min-height: 200px;
+		.rgbd{
+			position: absolute; 
+			bottom: 0; 
+			right: 0;
+			left: 0;
+			padding: 1rem;
+			text-align: center;
+			border-radius: 10px;
+			background-color: lightGrey;
+			a{
+				color: blue;
+				cursor: pointer;
+			}
+		}
+
+	//}
+
+
+}

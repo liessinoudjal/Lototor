@@ -110,7 +110,7 @@ class EuromillionSimulator //extends SimulatorAbstract
         }
         //calcule des gains potentieles
         $this->benef = $this->gains - $this->miseTotale;
-
+        //dd($this);  
         return $this;
 	}
 
@@ -212,7 +212,7 @@ class EuromillionSimulator //extends SimulatorAbstract
     }
 
 
-    public function estimationGains ($nbBonNum, $nbBonEtoile)
+    public function estimationGains ($nbBonNum, $nbBonEtoile)//($nbBonNum, $nbBonEtoile)
     {
         $key = "$nbBonNum,$nbBonEtoile";
         if (array_key_exists($key, $this->tabGains)) {

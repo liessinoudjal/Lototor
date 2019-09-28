@@ -135,7 +135,7 @@ return	(
 		            </div>
 		        </div>
 		        <div className="form-group">
-		        	<button className="btn btn-success btn-block"  type="submit" > simuler !</button>
+		        	<button className={ this.state.error == true? 'btn btn-success btn-block disabled': 'btn btn-success btn-block'} type="submit" > simuler !</button>
 		        </div>
 	        </form>
 	    </div>

@@ -7,9 +7,8 @@
    
       <div class="card-header {{ simulationEuromillion.gagnant? "bg-success" : "bg-danger" }}  text-white ">
         <h2>{{ simulationEuromillion.gagnant? "Jackpot !" : "Perdu !"  }} </h2> 
-   
-             {% for number in simulationEuromillion.tabNums %}
-             <span class="fa-stack fa-2x">
+        {% for number in simulationEuromillion.tabNums %}
+            <span class="fa-stack fa-2x">
                 <!-- The icon that will wrap the number -->
                 <i class="fas fa-futbol fa-stack-1x text-success" aria-hidden="true"></i>
                 <!-- a strong element with the custom content, in this case a number -->
@@ -17,23 +16,20 @@
                     {{number}}   
                 </i>
             </span> 
-            {% endfor%}
-             {% for number in simulationEuromillion.tabEtoiles %}
-             <span class="fa-stack fa-2x">
-
+        {% endfor%}
+        {% for number in simulationEuromillion.tabEtoiles %}
+            <span class="fa-stack fa-2x">
                 <!-- The icon that will wrap the number -->
                 <i class="far fa-star fa-stack-1x text-success"></i>
                 <!-- a strong element with the custom content, in this case a number -->
                 <i class="fa-stack-1x  font-weight-bold">
                     {{number}}   
                 </i>
-           
             </span> {% endfor%}
       </div>
 
         <div class="card-body">
-            <div class="table-responsive-sm">
-                <h2>Résultats simulation</h3>
+                <h2>Résultats simulation</h2>
                     <ul class="list-group">
                       <li class="list-group-item d-flex justify-content-between align-items-center">
                         Nombre d'années jouées
@@ -72,6 +68,7 @@
                         {% endif %}
                       </li>
                     </ul>
+                <div class="table-responsive-sm">
                     <table class="table table-striped text-center table-sm">
                     <thead>
                          <tr class="bg-dark text-white">
@@ -81,6 +78,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                   
+                        {% for key,value in simulationEuromillion.tabGains %}
+                        <tr>
+
+                            <th>{{key ~ loop.index}} </th>
+                            <td colspan="2">{{ simulationEuromillion.rang1 }} </td>
+                             <td colspan="2">{{ simulationEuromillion.gainsrang1 }} € </td>
+                        </tr>
+                    
+                        {% endfor %}
                         <tr>
                             <th>rang 1</th>
                             <td colspan="2">{{ simulationEuromillion.rang1 }} </td>

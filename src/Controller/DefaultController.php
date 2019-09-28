@@ -29,34 +29,16 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/euromillion_hold", name="euromillion_hold")
+     * @Route("/CGU", name="CGU")
      * @Method({"POST","GET"})
      */
     public function euromillionAction (Request $request)
     {
 
-        $grille = new Grille();
-        $form = $this->createForm(GrilleType::class, $grille);
-        $form->handleRequest($request);
+    
 
-        if ($form->isSubmitted() && $form->isValid()) {
-         //  dump($grille);die;
-           // $grille = $form->getData();
-        
-            $simulateurEuro = new SimulateurEuromillion();
+        return $this->render('default/CGU.html.twig', [
 
-            $simulationEuromillion=$simulateurEuro->simuler($grille->getNums(),$grille->getEtoiles(),$grille->getNbTirage());
-
-             return $this->render('default/euromillionResult.html.twig',[
-               'simulationEuromillion'=>$simulationEuromillion
-             ]);
-
-        }
-
-        return $this->render('default/euromillion.html.twig', [
-
-            'form' => $form->createView(),
-               "lotteryName" => "euromillion"
         ]);
     }
 
