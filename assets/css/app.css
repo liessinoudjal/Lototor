@@ -1,9 +1,23 @@
 
 @media screen and (max-width: 576px) {
-	.intro-heading {
-		font-size: 2rem !important;
-	}
 
+
+}
+@media screen and (max-width: 576px) {
+	.masthead{
+		padding-top: 0.5rem;
+		.jumbotron{
+				margin-top: 4rem;
+					.intro-heading {
+				font-size: 2rem !important;
+				}
+
+		}
+
+	}
+	
+	
+		
 }
 
 /* ecran supérieur à 576px  */

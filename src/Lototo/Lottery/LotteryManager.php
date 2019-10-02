@@ -2,28 +2,37 @@
 namespace App\Lototo\Lottery;
 
 use App\Lototo\Lottery\LotteryInterface; 
-use App\lototo\Lottery\Grille\Grille;
+use Symfony\Component\HttpFoundation\Request;
+use App\Lototo\Lottery\Grille\Grille;
+use App\Lototo\Lottery\Euromillion;
 
 class LotteryManager {
 
-    public $lotteryName;
+ 
+
+    protected $euromillion;
    
 
-    public function __construct(string $name  ){
-        $this->lotteryName = ucfirst($name);
+    public function __construct(Euromillion $euromillion ){
+        
+        $this->euromillion = $euromillion;
   
     }
 
-    /**
-     * getLottery
-     *
-     * @return LotteryInterface
-     */
-    public function getLottery(): LotteryInterface{
-        $class= "App\\Lototo\\Lottery\\".$this->lotteryName;
-        $simulator = "App\\Lototo\\Lottery\\Simulator\\".$this->lotteryName."Simulator";
-        return new $class(new $simulator() ) ;
+
+    public function getEuromillion (): LotteryInterface
+    {
+        return $this->euromillion;
     }
 
+
+    public function getGrille( Request $request){
+        
+        $nb_tirages= $request->request->get("nb_annees");
+        $numeros = explode(",",$request->request->get("numeros"));
+        $etoiles =  explode(",",$request->request->get("etoiles"));
+
+        return  new Grille($nb_tirages,$numeros,$etoiles);
+    }
  
 }

@@ -15,7 +15,7 @@ class EuromillionSimulator //extends SimulatorAbstract
     const PRIZE_POOL_MIN = 17000000;
     const PRIZE_POOL_MAX = 190000000;
     public $prizePool = 0;
-    private $tabGains = [
+    private $gainsMoyenParRang = [
         "5,2"=>self::PRIZE_POOL_MIN,
         "5,1" => 432260.99,
         "5,0" => 78142.57,
@@ -44,9 +44,9 @@ class EuromillionSimulator //extends SimulatorAbstract
     private $nbAnnees;
     private $nbTirages;
 
-	public function __construct(){
+	public function __construct(TirageEuromillion $tirageEuromillion){
      // Parent::__construct();
-		$this->tirageEuromillion = new TirageEuromillion();
+		$this->tirageEuromillion = $tirageEuromillion;
 	
 	}
 
@@ -76,7 +76,7 @@ class EuromillionSimulator //extends SimulatorAbstract
                     $this->prizePool*=1.15;
                 }
                 //on set le nouveau prize pool a gagné en cas de bond numeros
-                $this->tabGains['5,2']=$this->prizePool; 
+                $this->gainsMoyenParRang['5,2']=$this->prizePool; 
 
                 $grilleTirage = $this->tirageEuromillion->tirage();
                 
@@ -134,9 +134,9 @@ class EuromillionSimulator //extends SimulatorAbstract
     /**
      * @return array
      */
-    public function getTabGains ()
+    public function getGainsMoyenParRang ()
     {
-        return $this->tabGains;
+        return $this->gainsMoyenParRang;
     }
 
     /**
@@ -215,14 +215,14 @@ class EuromillionSimulator //extends SimulatorAbstract
     public function estimationGains ($nbBonNum, $nbBonEtoile)//($nbBonNum, $nbBonEtoile)
     {
         $key = "$nbBonNum,$nbBonEtoile";
-        if (array_key_exists($key, $this->tabGains)) {
+        if (array_key_exists($key, $this->getGainsMoyenParRang())) {
 
 
             if ($nbBonNum == Euromillion::NB_MAX_NUMERO and $nbBonEtoile == Euromillion::NB_MAX_ETOILE) {
                 $this->gains += $this->getPrizePool();
 
             }else{
-                $this->gains += $this->tabGains[$key];
+                $this->gains += $this->gainsMoyenParRang[$key];
 
             }
             $this->incrementerRang($key);
@@ -233,45 +233,45 @@ class EuromillionSimulator //extends SimulatorAbstract
         switch ($key){
             case "5,2":
                 $this->rang1++;
-                $this->gainsrang1+= $this->tabGains[$key];
+                $this->gainsrang1+= $this->gainsMoyenParRang[$key];
                 break;
             case "5,1":
                 $this->rang2++;
-                $this->gainsrang2+= $this->tabGains[$key];
+                $this->gainsrang2+= $this->gainsMoyenParRang[$key];
                 break;
             case "5,0":
                 $this->rang3++;
-                 $this->gainsrang3+= $this->tabGains[$key];break;
+                 $this->gainsrang3+= $this->gainsMoyenParRang[$key];break;
             case "4,2":
                 $this->rang4++;
-                 $this->gainsrang4+= $this->tabGains[$key];break;
+                 $this->gainsrang4+= $this->gainsMoyenParRang[$key];break;
             case "4,1":
                 $this->rang5++;
-                 $this->gainsrang5+= $this->tabGains[$key];break;
+                 $this->gainsrang5+= $this->gainsMoyenParRang[$key];break;
             case "3,2":
                 $this->rang6++;
-                 $this->gainsrang6+= $this->tabGains[$key];break;
+                 $this->gainsrang6+= $this->gainsMoyenParRang[$key];break;
             case "4,0":
                 $this->rang7++;
-                 $this->gainsrang7+= $this->tabGains[$key];break;
+                 $this->gainsrang7+= $this->gainsMoyenParRang[$key];break;
             case "2,2":
                 $this->rang8++;
-                 $this->gainsrang8+= $this->tabGains[$key];break;
+                 $this->gainsrang8+= $this->gainsMoyenParRang[$key];break;
             case "3,1":
                 $this->rang9++;
-                 $this->gainsrang9+= $this->tabGains[$key];break;
+                 $this->gainsrang9+= $this->gainsMoyenParRang[$key];break;
             case "3,0":
                 $this->rang10++;
-                 $this->gainsrang10+= $this->tabGains[$key];break;
+                 $this->gainsrang10+= $this->gainsMoyenParRang[$key];break;
             case "1,2":
                 $this->rang11++;
-                 $this->gainsrang11+= $this->tabGains[$key];break;
+                 $this->gainsrang11+= $this->gainsMoyenParRang[$key];break;
             case "2,1":
                 $this->rang12++;
-                 $this->gainsrang12+= $this->tabGains[$key];break;
+                 $this->gainsrang12+= $this->gainsMoyenParRang[$key];break;
             case "2,0":
                 $this->rang13++;
-                 $this->gainsrang13+= $this->tabGains[$key];break;
+                 $this->gainsrang13+= $this->gainsMoyenParRang[$key];break;
            
 
         }

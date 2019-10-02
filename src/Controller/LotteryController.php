@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use App\Lototo\Lottery\LotteryManager;
+use App\Lototo\Lottery\Euromillion;
 use App\Lototo\Lottery\Grille\Grille;
 
 class LotteryController extends AbstractController
@@ -19,31 +20,28 @@ class LotteryController extends AbstractController
      * @Route("/euromillion",options={"expose"=true}, name="euromillion")
      * @Method({"POST","GET"})
      */
-    public function euromillion(Request $request, $_route, $_method)
+    public function euromillion(Request $request, $_route, LotteryManager $lotteryManager)
     {
         
 
         //en cas de soumission du formulaire
         if($request->getMethod() == "POST" && $request->isXmlHttpRequest()){
-            //dd($request->request);
-            $nb_tirages= $request->request->get("nb_annees");
-            $numeros = explode(",",$request->request->get("numeros"));
-            $etoiles =  explode(",",$request->request->get("etoiles"));
-                $grille = new Grille($nb_tirages,$numeros,$etoiles);
-            $lotteryManager = (new LotteryManager( $_route));
-            $resultatSimulation = $lotteryManager->getLottery()->getSimulator()->simuler($grille);
+   
+            $grille = $lotteryManager->getGrille($request);
+     
+            $resultatSimulation = $lotteryManager->getEuromillion()->getSimulator()->simuler($grille);
             return $this->json([
                 "lotteryName" => $_route,
-                "content" => $this->render("lottery/result_simulation.html.twig",["simulationEuromillion" => $resultatSimulation]) ,
+                "content" => $this->render("lottery/result_simulation.html.twig",
+                                ["simulationEuromillion" => $lotteryManager->getEuromillion()->getSimulator()->simuler($grille)]) ,
                 "status" => true,
-                "error" => false
+                "alert" => false
             ]);
         }
             
-           //dd($request);
-            
-       $lottery = (new LotteryManager( $_route))->getLottery()->init();
-        // dd($lottery);
+        //on affiche les données vides d'une grille euromillion pour le fomrulaire    
+       $lottery =  $lotteryManager->getEuromillion()->init();
+
          return $this->render('lottery/lottery.html.twig', 
          [
              "stateJson" => $lottery->getJsonState(),
