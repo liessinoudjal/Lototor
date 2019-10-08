@@ -3,5 +3,18 @@
 		{
 			"path": "C:\\wamp\\www"
 		}
-	]
+	],
+	"settings": {
+		"sqltools.connections": [
+			{
+				"askForPassword": false,
+				"database": "lototor",
+				"dialect": "MySQL",
+				"name": "lototor",
+				"port": 3306,
+				"server": "localhost",
+				"username": "root"
+			}
+		]
+	}
 }

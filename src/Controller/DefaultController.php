@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use App\Entity\Grille;
 use App\Form\GrilleType;
+use App\Entity\EuromillionCombinaison;
+use  Doctrine\ORM\EntityManagerInterface;
 class DefaultController extends AbstractController
 {
    
@@ -67,4 +69,22 @@ class DefaultController extends AbstractController
             $simulationEuromillion=$simulateurEuro->simuler($grille->getNums(),$grille->getEtoiles(),$grille->getNbTirage());
        return $this->json($simulationEuromillion);
     }
+
+
+ /**
+     * @Route("/test", name="test")
+     * @Method({"GET"})
+     */
+    public function test( EntityManagerInterface $em){
+        $euromillionCombinaison = new EuromillionCombinaison();
+        $euromillionCombinaison->setCombinaison("5,2")
+        ->setGainMoyen(123216351,55)
+        ->setIcon('<i class="fas fa-futbol text-success" aria-hidden="true"></i>');
+
+        $em->persist($euromillionCombinaison);
+        $em->flush();
+            return $this->json($euromillionCombinaison);
+    }
+
+
 }

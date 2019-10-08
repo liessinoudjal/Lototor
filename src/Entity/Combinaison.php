@@ -6,25 +6,28 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CombinaisonRepository")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({"euromillion" = "EuromillionCombinaison"})
  */
-class Combinaison
+abstract class Combinaison
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=5)
      */
-    private $combinaison;
+    protected $combinaison;
 
     /**
      * @ORM\Column(type="float")
      */
-    private $gainMoyen;
+    protected $gainMoyen;
 
     /**
      * @ORM\Column(type="text")

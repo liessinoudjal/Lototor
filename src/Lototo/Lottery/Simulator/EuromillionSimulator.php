@@ -5,8 +5,10 @@ use App\Lototo\Lottery\Grille\Grille;
 use Symfony\Component\Templating\EngineInterface;
 use App\Lototo\Lottery\Euromillion;
 use App\Lototo\Lottery\Simulator\SimulatorAbstract;
+use App\Repository\EuromillionCombinaisonRepository;
+use App\Repository\CombinaisonRepository;
 
-class EuromillionSimulator //extends SimulatorAbstract
+class EuromillionSimulator extends SimulatorAbstract
 {
 
 	private $tirageEuromillion;
@@ -14,7 +16,7 @@ class EuromillionSimulator //extends SimulatorAbstract
 	const PRIX_GRILLE = 2.5;
     const PRIZE_POOL_MIN = 17000000;
     const PRIZE_POOL_MAX = 190000000;
-    public $prizePool = 0;
+    
     private $gainsMoyenParRang = [
         "5,2"=>self::PRIZE_POOL_MIN,
         "5,1" => 432260.99,
@@ -31,22 +33,37 @@ class EuromillionSimulator //extends SimulatorAbstract
         "2,0" => 4.08
     ];
 
-    private $gagnant = false;
-    private $gains = 0;
-    private $miseTotale=0;
-    private $benef;
-    public $tabNums;
-    public $tabEtoiles;
+    
 
-    private $rang1=0,$rang2=0,$rang3=0,$rang4=0,$rang5=0,$rang6=0,$rang7=0,$rang8=0,$rang9=0,$rang10=0,$rang11=0,$rang12=0,$rang13=0;
-    private $gainsrang1=0,$gainsrang2=0,$gainsrang3=0,$gainsrang4=0,$gainsrang5=0,$gainsrang6=0,$gainsrang7=0,$gainsrang8=0,$gainsrang9=0,$gainsrang10=0,$gainsrang11=0,$gainsrang12=0,$gainsrang13=0;
+    public $euromillionCombinaison;
+    public $historiqueDesTirages=[
+        "5,2" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
+        "5,1" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
+        "5,0" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
+        "4,2" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
+        "4,1" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
+        "3,2" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
+        "4,0" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
+        "2,2" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
+        "3,1" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
+        "3,0" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
+        "1,2" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
+        "2,1" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
+        "2,0" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0]
+    ];
 
-    private $nbAnnees;
-    private $nbTirages;
+  
 
-	public function __construct(TirageEuromillion $tirageEuromillion){
+	public function __construct(TirageEuromillion $tirageEuromillion, EuromillionCombinaisonRepository $combinaisonRepository ){
      // Parent::__construct();
 		$this->tirageEuromillion = $tirageEuromillion;
+        //$this->euromillionCombinaison = $combinaisonRepository->findAll();
+        foreach( $combinaisonRepository->findAll() as $combinaison){
+            $this->euromillionCombinaison[$combinaison->getCombinaison()]= [
+                "gainMoyen" => $combinaison->getGainMoyen(),
+                "icon" => $combinaison->getIcon()
+            ];
+        }
 	
 	}
 
@@ -76,7 +93,7 @@ class EuromillionSimulator //extends SimulatorAbstract
                     $this->prizePool*=1.15;
                 }
                 //on set le nouveau prize pool a gagné en cas de bond numeros
-                $this->gainsMoyenParRang['5,2']=$this->prizePool; 
+               $this->euromillionCombinaison['5,2']['gainMoyen'] = $this->prizePool; 
 
                 $grilleTirage = $this->tirageEuromillion->tirage();
                 
@@ -131,13 +148,6 @@ class EuromillionSimulator //extends SimulatorAbstract
     }
  
 
-    /**
-     * @return array
-     */
-    public function getGainsMoyenParRang ()
-    {
-        return $this->gainsMoyenParRang;
-    }
 
     /**
      * @return int
@@ -155,319 +165,39 @@ class EuromillionSimulator //extends SimulatorAbstract
         return $this->gains;
     }
 
-    /**
-     * @return bool
-     */
-    public function isGagnant ()
-    {
-        return $this->gagnant;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNbAnnees ()
-    {
-        return $this->nbAnnees;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNbTirages ()
-    {
-        return $this->nbTirages;
-    }
-
-    /**
-     * @param mixed $nbTirages
-     */
-    public function setNbTirages ($nbTirages)
-    {
-        $this->nbTirages = $nbTirages;
-    }
-
-    /**
-     * @param mixed $nbAnnees
-     */
-    public function setNbAnnees ($nbAnnees)
-    {
-        $this->nbAnnees = $nbAnnees;
-    }
-
-    /**
-     * @param int $prizePool
-     */
-    public function setPrizePool ($prizePool)
-    {
-        $this->prizePool = $prizePool;
-    }
-
-    /**
-     * @return int
-     */
-    public function getPrizePool ()
-    {
-        return $this->prizePool;
-    }
+   
 
 
     public function estimationGains ($nbBonNum, $nbBonEtoile)//($nbBonNum, $nbBonEtoile)
     {
         $key = "$nbBonNum,$nbBonEtoile";
-        if (array_key_exists($key, $this->getGainsMoyenParRang())) {
+        if (array_key_exists($key, $this->euromillionCombinaison)) {
 
 
             if ($nbBonNum == Euromillion::NB_MAX_NUMERO and $nbBonEtoile == Euromillion::NB_MAX_ETOILE) {
                 $this->gains += $this->getPrizePool();
 
             }else{
-                $this->gains += $this->gainsMoyenParRang[$key];
+                $this->gains += $this->euromillionCombinaison[$key]['gainMoyen'];
 
             }
             $this->incrementerRang($key);
         }
     }
 
-    public function incrementerRang($key){
-        switch ($key){
-            case "5,2":
-                $this->rang1++;
-                $this->gainsrang1+= $this->gainsMoyenParRang[$key];
-                break;
-            case "5,1":
-                $this->rang2++;
-                $this->gainsrang2+= $this->gainsMoyenParRang[$key];
-                break;
-            case "5,0":
-                $this->rang3++;
-                 $this->gainsrang3+= $this->gainsMoyenParRang[$key];break;
-            case "4,2":
-                $this->rang4++;
-                 $this->gainsrang4+= $this->gainsMoyenParRang[$key];break;
-            case "4,1":
-                $this->rang5++;
-                 $this->gainsrang5+= $this->gainsMoyenParRang[$key];break;
-            case "3,2":
-                $this->rang6++;
-                 $this->gainsrang6+= $this->gainsMoyenParRang[$key];break;
-            case "4,0":
-                $this->rang7++;
-                 $this->gainsrang7+= $this->gainsMoyenParRang[$key];break;
-            case "2,2":
-                $this->rang8++;
-                 $this->gainsrang8+= $this->gainsMoyenParRang[$key];break;
-            case "3,1":
-                $this->rang9++;
-                 $this->gainsrang9+= $this->gainsMoyenParRang[$key];break;
-            case "3,0":
-                $this->rang10++;
-                 $this->gainsrang10+= $this->gainsMoyenParRang[$key];break;
-            case "1,2":
-                $this->rang11++;
-                 $this->gainsrang11+= $this->gainsMoyenParRang[$key];break;
-            case "2,1":
-                $this->rang12++;
-                 $this->gainsrang12+= $this->gainsMoyenParRang[$key];break;
-            case "2,0":
-                $this->rang13++;
-                 $this->gainsrang13+= $this->gainsMoyenParRang[$key];break;
-           
-
-        }
-    }
-    /**
-     * @return int
-     */
-    public function getRang1 ()
+    public function incrementerRang($key): void
     {
-        return $this->rang1;
+        $this->historiqueDesTirages[$key]["nb_combinaison"]++;
+        $this->historiqueDesTirages[$key]["gain_totale_combinaison"]+= $this->euromillionCombinaison[$key]["gainMoyen"];
+    
     }
 
     /**
-     * @return int
+     * @return array
      */
-    public function getRang2 ()
+    public function getHistoriqueDesTirages(): array
     {
-        return $this->rang2;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRang3 ()
-    {
-        return $this->rang3;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRang4 ()
-    {
-        return $this->rang4;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRang5 ()
-    {
-        return $this->rang5;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRang6 ()
-    {
-        return $this->rang6;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRang7 ()
-    {
-        return $this->rang7;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRang8 ()
-    {
-        return $this->rang8;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRang9 ()
-    {
-        return $this->rang9;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRang10 ()
-    {
-        return $this->rang10;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRang11 ()
-    {
-        return $this->rang11;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRang12 ()
-    {
-        return $this->rang12;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRang13 ()
-    {
-        return $this->rang13;
-    }
-
-     /**
-     * @return int
-     */
-    public function getGainsRang1 ()
-    {
-        return $this->gainsrang1;
-    }
-
-     /**
-     * @return int
-     */
-    public function getGainsRang2 ()
-    {
-        return $this->gainsrang2;
-    }
-     /**
-     * @return int
-     */
-    public function getGainsRang3 ()
-    {
-        return $this->gainsrang3;
-    }
-     /**
-     * @return int
-     */
-    public function getGainsRang4 ()
-    {
-        return $this->gainsrang4;
-    }
-     /**
-     * @return int
-     */
-    public function getGainsRang5 ()
-    {
-        return $this->gainsrang5;
-    }
-     /**
-     * @return int
-     */
-    public function getGainsRang6 ()
-    {
-        return $this->gainsrang6;
-    }
-     /**
-     * @return int
-     */
-    public function getGainsRang7 ()
-    {
-        return $this->gainsrang7;
-    }
-     /**
-     * @return int
-     */
-    public function getGainsRang8 ()
-    {
-        return $this->gainsrang8;
-    }
-     /**
-     * @return int
-     */
-    public function getGainsRang9 ()
-    { 
-          return $this->gainsrang9;
-    }
-    public function getGainsRang10 ()
-    {
-        return $this->gainsrang10;
-    }
-     /**
-     * @return int
-     */
-    public function getGainsRang11 ()
-    {
-        return $this->gainsrang11;
-    }
-     /**
-     * @return int
-     */
-    public function getGainsRang12 ()
-    {
-        return $this->gainsrang12;
-    }
-     /**
-     * @return int
-     */
-    public function getGainsRang13 ()
-    {
-        return $this->gainsrang13;
+        return $this->historiqueDesTirages;
     }
     
 }

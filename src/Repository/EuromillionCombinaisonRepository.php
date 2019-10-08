@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Combinaison;
+use App\Entity\EuromillionCombinaison;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -12,11 +12,11 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Combinaison[]    findAll()
  * @method Combinaison[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CombinaisonRepository extends ServiceEntityRepository
+class EuromillionCombinaisonRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Combinaison::class);
+        parent::__construct($registry, EuromillionCombinaison::class);
     }
 
     // /**

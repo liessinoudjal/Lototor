@@ -79,108 +79,17 @@
                     </thead>
                     <tbody>
                    
-                        <tr>
+                        {% for combinaison , historique in simulationEuromillion.historiqueDesTirages  %}
+                     <tr>
                             <th>
-                                 <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i>
-                                 <i class="far fa-star text-success"></i><i class="far fa-star text-success"></i>
+                                {{ simulationEuromillion.euromillionCombinaison[combinaison]['icon']|raw}}
+                        
                             </th>
-                            <td colspan="2">{{ simulationEuromillion.rang1 }} </td>
-                             <td colspan="2">{{ simulationEuromillion.gainsrang1 }} € </td>
+                            <td colspan="2">{{ historique['nb_combinaison'] }} </td>
+                             <td colspan="2">{{ historique['gain_totale_combinaison'] }} € </td>
                         </tr>
-                        <tr>
-                            <th>
-                                <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i>
-                                 <i class="far fa-star text-success"></i>
-                            </th>
-                            <td colspan="2">{{ simulationEuromillion.rang2 }} </td>
-                             <td colspan="2">{{ simulationEuromillion.gainsrang2 }} €</td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i>
-                            </th>
-                            <td colspan="2">{{ simulationEuromillion.rang3 }} </td>
-                             <td colspan="2">{{ simulationEuromillion.gainsrang3 }} €</td>
-                        </tr>
-                        <tr>
-                            <th>
-                               <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i>
-                                 <i class="far fa-star text-success"></i><i class="far fa-star text-success"></i>
-                            </th>
-                            <td colspan="2">{{ simulationEuromillion.rang4 }} </td>
-                             <td colspan="2">{{ simulationEuromillion.gainsrang4 }} €</td>
-                        </tr>
-                        <tr>
-                            <th>
-                               <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i>
-                                 <i class="far fa-star text-success"></i>
-                            </th>
-                            <td colspan="2">{{ simulationEuromillion.rang5 }} </td>
-                             <td colspan="2">{{ simulationEuromillion.gainsrang5 }} €</td>
-                        </tr>
-                        <tr>
-                            <th>
-                                 <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i>
-                                 <i class="far fa-star text-success"></i><i class="far fa-star text-success"></i>
-                            </th>
-                            <td colspan="2">{{ simulationEuromillion.rang6 }} </td>
-                            <td colspan="2">{{ simulationEuromillion.gainsrang6 }} €</td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i>
-                              <i class="far fa-star text-success"></i>
-                            </th>
-                            <td colspan="2">{{ simulationEuromillion.rang7 }} </td>
-                            <td colspan="2">{{ simulationEuromillion.gainsrang7 }} €</td>
-                        </tr>
-                        <tr>
-                            <th>
-                                 <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i>
-                                 <i class="far fa-star text-success"></i><i class="far fa-star text-success"></i>
-                            </th>
-                            <td colspan="2">{{ simulationEuromillion.rang8 }} </td>
-                            <td colspan="2">{{ simulationEuromillion.gainsrang8 }} €</td>
-                        </tr>
-                        <tr>
-                            <th>
-                                 <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i>
-                                <i class="far fa-star text-success"></i>
-                            </th>
-                            <td colspan="2">{{ simulationEuromillion.rang9 }} </td>
-                            <td colspan="2">{{ simulationEuromillion.gainsrang9 }} €</td>
-                        </tr>
-                        <tr>
-                            <th>
-                                 <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i>
-                            </th>
-                            <td colspan="2">{{ simulationEuromillion.rang10 }} </td>
-                            <td colspan="2">{{ simulationEuromillion.gainsrang10 }} €</td>
-                        </tr>
-                        <tr>
-                            <th>
-                                 <i class="fas fa-futbol text-success" aria-hidden="true"></i> 
-                                  <i class="far fa-star text-success"></i> <i class="far fa-star text-success"></i>
-                            </th>
-                            <td colspan="2">{{ simulationEuromillion.rang11 }} </td>
-                            <td colspan="2">{{ simulationEuromillion.gainsrang11 }} €</td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i> 
-                                  <i class="far fa-star text-success"></i> 
-                              
-                            </th>
-                            <td colspan="2">{{ simulationEuromillion.rang12 }} </td>
-                            <td colspan="2">{{ simulationEuromillion.gainsrang12 }} €</td>
-                        </tr>
-                        <tr>
-                            <th>
-                                 <i class="fas fa-futbol text-success" aria-hidden="true"></i> <i class="fas fa-futbol text-success" aria-hidden="true"></i> 
-                            </th>
-                            <td colspan="2">{{ simulationEuromillion.rang13 }} </td>
-                            <td colspan="2">{{ simulationEuromillion.gainsrang13 }} €</td>
-                        </tr>
+                    {% endfor %}
+                      
                     </tbody>
                 </table>
             </div>
