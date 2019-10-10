@@ -7,7 +7,7 @@
    
       <div class="card-header {{ simulationEuromillion.gagnant? "bg-success" : "bg-danger" }}  text-white ">
         <h2>{{ simulationEuromillion.gagnant? "Jackpot !" : "Perdu !"  }} </h2> 
-        {% for number in simulationEuromillion.tabNums %}
+        {% for number in simulationEuromillion.numeros %}
             <span class="fa-stack fa-2x">
                 <!-- The icon that will wrap the number -->
                 <i class="fas fa-futbol fa-stack-1x text-success" aria-hidden="true"></i>
@@ -17,7 +17,7 @@
                 </i>
             </span> 
         {% endfor%}
-        {% for number in simulationEuromillion.tabEtoiles %}
+        {% for number in simulationEuromillion.etoiles %}
             <span class="fa-stack fa-2x">
                 <!-- The icon that will wrap the number -->
                 <i class="far fa-star fa-stack-1x text-success"></i>

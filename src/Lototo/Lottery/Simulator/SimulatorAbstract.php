@@ -1,7 +1,8 @@
 <?php
 namespace App\Lototo\Lottery\Simulator;
 
-use Twig\Environement as Templating;
+
+use App\Lototo\Lottery\Grille\Grille;
 
 abstract class SimulatorAbstract{
 
@@ -16,26 +17,14 @@ abstract class SimulatorAbstract{
     public $nbAnnees;
     public $nbTirages;
 
-	/**
-	 * @var Templating $templating
-	 */
-	protected $templating;
 
-	public function __construct( Templating $templating){
-		
-		$this->templating = $templating;
-	}
 
+	abstract function simuler(Grille $grille): self;
 	/**
 	 * @return Templating
 	 */
-	public function getTemplating():Templating
-	{
 
-		return $this->templating;
-	}
 	
-
 	 /**
      * @return bool
      */

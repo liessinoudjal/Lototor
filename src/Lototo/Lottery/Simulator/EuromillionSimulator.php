@@ -2,11 +2,9 @@
 namespace App\Lototo\Lottery\Simulator;
 
 use App\Lototo\Lottery\Grille\Grille;
-use Symfony\Component\Templating\EngineInterface;
 use App\Lototo\Lottery\Euromillion;
 use App\Lototo\Lottery\Simulator\SimulatorAbstract;
 use App\Repository\EuromillionCombinaisonRepository;
-use App\Repository\CombinaisonRepository;
 
 class EuromillionSimulator extends SimulatorAbstract
 {
@@ -57,7 +55,7 @@ class EuromillionSimulator extends SimulatorAbstract
 	public function __construct(TirageEuromillion $tirageEuromillion, EuromillionCombinaisonRepository $combinaisonRepository ){
      // Parent::__construct();
 		$this->tirageEuromillion = $tirageEuromillion;
-        //$this->euromillionCombinaison = $combinaisonRepository->findAll();
+
         foreach( $combinaisonRepository->findAll() as $combinaison){
             $this->euromillionCombinaison[$combinaison->getCombinaison()]= [
                 "gainMoyen" => $combinaison->getGainMoyen(),
@@ -69,10 +67,10 @@ class EuromillionSimulator extends SimulatorAbstract
 
 	
 
-	public function simuler(Grille $grille)
+	public function simuler(Grille $grille): SimulatorAbstract
 	{
-		$this->tabEtoiles=$grille->getEtoiles();
-        $this->tabNums=$grille->getNumeros();
+		$this->etoiles=$grille->getEtoiles();
+        $this->numeros=$grille->getNumeros();
         $this->nbTirages = $grille->getNbTirages() * 52 * 2;
         $this->nbAnnees = $grille->getNbTirages();
 
@@ -82,12 +80,12 @@ class EuromillionSimulator extends SimulatorAbstract
         while (!$fin) {
             //on simule dans combien de tirage nous allons réinitialiser la cagnote
             $nbTour= mt_rand(1,15);
-            //initialisation de la cagnote
-            $this->prizePool=self::PRIZE_POOL_MIN;
-            for($i=0;$i<$nbTour;$i++){
+            //réinitialisation de la cagnote
+            $this->prizePool = self::PRIZE_POOL_MIN;
+            for($i = 0 ; $i < $nbTour ; $i++){
                 //si la cagnote en cours depasse la cagnote max , on le met au max autorisé
-                if($this->prizePool>=self::PRIZE_POOL_MAX){
-                    $this->prizePool=self::PRIZE_POOL_MAX;
+                if($this->prizePool >= self::PRIZE_POOL_MAX){
+                    $this->prizePool = self::PRIZE_POOL_MAX;
                 }//sinon on augmente la cagnote de 15%
                 else{
                     $this->prizePool*=1.15;
@@ -98,17 +96,15 @@ class EuromillionSimulator extends SimulatorAbstract
                 $grilleTirage = $this->tirageEuromillion->tirage();
                 
                 //estimatons des bons numeros
-                $interNum = array_intersect($grilleTirage->getNumeros(), $this->tabNums);
-                $interEtoile = array_intersect($grilleTirage->getEtoiles() , $this->tabEtoiles);
 
-                $countEtoile = count($interEtoile);
-                $countNum = count($interNum);
-                $this->estimationGains($countNum, $countEtoile);
+                $nbBonEtoiles = count(array_intersect($grilleTirage->getEtoiles() , $this->etoiles));
+                $nbBonNumeros = count(array_intersect($grilleTirage->getNumeros(), $this->numeros));
+                $this->estimationGains($nbBonNumeros, $nbBonEtoiles);
 
                 $nbTirageSimu++;
                 // la siulation se termine que si :
                 // tous les numeros sont bons
-                if ($countEtoile == Euromillion::NB_MAX_ETOILE and $countNum == Euromillion::NB_MAX_NUMERO) {
+                if ($nbBonEtoiles == Euromillion::NB_MAX_ETOILE and $nbBonNumeros == Euromillion::NB_MAX_NUMERO) {
                     $this->gagnant = true;
                     $fin = true;
                     // on calcule combien le joueur a joué depuis le debut

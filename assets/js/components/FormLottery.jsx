@@ -113,7 +113,7 @@ return	(
 			
 				</div>  
 				<div className="d-flex flex-column flex-md-row">
-		         	<div className="mt-3">
+		         	<div className="mt-3 ml-3">
 		         		 <h2>Saisir {this.state.nb_numero} numeros entre {this.state.min} et {this.state.maxNumero}</h2>
 				          <TypeNumeroProvider value= {{typeNumero:'numero'}}>
 				            <div className="row ">
@@ -123,7 +123,7 @@ return	(
 				            </div>
 				          </TypeNumeroProvider>
 		         	</div>
-		            <div className="mt-3">
+		            <div className="mt-3 ml-3">
 		            	<h2>Saisir {this.state.nb_etoile} étoiles entre {this.state.min} et {this.state.maxEtoile}</h2>
 			            <TypeNumeroProvider value= {{typeNumero:'etoile'}}>
 			            <div className="d-flex flex-row bd-highlight mb-3">
