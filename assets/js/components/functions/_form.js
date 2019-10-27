@@ -36,7 +36,7 @@ const _form= {
 	                  });
 
 	                  if(this.state.grilleNumeros.indexOf(newValue) >= 0 && newValue.length ===1){
-	          
+	          			this.setState({error: true});
 	                     $( target).popover({
 	                        animation: true,
 	                        content: "Chiffre "+ newValue+ " déjà seléctionné.",
@@ -47,6 +47,7 @@ const _form= {
 
 
 	                }else{
+	                	this.setState({error: true});
 	                   $( target).popover({
 	                        animation: true,
 	                        content: "Chiffre "+ newValue+ " déjà seléctionné.",
@@ -55,6 +56,7 @@ const _form= {
 	                    $( target).popover("show")
 	                }   
 	            }else{
+	            	this.setState({error: true});
 	               $(target).popover({
 	                        animation: true,
 	                        content: "Chiffre compris entre "+ this.state.min +" et "+ this.state.maxNumero,
@@ -77,7 +79,7 @@ const _form= {
 	              });
 
 	              if(this.state.grilleEtoiles.indexOf(newValue) >= 0 && newValue.length ===1){
-	      
+	      			this.setState({error: true});
 	                 $( e.currentTarget).popover({
 	                    animation: true,
 	                    content: "Chiffre "+ newValue+ " déjà seléctionné.",
@@ -87,6 +89,7 @@ const _form= {
 	              }
 
 	            }else{
+	            	this.setState({error: true});
 	               $( e.currentTarget).popover({
 	                    animation: true,
 	                    content: "Chiffre "+ newValue+ " déjà seléctionné.",
@@ -96,6 +99,7 @@ const _form= {
 	            }
 	            
 	          }else{
+	          	this.setState({error: true});
 	           $( target).popover({
 	                    animation: true,
 	                    content: "Chiffre compris entre "+ this.state.min +" et "+ this.state.maxEtoile,
@@ -105,6 +109,22 @@ const _form= {
 	          }
 	        }
 	    }
+	  },
+	  formIsNotEmpty(form, numeros, etoiles){
+	  	form.querySelectorAll(".numeros.numero input").forEach((input, index)=>{
+	 		if(input.value != ""){
+	 			numeros.push( input.value)
+	 		}else{
+	 			 return false;
+	 		}
+	 	})
+	 	form.querySelectorAll(".numeros.etoile input").forEach((input, index)=>{
+	 		if(input.value != ""){
+	 			etoiles.push( input.value)
+	 		}else{
+	 			return false;
+	 		}
+	 	})  
 	  }
 
 }

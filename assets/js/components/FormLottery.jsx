@@ -18,7 +18,7 @@ class FormLottery extends Component {
  constructor(props) {
   super(props);
   this.state = JSON.parse(this.props.root);
-  this.state.error=false; 
+  this.state.error = false; 
   _form.handleChange = _form.handleChange.bind(this);
   _form.isBonNumero = _form.isBonNumero.bind(this);
   _form.isBonEtoile = _form.isBonEtoile.bind(this);
@@ -55,7 +55,7 @@ class FormLottery extends Component {
  	})  
 
  	if(error){
- 		this.setState({error})
+ 		this.setState({error:error})
  	}//pas d'erreur
  	else{
  			//on affcihe la modal de résultat
@@ -102,7 +102,7 @@ return	(
 	        <form onSubmit={this.simuler} id="form-lottery"  autoComplete="off">
 	          <h1><span>Simulateur </span> {this.state.lotteryName}</h1>
 	          <div className={(this.state.error)?"alert alert-danger":"alert alert-danger d-none"} role="alert">
-						 Votre grille n'est pas complète ou contient des doublons !
+						 Formulaire non conforme !
 				</div>
 			  
 	          <h2>Choisissez sur combien d'années vous voulez simuler</h2>

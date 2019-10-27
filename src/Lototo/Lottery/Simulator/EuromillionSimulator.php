@@ -74,10 +74,10 @@ class EuromillionSimulator extends SimulatorAbstract
         $this->nbTirages = $grille->getNbTirages() * 52 * 2;
         $this->nbAnnees = $grille->getNbTirages();
 
-        $fin = false;
+        $finSimulation = false;
         $nbTirageSimu = 0;
         //tant que la simulation n'est pas terminée
-        while (!$fin) {
+        while (!$finSimulation) {
             //on simule dans combien de tirage nous allons réinitialiser la cagnote
             $nbTour= mt_rand(1,15);
             //réinitialisation de la cagnote
@@ -90,7 +90,7 @@ class EuromillionSimulator extends SimulatorAbstract
                 else{
                     $this->prizePool*=1.15;
                 }
-                //on set le nouveau prize pool a gagné en cas de bond numeros
+                //on set le nouveau prize pool à gagner en cas de bons numeros
                $this->euromillionCombinaison['5,2']['gainMoyen'] = $this->prizePool; 
 
                 $grilleTirage = $this->tirageEuromillion->tirage();
@@ -106,15 +106,15 @@ class EuromillionSimulator extends SimulatorAbstract
                 // tous les numeros sont bons
                 if ($nbBonEtoiles == Euromillion::NB_MAX_ETOILE and $nbBonNumeros == Euromillion::NB_MAX_NUMERO) {
                     $this->gagnant = true;
-                    $fin = true;
+                    $finSimulation = true;
                     // on calcule combien le joueur a joué depuis le debut
-                    $this->miseTotale= $nbTirageSimu*self::PRIX_GRILLE;
+                    $this->miseTotale= $nbTirageSimu * self::PRIX_GRILLE;
 
                 } // ou que que sommes arrivé à la fin de la simulation 
                 elseif ($nbTirageSimu == $this->nbTirages) {
          
-                    $this->miseTotale= $nbTirageSimu*self::PRIX_GRILLE;
-                    $fin = true;
+                    $this->miseTotale= $nbTirageSimu  * self::PRIX_GRILLE;
+                    $finSimulation = true;
                 }
             }
             		
@@ -168,15 +168,9 @@ class EuromillionSimulator extends SimulatorAbstract
     {
         $key = "$nbBonNum,$nbBonEtoile";
         if (array_key_exists($key, $this->euromillionCombinaison)) {
+         
+            $this->gains += $this->euromillionCombinaison[$key]['gainMoyen'];
 
-
-            if ($nbBonNum == Euromillion::NB_MAX_NUMERO and $nbBonEtoile == Euromillion::NB_MAX_ETOILE) {
-                $this->gains += $this->getPrizePool();
-
-            }else{
-                $this->gains += $this->euromillionCombinaison[$key]['gainMoyen'];
-
-            }
             $this->incrementerRang($key);
         }
     }

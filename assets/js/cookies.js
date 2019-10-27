@@ -1,4 +1,4 @@
-require('../css/rgbd.scss');
+//require('../css/rgbd.scss');
 //document.cookie = "RGBD-accepted=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
 console.log(readCookie("doSomethingOnlyOnce"))
 
