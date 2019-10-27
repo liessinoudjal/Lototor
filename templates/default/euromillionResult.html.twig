@@ -1,0 +1,286 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<section class="container">
+    <a href="{{path('euromillion') }}" class="btn btn-warning">Recommencer</a>
+    <div class="card ">
+        {% if simulationEuromillion.gagnant%}
+      <div class="card-header bg-success text-white ">
+        <h2>Super ! </h2>
+          {% else %}
+          <div class="card-header bg-danger text-white ">
+           
+             <h2>Aïe, ça pique !</h2>
+             
+             {% for number in simulationEuromillion.tabNums %}
+             <span class="fa-stack">
+
+                <!-- The icon that will wrap the number -->
+                <span class="fa fa-circle-o fa-stack-2x"></span>
+                <!-- a strong element with the custom content, in this case a number -->
+                <strong class="fa-stack-1x">
+                    {{number}}   
+                </strong>
+           
+            </span> {% endfor%}
+             {% for number in simulationEuromillion.tabEtoiles %}
+             <span class="fa-stack">
+
+                <!-- The icon that will wrap the number -->
+                <span class="fa fa-star-o fa-stack-2x"></span>
+                <!-- a strong element with the custom content, in this case a number -->
+                <strong class="fa-stack-1x">
+                    {{number}}   
+                </strong>
+           
+            </span> {% endfor%}
+      </div>
+          {% endif %}
+        <div class="card-body">
+            <div class="table-responsive-sm">
+                <h3>Résultats simulation</h3>
+                <table class="table table-striped text-center">
+                    <thead>
+                    <tr>
+                        <th class=""> {{ simulationEuromillion.nbAnnees }} ans</th>
+                        <th class="">{{ simulationEuromillion.nbTirages|number_format(0,',',' ') }} tirages</th>
+                        <th class="">{{ simulationEuromillion.miseTotale|number_format(2, ',', ' ') }} € misés</th>
+                        <th class="">{{ simulationEuromillion.gains|number_format(2, ',', ' ') }} € gagnés</th>
+                        {% if simulationEuromillion.benef <=0 %}
+                        <th class="">{{ simulationEuromillion.benef|number_format(2, ',', ' ') }} € perdu !</th>
+                        {% else %}
+                        <th class="">{{ simulationEuromillion.benef|number_format(2, ',', ' ') }} € gagné !</th>
+                        {% endif %}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="bg-dark text-white">
+                        <th>rang</th>
+                        <th colspan="2">nombre de fois touché à ce rang</th>
+                        <th colspan="2">gains au rang</th>
+                    </tr>
+                    <tr>
+                        <th>rang 1</th>
+                        <td colspan="2">{{ simulationEuromillion.rang1 }} </td>
+                         <td colspan="2">{{ simulationEuromillion.gainsrang1 }} </td>
+                    </tr>
+                    <tr>
+                        <th>rang 2</th>
+                        <td colspan="2">{{ simulationEuromillion.rang2 }} </td>
+                         <td colspan="2">{{ simulationEuromillion.gainsrang2 }} </td>
+                    </tr>
+                    <tr>
+                        <th>rang 3</th>
+                        <td colspan="2">{{ simulationEuromillion.rang3 }} </td>
+                         <td colspan="2">{{ simulationEuromillion.gainsrang3 }} </td>
+                    </tr>
+                    <tr>
+                        <th>rang 4</th>
+                        <td colspan="2">{{ simulationEuromillion.rang4 }} </td>
+                         <td colspan="2">{{ simulationEuromillion.gainsrang4 }} </td>
+                    </tr>
+                    <tr>
+                        <th>rang 5</th>
+                        <td colspan="2">{{ simulationEuromillion.rang5 }} </td>
+                         <td colspan="2">{{ simulationEuromillion.gainsrang5 }} </td>
+                    </tr>
+                    <tr>
+                        <th>rang 6</th>
+                        <td colspan="2">{{ simulationEuromillion.rang6 }} </td>
+                        <td colspan="2">{{ simulationEuromillion.gainsrang6 }} </td>
+                    </tr>
+                    <tr>
+                        <th>rang 7</th>
+                        <td colspan="2">{{ simulationEuromillion.rang7 }} </td>
+                        <td colspan="2">{{ simulationEuromillion.gainsrang7 }} </td>
+                    </tr>
+                    <tr>
+                        <th>rang 8</th>
+                        <td colspan="2">{{ simulationEuromillion.rang8 }} </td>
+                        <td colspan="2">{{ simulationEuromillion.gainsrang8 }} </td>
+                    </tr>
+                    <tr>
+                        <th>rang 9</th>
+                        <td colspan="2">{{ simulationEuromillion.rang9 }} </td>
+                        <td colspan="2">{{ simulationEuromillion.gainsrang9 }} </td>
+                    </tr>
+                    <tr>
+                        <th>rang 10</th>
+                        <td colspan="2">{{ simulationEuromillion.rang10 }} </td>
+                        <td colspan="2">{{ simulationEuromillion.gainsrang10 }} </td>
+                    </tr>
+                    <tr>
+                        <th>rang 11</th>
+                        <td colspan="2">{{ simulationEuromillion.rang11 }} </td>
+                        <td colspan="2">{{ simulationEuromillion.gainsrang11 }} </td>
+                    </tr>
+                    <tr>
+                        <th>rang 12</th>
+                        <td colspan="2">{{ simulationEuromillion.rang12 }} </td>
+                        <td colspan="2">{{ simulationEuromillion.gainsrang12 }} </td>
+                    </tr>
+                    <tr>
+                        <th>rang 13</th>
+                        <td colspan="2">{{ simulationEuromillion.rang13 }} </td>
+                        <td colspan="2">{{ simulationEuromillion.gainsrang13 }} </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+    {{ dump(simulationEuromillion) }}
+</section>
+
+
+
+{% endblock %}
+
+{% block stylesheets %}
+{{parent()}}
+    <style>
+        body {
+            background: #F5F5F5;
+            font: 18px/1.5 sans-serif;
+        }
+
+        h1, h2 {
+            line-height: 1.2;
+            margin: 0 0 .5em;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        h2 {
+            font-size: 21px;
+            margin-bottom: 1em;
+        }
+
+        p {
+            margin: 0 0 1em 0;
+        }
+
+        a {
+            color: #0000F0;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        code {
+            background: #F5F5F5;
+            max-width: 100px;
+            padding: 2px 6px;
+            word-wrap: break-word;
+        }
+
+        #wrapper {
+            background: #eeeeee;
+            margin: 1em auto;
+            max-width: 1000px;
+            width: 95%;
+        }
+
+        #container {
+            padding: 2em;
+        }
+
+        #welcome, #status {
+            margin-bottom: 2em;
+        }
+
+        #welcome h1 span {
+            display: block;
+            font-size: 75%;
+        }
+
+        #icon-status, #icon-book {
+            float: left;
+            height: 64px;
+            margin-right: 1em;
+            margin-top: -4px;
+            width: 64px;
+        }
+
+        #icon-book {
+            display: none;
+        }
+        .input-group{
+            margin:5px;
+        }
+        .help-inline{
+            background-color: #ff8610;
+        }
+
+        @media (min-width: 768px) {
+            #wrapper {
+                width: 80%;
+                margin: 2em auto;
+            }
+
+            #icon-book {
+                display: inline-block;
+            }
+
+            #status a, #next a {
+                display: block;
+            }
+
+            @-webkit-keyframes fade-in {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+            @keyframes fade-in {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+            .sf-toolbar {
+                opacity: 0;
+                -webkit-animation: fade-in 1s .2s forwards;
+                animation: fade-in 1s .2s forwards;
+            }
+        }
+    </style>
+{% endblock %}
+   {% block javascripts %}
+
+<script>
+/*
+    $('select').on('change', function() {
+      var num= this.value;
+      var id= this.getAttribute('id').valueOf();
+          alert(  this.getAttribute('id').valueOf());
+      //alert(  this.getAttribute('id').indexOf('num'));
+            if(this.getAttribute('id').indexOf('num') >=0){
+               for(i=1;i<=5;i++){
+                   var grille= '#grille_num'+i;
+                   var id2= $(grille.toString()).getAttribute('id').valueOf();
+                   if( id2 != id ){
+                       alert('ok '+i);
+
+                   }
+               }
+            }else{
+                alert('dans etoile');
+            }
+    });*/
+  /* function valider(){
+       alert($('#grille_num1').value);
+   }*/
+
+</script>
+
+   {% endblock %}

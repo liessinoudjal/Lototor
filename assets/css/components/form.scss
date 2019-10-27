@@ -1,0 +1,63 @@
+
+@media screen and (max-width: 576px) {
+	.masthead{
+		padding-top: 0.5rem;
+		.jumbotron{
+				margin-top: 4rem;
+				form{
+					/*margin-top: 2rem;*/
+					h1{
+						font-size: 1.5rem;
+					}
+
+					h2{
+						font-size: 1rem;
+					}
+
+				}
+		}
+
+	}
+	
+	
+		
+}
+
+form{
+	
+	.ans {
+		span{
+			text-align: center;
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			border: 1px #0787EB solid;
+			background-color: white;
+			vertical-align: middle;
+			line-height: 50px;
+			font-size: 20px;
+			margin: 10px;
+
+			&.checked{
+				background-color: #0787EB;
+				color: #FFFFFF;
+			}
+			
+
+		}
+	}
+	span.numeros{
+		input[type="text"]{
+			text-align: center;
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			border: 1px #0787EB solid;
+		}	
+	}
+}
+
+
+	
+
+

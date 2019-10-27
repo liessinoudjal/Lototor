@@ -1,0 +1,22 @@
+//import du theme agency
+//@import "~startbootstrap-agency/scss/agency.scss";
+
+// Core variables and mixins
+@import "~startbootstrap-agency/scss/base/_variables.scss";
+@import "~startbootstrap-agency/scss/base/_mixins.scss";
+
+// Global CSS
+@import "~startbootstrap-agency/scss/base/_page.scss";
+
+// Components
+@import "~startbootstrap-agency/scss/components/_buttons.scss";
+@import "~startbootstrap-agency/scss/components/_navbar.scss";
+
+// Layout
+@import "./layout/masthead.scss";
+@import "~startbootstrap-agency/scss/layout/_services.scss";
+@import "~startbootstrap-agency/scss/layout/_portfolio.scss";
+@import "~startbootstrap-agency/scss/layout/_timeline.scss";
+@import "~startbootstrap-agency/scss/layout/_team.scss";
+@import "./layout/contact.scss";
+@import "~startbootstrap-agency/scss/layout/_footer.scss";

@@ -1,0 +1,52 @@
+
+
+@media screen and (max-width: 576px) {
+	body,html{
+		height: 100%;
+		position: relative;
+		padding: 0px;
+		margin: 0px;
+		}
+	body .rgbd{
+			position: absolute; 
+			bottom: 0; 
+			right: 0;
+			left: 0;
+			padding: 1rem;
+			text-align: center;
+			border-radius: 10px;
+			background-color: lightGrey;
+			
+		}
+
+	body .rgbd a{
+		color: blue;
+		cursor: pointer;
+	}	
+		.masthead{
+		height: 100%;
+		padding-top: 0.5rem;
+		.jumbotron{
+				margin-top: 4rem;
+				.intro-heading {
+				font-size: 2rem !important;
+				}
+
+		}
+
+	}
+	
+	
+	
+	
+		
+}
+
+/* ecran supérieur à 576px  */
+
+.intro-heading {
+		font-size: 3rem !important;
+	}
+
+
+
