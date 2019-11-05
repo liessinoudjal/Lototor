@@ -19,4 +19,4 @@ transfert ftp
    yarn build
 
    //  rendre ce fichier exécutable grâce à la commande
-   chmod +x post-receive
+   chmod +x post-receive 
