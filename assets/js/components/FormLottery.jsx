@@ -57,7 +57,7 @@ class FormLottery extends Component {
  	if(error){
  		this.setState({error:error})
  	}//pas d'erreur
- 	else{
+ 	else if(!this.state.error){
  			//on affcihe la modal de résultat
 
 			$("#modal-result").modal("show")
