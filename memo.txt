@@ -17,3 +17,6 @@ transfert ftp
  
    // compile tout le js et ccs pour la prod
    yarn build
+
+   //  rendre ce fichier exécutable grâce à la commande
+   chmod +x post-receive
