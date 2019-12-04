@@ -4,6 +4,9 @@ namespace App\Lototo\Lottery;
 use App\Lototo\Lottery\LotteryInterface;
 use App\Lototo\Lottery\Grille\Grille;
 use App\Lototo\Lottery\Simulator\EuromillionSimulator;
+use App\Lototo\Lottery\Simulator\SimulatorAbstract;
+use App\Repository\EuromillionCombinaisonRepository;
+use App\Lototo\Lottery\Simulator\TirageEuromillion;
 
 class Euromillion implements LotteryInterface {
    const ETOILE_MAX= 12, NUMERO_MAX = 50, NUMERO_MIN=1, NB_MAX_NUMERO = 5, NB_MAX_ETOILE = 2;
@@ -21,9 +24,9 @@ class Euromillion implements LotteryInterface {
      *
      * @return void
      */
-    public function __construct(EuromillionSimulator $euromillionSimulator )
+    public function __construct(TirageEuromillion $tirageEuromillion, EuromillionCombinaisonRepository $combinaisonRepository )
     {
-      $this->euromillionSimulator = $euromillionSimulator;
+      $this->euromillionSimulator = new EuromillionSimulator( $tirageEuromillion, $combinaisonRepository );
     }
 
  public function init(){

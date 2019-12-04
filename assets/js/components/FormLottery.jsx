@@ -78,7 +78,7 @@ class FormLottery extends Component {
 			               body:  form
 			           };
 
-			let myRequest = new Request(Routing.generate(this.state.lotteryName));
+			let myRequest = new Request(Routing.generate("lottery",{lotteryName : this.state.lotteryName}));
 
 			fetch(myRequest,myInit)
 			.then(function(response) {

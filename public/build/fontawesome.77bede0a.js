@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([["fontawesome"],{"0Jq1":function(n,o,w){}},[["0Jq1","runtime"]]]);

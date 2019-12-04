@@ -10,7 +10,7 @@
     <script>
          (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
-    <a href="{{path('euromillion') }}" class="btn btn-warning">Recommencer</a>
+    <a href="{{path('lottery',{'lotteryName': lotteryName }) }}" class="btn btn-warning">Recommencer</a>
     <a href="https://www.fdj.fr/jeux-de-tirage/euromillions-my-million/" class="btn btn-success" onclick="window.open(this.href);return false">
     	Jouer sur <img width="50"src="{{asset('img/fdj-logo.svg')}}">
     </a>

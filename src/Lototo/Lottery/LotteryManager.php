@@ -5,24 +5,45 @@ use App\Lototo\Lottery\LotteryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Lototo\Lottery\Grille\Grille;
 use App\Lototo\Lottery\Euromillion;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class LotteryManager {
 
  
 
-    protected $euromillion;
-   
+    protected $lottery;
+    protected $registry;
 
-    public function __construct(Euromillion $euromillion ){
+    public function __construct(RegistryInterface $registry ){
         
-        $this->euromillion = $euromillion;
+        //$this->lottery = $euromillion;
+        $this->registry = $registry;
   
     }
-
-
-    public function getEuromillion (): LotteryInterface
+    /**
+     * fonction qui qui configure la loterie à appeler
+     * @param string $lottery
+     * @return void
+     * 
+     */
+    public function setConfiguration(string $lotteryName): void
     {
-        return $this->euromillion;
+        $this->lottery = ucfirst($lotteryName);
+    }
+
+    /**
+     * Fonction qui retourne une instance de la loterie 
+     * @return LotteryInterface
+     * 
+     */
+    public function getLottery (): LotteryInterface
+    {
+        $loterryClass = "App\\Lototo\\Lottery\\". $this->lottery;
+        $simulator = "App\\Lototo\\Lottery\\Simulator\\".$this->lottery."Simulator";
+        $repository = "App\\Repository\\".$this->lottery."CombinaisonRepository";
+        $tirage = "App\\Lototo\\Lottery\\Simulator\\Tirage".$this->lottery;
+        //App\Lototo\Lottery\Simulator
+        return new $loterryClass(new $tirage(), new $repository($this->registry));
     }
 
 
