@@ -24,5 +24,4 @@ const modal = $("#modal-result");
  const loader = document.querySelector("#modal-result .modal-body").innerHTML;
  	modal.on('hide.bs.modal', function () {
 	  document.querySelector("#modal-result .modal-body").innerHTML = loader
-	  console.log("fermeture");
 	});

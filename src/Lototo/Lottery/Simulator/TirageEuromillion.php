@@ -36,12 +36,12 @@ class TirageEuromillion {
         $this->etoiles = $tabEtoile;
 
         for ( $i = 0 ; $i < Euromillion::NB_MAX_NUMERO ; $i++ ){
-            $tirage["5num"][] = array_shift($tabNum);
+            $tirage["numeros"][] = array_shift($tabNum);
             if( $i < Euromillion::NB_MAX_ETOILE ){
-                $tirage["2etoiles"][]=array_shift($tabEtoile);
+                $tirage["etoiles"][]=array_shift($tabEtoile);
             }
         }
-        $this->grille = new Grille(0, $tirage["5num"], $tirage["2etoiles"]);
+        $this->grille = new Grille(0, $tirage["numeros"], $tirage["etoiles"]);
         return $this->grille ;
     }
 

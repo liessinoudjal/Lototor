@@ -30,11 +30,11 @@ class LotteryController extends AbstractController
    
             $grille = $lotteryManager->getGrille($request);
      
-            $resultatSimulation = $lotteryManager->getLottery()->getSimulator()->simuler($grille);
+            //$resultatSimulation = $lotteryManager->getLottery()->getSimulator()->simuler($grille);
             return $this->json([
                 "lotteryName" => $lotteryName,
                 "content" => $this->render("lottery/result_simulation.html.twig",
-                                ["simulationEuromillion" => $lotteryManager->getLottery()->getSimulator()->simuler($grille),
+                                ["simulation" => $lotteryManager->getLottery()->getSimulator()->simuler($grille),
                                    "lotteryName" => $lotteryName ]) ,
                 "status" => true,
                 "alert" => false
@@ -50,23 +50,6 @@ class LotteryController extends AbstractController
              "state" => $lottery->getState()
          ]);
     }
-
-
-     /**
-     * @Route("/loto", name="loto")
-     * @Method({"POST","GET"})
-     */
-    public function loto(Request $request, $_route)
-    {
-     $lottery = (new LotteryManager( $_route))->getLottery()->init();
-       // dd($euromillion->getJsonState());
-        return $this->render('lottery/lottery.html.twig', 
-        [
-            "stateJson" => $lottery->getJsonState(),
-            "state" => $lottery->getState()
-        ]);
-    }
-
 
      /**
      * @Route("/api/euromillion/{nbTirage}/{num1}/{num2}/{num3}/{num4}/{num5}/{etoile1}/{etoile2}", name="apiEuromillion")

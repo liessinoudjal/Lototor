@@ -11,8 +11,9 @@ class LotteryManager {
 
  
 
-    protected $lottery;
+    protected $lotteryName;
     protected $registry;
+    protected $lotteryInstance;
 
     public function __construct(RegistryInterface $registry ){
         
@@ -22,13 +23,19 @@ class LotteryManager {
     }
     /**
      * fonction qui qui configure la loterie à appeler
-     * @param string $lottery
+     * @param string $lotteryName
      * @return void
      * 
      */
     public function setConfiguration(string $lotteryName): void
     {
-        $this->lottery = ucfirst($lotteryName);
+        $this->lotteryName = ucfirst($lotteryName);
+
+        $loterryClass = "App\\Lototo\\Lottery\\". $this->lotteryName;
+        $repository = "App\\Repository\\".$this->lotteryName."CombinaisonRepository";
+        $tirage = "App\\Lototo\\Lottery\\Simulator\\Tirage".$this->lotteryName;
+      
+        $this->lotteryInstance = new $loterryClass(new $tirage(), new $repository($this->registry));
     }
 
     /**
@@ -38,16 +45,18 @@ class LotteryManager {
      */
     public function getLottery (): LotteryInterface
     {
-        $loterryClass = "App\\Lototo\\Lottery\\". $this->lottery;
-        $simulator = "App\\Lototo\\Lottery\\Simulator\\".$this->lottery."Simulator";
-        $repository = "App\\Repository\\".$this->lottery."CombinaisonRepository";
-        $tirage = "App\\Lototo\\Lottery\\Simulator\\Tirage".$this->lottery;
-        //App\Lototo\Lottery\Simulator
-        return new $loterryClass(new $tirage(), new $repository($this->registry));
+
+        return $this->lotteryInstance;
     }
 
-
-    public function getGrille( Request $request){
+    /**
+     * Fonction qui retourne une instance de Grille representant les numeros choisis par l'utilisateur pour la simulation
+     * @param Request $request
+     * @return Grille
+     * 
+     */
+    public function getGrille( Request $request): Grille
+    {
         
         $nb_tirages= $request->request->get("nb_annees");
         $numeros = explode(",",$request->request->get("numeros"));
@@ -55,5 +64,5 @@ class LotteryManager {
 
         return  new Grille($nb_tirages,$numeros,$etoiles);
     }
- 
+       
 }
