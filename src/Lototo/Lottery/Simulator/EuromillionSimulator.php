@@ -91,7 +91,7 @@ class EuromillionSimulator extends SimulatorAbstract
                     $this->prizePool*=1.15;
                 }
                 //on set le nouveau prize pool à gagner en cas de bons numeros
-               $this->euromillionCombinaison['5,2']['gainMoyen'] = $this->prizePool; 
+               $this->combinaisons['5,2']['gainMoyen'] = $this->prizePool; 
 
                 $grilleTirage = $this->tirageEuromillion->tirage();
                 

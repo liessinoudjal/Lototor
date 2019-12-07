@@ -15,20 +15,6 @@ class LotoSimulator extends SimulatorAbstract
     const PRIZE_POOL_MIN = 2000000;
     const PRIZE_POOL_MAX = 24000000;
     
-    private $gainsMoyenParRang = [
-        "5,1"=>self::PRIZE_POOL_MIN,
-        "5,0" => 432260.99,
-        "4,1" => 78142.57,
-        "4,0" => 4498.49,
-        "3,1" => 203.92,
-        "3,0" => 105.22,
-        "2,1" => 62.81,
-        "2,0" => 19.92,
-        "1,1" => 14.62,
-        "0,1" => 12.2
-    ];
-
-    
 
     public $combinaisons;
     public $historiqueDesTirages=[
@@ -65,7 +51,7 @@ class LotoSimulator extends SimulatorAbstract
 	{
 		$this->etoiles=$grille->getEtoiles();
         $this->numeros=$grille->getNumeros();
-        $this->nbTirages = $grille->getNbTirages() * 52 * 2;
+        $this->nbTirages = $grille->getNbTirages() * 52 * 3;
         $this->nbAnnees = $grille->getNbTirages();
 
         $finSimulation = false;
@@ -85,7 +71,7 @@ class LotoSimulator extends SimulatorAbstract
                     $this->prizePool*=1.15;
                 }
                 //on set le nouveau prize pool à gagner en cas de bons numeros
-               $this->euromillionCombinaison['5,1']['gainMoyen'] = $this->prizePool; 
+               $this->combinaisons['5,1']['gainMoyen'] = $this->prizePool; 
 
                 $grilleTirage = $this->tirageLoto ->tirage();
                 
