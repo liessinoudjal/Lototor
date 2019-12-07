@@ -5,7 +5,7 @@ use App\Lototo\Lottery\LotteryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Lototo\Lottery\Grille\Grille;
 use App\Lototo\Lottery\Euromillion;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 class LotteryManager {
 
@@ -15,14 +15,14 @@ class LotteryManager {
     protected $registry;
     protected $lotteryInstance;
 
-    public function __construct(RegistryInterface $registry ){
+    public function __construct(ManagerRegistry $registry ){
         
         //$this->lottery = $euromillion;
         $this->registry = $registry;
   
     }
     /**
-     * fonction qui qui configure la loterie à appeler
+     * fonction qui configure la loterie à appeler
      * @param string $lotteryName
      * @return void
      * 
