@@ -2,62 +2,56 @@
 namespace App\Lototo\Lottery\Simulator;
 
 use App\Lototo\Lottery\Grille\Grille;
-use App\Lototo\Lottery\Euromillion;
+use App\Lototo\Lottery\Loto;
 use App\Lototo\Lottery\Simulator\SimulatorAbstract;
-use App\Repository\EuromillionCombinaisonRepository;
+use App\Repository\LotoCombinaisonRepository;
 
-class EuromillionSimulator extends SimulatorAbstract
+class LotoSimulator extends SimulatorAbstract
 {
 
-	private $tirageEuromillion;
+	private $tirageLoto;
 
-	const PRIX_GRILLE = 2.5;
-    const PRIZE_POOL_MIN = 17000000;
-    const PRIZE_POOL_MAX = 190000000;
+	const PRIX_GRILLE = 2.2;
+    const PRIZE_POOL_MIN = 2000000;
+    const PRIZE_POOL_MAX = 24000000;
     
     private $gainsMoyenParRang = [
-        "5,2"=>self::PRIZE_POOL_MIN,
-        "5,1" => 412705.6,
-        "5,0" => 64611.6,
-        "4,2" => 3471.4,
-        "4,1" => 171.8,
-        "3,2" => 110.3,
-        "4,0" => 59.9,
-        "2,2" => 19.7,
-        "3,1" => 14.6,
-        "3,0" => 12.2,
-        "1,2" => 10.6,
-        "2,1" => 8.1,
-        "2,0" => 4.4
+        "5,1"=>self::PRIZE_POOL_MIN,
+        "5,0" => 432260.99,
+        "4,1" => 78142.57,
+        "4,0" => 4498.49,
+        "3,1" => 203.92,
+        "3,0" => 105.22,
+        "2,1" => 62.81,
+        "2,0" => 19.92,
+        "1,1" => 14.62,
+        "0,1" => 12.2
     ];
 
     
 
     public $combinaisons;
     public $historiqueDesTirages=[
-        "5,2" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
         "5,1" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
         "5,0" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
-        "4,2" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
         "4,1" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
-        "3,2" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
         "4,0" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
-        "2,2" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
         "3,1" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
         "3,0" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
-        "1,2" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
         "2,1" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
-        "2,0" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0]
+        "2,0" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
+        "1,1" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0],
+        "0,1" => ["nb_combinaison" =>0, "gain_totale_combinaison"=>0]
     ];
 
   
 
-	public function __construct(TirageEuromillion $tirageEuromillion, EuromillionCombinaisonRepository $combinaisonRepository ){
+	public function __construct(TirageLoto $tirageLoto, LotoCombinaisonRepository $combinaisonRepository ){
      // Parent::__construct();
-		$this->tirageEuromillion = $tirageEuromillion;
+		$this->tirageLoto = $tirageLoto;
 
         foreach( $combinaisonRepository->findAll() as $combinaison){
-            $this->combinaisons[$combinaison->getCombinaison()]= [
+            $this->combinaisons[$combinaison->getCombinaison()] = [
                 "gainMoyen" => $combinaison->getGainMoyen(),
                 "icon" => $combinaison->getIcon()
             ];
@@ -91,9 +85,9 @@ class EuromillionSimulator extends SimulatorAbstract
                     $this->prizePool*=1.15;
                 }
                 //on set le nouveau prize pool à gagner en cas de bons numeros
-               $this->euromillionCombinaison['5,2']['gainMoyen'] = $this->prizePool; 
+               $this->euromillionCombinaison['5,1']['gainMoyen'] = $this->prizePool; 
 
-                $grilleTirage = $this->tirageEuromillion->tirage();
+                $grilleTirage = $this->tirageLoto ->tirage();
                 
                 //estimatons des bons numeros
 
@@ -104,7 +98,7 @@ class EuromillionSimulator extends SimulatorAbstract
                 $nbTirageSimu++;
                 // la siulation se termine que si :
                 // tous les numeros sont bons
-                if ($nbBonEtoiles == Euromillion::NB_MAX_ETOILE and $nbBonNumeros == Euromillion::NB_MAX_NUMERO) {
+                if ($nbBonEtoiles == Loto::NB_MAX_ETOILE and $nbBonNumeros == Loto::NB_MAX_NUMERO) {
                     $this->gagnant = true;
                     $finSimulation = true;
                     // on calcule combien le joueur a joué depuis le debut
@@ -129,9 +123,10 @@ class EuromillionSimulator extends SimulatorAbstract
 
 
 
-	public function getTirageEuromillion(): TirageEuromillion
+	public function getTirageLoto(): TirageLoto
 	{
-		return $this->tirageEuromillion;
+		return $this->tirageLoto
+;
 	}
 
 

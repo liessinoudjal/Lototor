@@ -1,20 +1,28 @@
 <?php
 namespace App\Lototo\Lottery;
 use App\Lototo\Lottery\LotteryInterface;
+use App\Lototo\Lottery\Simulator\LotoSimulator;
+use App\Repository\LotoCombinaisonRepository;
+use App\Lototo\Lottery\Simulator\TirageLoto;
 
 class Loto implements LotteryInterface {
     const  ETOILE_MAX= 10, NUMERO_MAX = 49, NUMERO_MIN=1, NB_MAX_NUMERO = 5, NB_MAX_ETOILE = 1;
     private $state ;
     private $grille= [];
+
+     /*
+    *@var LotoSimulator
+    */
+    private $lotoSimulator;
     
     /**
      * __construct
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(TirageLoto $tirageLoto, LotoCombinaisonRepository $combinaisonRepository )
     {
-      
+      $this->lotoSimulator = new LotoSimulator( $tirageLoto, $combinaisonRepository );
     }
 
     public function init(){
@@ -92,5 +100,13 @@ class Loto implements LotteryInterface {
         $this->grille = $grille;
 
         return $this;
+    }
+
+    /*
+     *@return LotoSimulator
+     */
+    public function getSimulator(): LotoSimulator
+    {
+        return $this->lotoSimulator;
     }
 }

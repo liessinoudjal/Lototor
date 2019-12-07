@@ -2,44 +2,47 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.f672a8bd.js",
-        "/build/0.a9068601.js",
-        "/build/1.33463473.js",
-        "/build/app.fa915f05.js"
+        "/build/runtime.js",
+        "/build/vendors~AppComponent~app~bootstrap.js",
+        "/build/vendors~AppComponent~app.js",
+        "/build/vendors~app.js",
+        "/build/app.js"
       ],
       "css": [
-        "/build/app.d9f6810a.css"
+        "/build/vendors~app.css",
+        "/build/app.css"
       ]
     },
     "bootstrap": {
       "js": [
-        "/build/runtime.f672a8bd.js",
-        "/build/0.a9068601.js",
-        "/build/2.fbfe2db9.js",
-        "/build/bootstrap.3881d0d7.js"
+        "/build/runtime.js",
+        "/build/vendors~AppComponent~app~bootstrap.js",
+        "/build/vendors~bootstrap.js",
+        "/build/bootstrap.js"
       ],
       "css": [
-        "/build/bootstrap.2430a189.css"
+        "/build/bootstrap.css"
       ]
     },
     "fontawesome": {
       "js": [
-        "/build/runtime.f672a8bd.js",
-        "/build/fontawesome.77bede0a.js"
+        "/build/runtime.js",
+        "/build/fontawesome.js"
       ],
       "css": [
-        "/build/fontawesome.cdc1e712.css"
+        "/build/fontawesome.css"
       ]
     },
     "AppComponent": {
       "js": [
-        "/build/runtime.f672a8bd.js",
-        "/build/0.a9068601.js",
-        "/build/1.33463473.js",
-        "/build/AppComponent.dbe701d2.js"
+        "/build/runtime.js",
+        "/build/vendors~AppComponent~app~bootstrap.js",
+        "/build/vendors~AppComponent~app.js",
+        "/build/vendors~AppComponent.js",
+        "/build/AppComponent.js"
       ],
       "css": [
-        "/build/AppComponent.06ec642d.css"
+        "/build/AppComponent.css"
       ]
     }
   }

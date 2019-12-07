@@ -10,15 +10,15 @@
     <script>
          (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
-    <a href="{{path('euromillion') }}" class="btn btn-warning">Recommencer</a>
+    <a href="{{path('lottery',{'lotteryName': lotteryName }) }}" class="btn btn-warning">Recommencer</a>
     <a href="https://www.fdj.fr/jeux-de-tirage/euromillions-my-million/" class="btn btn-success" onclick="window.open(this.href);return false">
     	Jouer sur <img width="50"src="{{asset('img/fdj-logo.svg')}}">
     </a>
-    <div class="card ">
+    <div class="card">
    
-      <div class="card-header {{ simulationEuromillion.gagnant? "bg-success" : "bg-danger" }}  text-white ">
-        <h2>{{ simulationEuromillion.gagnant? "Jackpot !" : "Perdu !"  }} </h2> 
-        {% for number in simulationEuromillion.numeros %}
+      <div class="card-header {{ simulation.gagnant? "bg-success" : "bg-danger" }}  text-white ">
+        <h2>{{ simulation.gagnant? "Jackpot !" : "Perdu !"  }} </h2> 
+        {% for number in simulation.numeros %}
             <span class="fa-stack fa-2x">
                 <!-- The icon that will wrap the number -->
                 <i class="fas fa-futbol fa-stack-1x text-success" aria-hidden="true"></i>
@@ -28,7 +28,7 @@
                 </i>
             </span> 
         {% endfor%}
-        {% for number in simulationEuromillion.etoiles %}
+        {% for number in simulation.etoiles %}
             <span class="fa-stack fa-2x">
                 <!-- The icon that will wrap the number -->
                 <i class="far fa-star fa-stack-1x text-success"></i>
@@ -45,36 +45,36 @@
                       <li class="list-group-item d-flex justify-content-between align-items-center">
                         Nombre d'années jouées
                         <span class="badge badge-primary badge-pill">
-                            {{ simulationEuromillion.nbAnnees }} ans
+                            {{ simulation.nbAnnees }} ans
                         </span>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-center">
                         Nombre de tirages simulés
                         <span class="badge badge-primary badge-pill">
-                            {{ simulationEuromillion.nbTirages|number_format(0,',',' ') }}
+                            {{ simulation.nbTirages|number_format(0,',',' ') }}
                         </span>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-center">
                         Mise totale
                         <span class="badge badge-danger badge-pill">
-                            {{ simulationEuromillion.miseTotale|number_format(2, ',', ' ') }} € 
+                            {{ simulation.miseTotale|number_format(2, ',', ' ') }} € 
                         </span>
                       </li>
                        <li class="list-group-item d-flex justify-content-between align-items-center">
                         Somme gagnées lors des tirages
                         <span class="badge badge-primary badge-pill">
-                            {{ simulationEuromillion.gains|number_format(2, ',', ' ') }} €
+                            {{ simulation.gains|number_format(2, ',', ' ') }} €
                         </span>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-center">
                         Gains total
-                      {% if simulationEuromillion.benef <=0 %}
+                      {% if simulation.benef <=0 %}
                         <span class="badge badge-danger badge-pill">
-                             {{ simulationEuromillion.benef|number_format(2, ',', ' ') }} €
+                             {{ simulation.benef|number_format(2, ',', ' ') }} €
                         </span>
                         {% else %}
                             <span class="badge badge-primary badge-pill">
-                                {{ simulationEuromillion.benef|number_format(2, ',', ' ') }} €
+                                {{ simulation.benef|number_format(2, ',', ' ') }} €
                             </span>
                         {% endif %}
                       </li>
@@ -90,15 +90,12 @@
                     </thead>
                     <tbody>
                    
-                        {% for combinaison , historique in simulationEuromillion.historiqueDesTirages  %}
+                    {% for combinaison , historique in simulation.historiqueDesTirages  %}
                      <tr>
-                            <th>
-                                {{ simulationEuromillion.euromillionCombinaison[combinaison]['icon']|raw}}
-                        
-                            </th>
-                            <td colspan="2">{{ historique['nb_combinaison'] }} </td>
-                             <td colspan="2">{{ historique['gain_totale_combinaison'] }} € </td>
-                        </tr>
+                        <th>{{ simulation.combinaisons[combinaison]['icon']|raw}}</th>
+                        <td colspan="2">{{ historique['nb_combinaison'] }} </td>
+                        <td colspan="2">{{ historique['gain_totale_combinaison'] }} € </td>
+                      </tr>
                     {% endfor %}
                       
                     </tbody>

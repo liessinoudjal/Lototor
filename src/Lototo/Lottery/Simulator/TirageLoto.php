@@ -2,9 +2,9 @@
 namespace App\Lototo\Lottery\Simulator;
 
 use App\Lototo\Lottery\Grille\Grille;
-use App\Lototo\Lottery\Euromillion;
+use App\Lototo\Lottery\Loto;
 
-class TirageEuromillion {
+class TirageLoto {
 
 	 private $numeros;
      private $etoiles;
@@ -15,8 +15,8 @@ class TirageEuromillion {
 
 	public function __construct()
 	{
-		$this->numeros =  range(Euromillion::NUMERO_MIN,Euromillion::NUMERO_MAX) ;
-     	$this->etoiles =  range(Euromillion::NUMERO_MIN,Euromillion::ETOILE_MAX);
+		$this->numeros =  range(Loto::NUMERO_MIN,Loto::NUMERO_MAX) ;
+     	$this->etoiles =  range(Loto::NUMERO_MIN,Loto::ETOILE_MAX);
 	} 
 
 	/**
@@ -35,9 +35,9 @@ class TirageEuromillion {
         $this->numeros = $tabNum;
         $this->etoiles = $tabEtoile;
 
-        for ( $i = 0 ; $i < Euromillion::NB_MAX_NUMERO ; $i++ ){
+        for ( $i = 0 ; $i < Loto::NB_MAX_NUMERO ; $i++ ){
             $tirage["numeros"][] = array_shift($tabNum);
-            if( $i < Euromillion::NB_MAX_ETOILE ){
+            if( $i < Loto::NB_MAX_ETOILE ){
                 $tirage["etoiles"][]=array_shift($tabEtoile);
             }
         }
