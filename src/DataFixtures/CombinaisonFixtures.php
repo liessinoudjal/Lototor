@@ -96,16 +96,16 @@ class CombinaisonFixtures extends Fixture
                     <i class="far fa-star text-success"></i>'
     ];
     private $gainsMoyenParRangLoto = [
-        "5,1"=> 17000000,
-        "5,0" => 432260.99,
-        "4,1" => 78142.57,
-        "4,0" => 4498.49,
-        "3,1" => 203.92,
-        "3,0" => 105.22,
-        "2,1" => 62.81,
-        "2,0" => 19.92,
-        "1,1" => 14.62,
-        "0,1" => 12.2
+        "5,1"=> 2000000,
+         "5,0" => 115193,
+        "4,1" => 2100,
+        "4,0" => 662.3,
+        "3,1" => 79.3,
+        "3,0" => 26.8,
+        "2,1" => 14.1,
+        "2,0" => 5.2,
+        "1,1" => 2.2,
+        "0,1" => 2.2
     ];
 
     private $iconesLoto = [
@@ -125,7 +125,7 @@ class CombinaisonFixtures extends Fixture
                     <i class="fas fa-futbol text-success" aria-hidden="true"></i> 
                     <i class="fas fa-futbol text-success" aria-hidden="true"></i> 
                     <i class="fas fa-futbol text-success" aria-hidden="true"></i> 
-                    <i class="fas fa-futbol text-success" aria-hidden="true"></i>',
+                    <i class="far fa-star text-success"></i>',
 
         "4,0" =>    '<i class="fas fa-futbol text-success" aria-hidden="true"></i> 
                     <i class="fas fa-futbol text-success" aria-hidden="true"></i> 
@@ -135,7 +135,7 @@ class CombinaisonFixtures extends Fixture
         "3,1" =>    '<i class="fas fa-futbol text-success" aria-hidden="true"></i> 
                     <i class="fas fa-futbol text-success" aria-hidden="true"></i> 
                     <i class="fas fa-futbol text-success" aria-hidden="true"></i> 
-                    <i class="far fa-star text-success"></i><i class="far fa-star text-success"></i>',
+                    <i class="far fa-star text-success"></i>',
 
         "3,0" =>    '<i class="fas fa-futbol text-success" aria-hidden="true"></i> 
                     <i class="fas fa-futbol text-success" aria-hidden="true"></i> 
@@ -143,14 +143,14 @@ class CombinaisonFixtures extends Fixture
 
         "2,1" =>    '<i class="fas fa-futbol text-success" aria-hidden="true"></i> 
                     <i class="fas fa-futbol text-success" aria-hidden="true"></i> 
-                    <i class="far fa-star text-success"></i><i class="far fa-star text-success"></i',
+                    <i class="far fa-star text-success">',
 
         "2,0" =>    '<i class="fas fa-futbol text-success" aria-hidden="true"></i> 
                     <i class="fas fa-futbol text-success" aria-hidden="true"></i>', 
 
         "1,1" =>    '
                     <i class="fas fa-futbol text-success" aria-hidden="true"></i>
-                    <i class="far fa-star text-success"></i><i class="far fa-star text-success"></i>',
+                    <i class="far fa-star text-success"></i>',
 
         "0,1" =>    '
                     <i class="far fa-star text-success"></i>'
