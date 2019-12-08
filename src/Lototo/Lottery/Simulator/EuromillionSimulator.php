@@ -15,23 +15,6 @@ class EuromillionSimulator extends SimulatorAbstract
     const PRIZE_POOL_MIN = 17000000;
     const PRIZE_POOL_MAX = 190000000;
     
-    private $gainsMoyenParRang = [
-        "5,2"=>self::PRIZE_POOL_MIN,
-        "5,1" => 412705.6,
-        "5,0" => 64611.6,
-        "4,2" => 3471.4,
-        "4,1" => 171.8,
-        "3,2" => 110.3,
-        "4,0" => 59.9,
-        "2,2" => 19.7,
-        "3,1" => 14.6,
-        "3,0" => 12.2,
-        "1,2" => 10.6,
-        "2,1" => 8.1,
-        "2,0" => 4.4
-    ];
-
-    
 
     public $combinaisons;
     public $historiqueDesTirages=[
