@@ -12,6 +12,8 @@ use App\Entity\Grille;
 use App\Form\GrilleType;
 use App\Entity\EuromillionCombinaison;
 use  Doctrine\ORM\EntityManagerInterface;
+use App\Lototo\Lottery\Simulator\TirageEuromillion;
+
 class DefaultController extends AbstractController
 {
    
@@ -84,6 +86,19 @@ class DefaultController extends AbstractController
         $em->persist($euromillionCombinaison);
         $em->flush();
             return $this->json($euromillionCombinaison);
+    }
+
+    /**
+     * @Route("/stat/{nbTirage?100}", name="stat")
+     * @Method({"GET"})
+     */
+    public function stat( int $nbTirage,EntityManagerInterface $em, TirageEuromillion $tirageEuromillion){
+            $resultat=[];
+            for($i=0; $i<= $nbTirage; $i++ ){
+                dd($tirageEuromillion->tirage()->getNumeros());
+                $resultat[]= $tirageEuromillion->tirage();
+            }
+            return $this->json($resultat);
     }
 
 
