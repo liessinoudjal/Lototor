@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use App\Entity\Grille;
+use App\Entity\Stat;
 use App\Form\GrilleType;
 use App\Entity\EuromillionCombinaison;
 use  Doctrine\ORM\EntityManagerInterface;
@@ -92,13 +93,20 @@ class DefaultController extends AbstractController
      * @Route("/stat/{nbTirage?100}", name="stat")
      * @Method({"GET"})
      */
-    public function stat( int $nbTirage,EntityManagerInterface $em, TirageEuromillion $tirageEuromillion){
-            $resultat=[];
-            for($i=0; $i<= $nbTirage; $i++ ){
-                dd($tirageEuromillion->tirage()->getNumeros());
-                $resultat[]= $tirageEuromillion->tirage();
+    public function stat( int $nbTirage,EntityManagerInterface $em, TirageEuromillion $tirageEuromillion ){
+            
+            for($i=0; $i <= $nbTirage; $i++ ){
+                $numeros = $tirageEuromillion->tirage()->getNumeros();
+                $nums=[];
+                foreach($numeros as $numero){
+                    $stat = new Stat();
+                    $nums[] = $stat->setNumero($numero)->setTypeNumero("numero")->setLotteryType("euromillion");
+                    $em->persist($stat);
+                }
+                 $em->flush();
+                
             }
-            return $this->json($resultat);
+            return $this->json($nums);
     }
 
 
