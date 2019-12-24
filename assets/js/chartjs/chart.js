@@ -1,8 +1,9 @@
+require('../../css/chartjs/chartjs.scss');
+
 import Chart from 'chart.js';
-//const myChart = new Chart(ctx, {...});
-console.log("chartjs");
-var ctx = document.getElementById('myChart');
-var myChart = new Chart(ctx, {
+
+const ctx = document.getElementById('myChart');
+const myChart = new Chart(ctx, {
     type: 'bar',
     data: {
         labels:[...Array(50).keys()].map(x => x++),

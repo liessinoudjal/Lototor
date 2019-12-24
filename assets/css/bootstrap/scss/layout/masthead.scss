@@ -1,5 +1,5 @@
 // Styling for the masthead
-header.masthead {
+section.masthead {
   text-align: center;
   color: black;
   background-image: url('./header-bg.jpg');
@@ -18,7 +18,7 @@ header.masthead {
       @include serif-font;
     }
     .intro-heading {
-      font-size: 50px;
+      font-size: 30px;
       font-weight: 700;
       line-height: 50px;
       margin-bottom: 25px;
@@ -27,7 +27,7 @@ header.masthead {
   }
 }
 @media(min-width:768px) {
-  header.masthead {
+  section.masthead {
     .intro-text {
       padding-top: 300px;
       padding-bottom: 200px;

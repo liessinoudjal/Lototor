@@ -81,7 +81,7 @@ class LotteryController extends AbstractController
      * @Route("/pertinance_simulateur", name="pertinance")
      * @Method({"GET"})
      */
-    public function stat(  ){
+    public function stat(){
             
             $pertinance= array(
    

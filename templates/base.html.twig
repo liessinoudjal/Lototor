@@ -11,13 +11,7 @@
           gtag('config', 'UA-153499756-1');
         </script>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- adsense -->
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({
-                  google_ad_client: "ca-pub-2986814021877593",
-                  enable_page_level_ads: true
-             });
-        </script>
+        {% include 'adsense.html' %}
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="simulateur euromillion, lottery simulator, loto">
@@ -42,15 +36,21 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="{{ path('lottery',{'lotteryName': 'euromillion'}) }}">Euromillion</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="{{ path('lottery',{'lotteryName': 'loto'}) }}">Loto</a>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Simulateurs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                           <a class="dropdown-item" href="{{ path('lottery',{'lotteryName': 'euromillion'}) }}">Euromillion</a>
+                             <a class="dropdown-item" href="{{ path('lottery',{'lotteryName': 'loto'}) }}">Loto</a>
+                          <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ path('pertinance') }}">Comment ça marche</a>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="{{path('CGU')}}">CGU</a>
                     </li>
+                    
               
                 </ul>
             </div>

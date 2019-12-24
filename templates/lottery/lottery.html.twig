@@ -9,21 +9,11 @@
 
 {% block body %}
 
-<header class="masthead">
-  <section class="container">
+<section class="masthead">
+  <div class="container">
         <div id="wrapper">
             <div class=" jumbotron">
-              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-              <!-- lototor display horizontal -->
-              <ins class="adsbygoogle"
-                   style="display:block"
-                   data-ad-client="ca-pub-2986814021877593"
-                   data-ad-slot="6190522532"
-                   data-ad-format="auto"
-                   data-full-width-responsive="true"></ins>
-              <script>
-                   (adsbygoogle = window.adsbygoogle || []).push({});
-              </script>
+              {% include 'adsense-horizontale.html' %}
                 <div id="root" data-state="{{stateJson}}"></div>
                 <a href="{{path('homepage') }}" class="btn btn-warning">Annuler</a>
             </div>
@@ -33,7 +23,7 @@
           <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content" >
               <div class="modal-header">
-                <h1 class="modal-title" id="exampleModalLongTitle">Résultat simulation <span></span></h1>
+                <h1 class="modal-title" id="exampleModalLongTitle">Simulation <span></span></h1>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -51,8 +41,8 @@
           </div>
         </div>
         <!-- end modal -->
-  </section>
-</header>
+  </div>
+</section>
   
 
 {% endblock %}
