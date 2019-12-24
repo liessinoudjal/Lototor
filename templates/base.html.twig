@@ -25,10 +25,10 @@
 
         <title>{% block title %}LototoR - Simulateur de loterie {% endblock %}</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-         {{ encore_entry_link_tags('app') }}
-               {{ encore_entry_link_tags('bootstrap') }}
-                  {#} {{ encore_entry_link_tags('agency-bootstrap') }}#}
-                 {{ encore_entry_link_tags('fontawesome') }}
+        {{ encore_entry_link_tags('app') }}
+        {{ encore_entry_link_tags('bootstrap') }}
+        {#} {{ encore_entry_link_tags('agency-bootstrap') }}#}
+        {{ encore_entry_link_tags('fontawesome') }}
         {% block stylesheets %}
               
         {% endblock %}
@@ -67,13 +67,12 @@
                             <a href="{{ path('CGU') }}"> plus d'info</a>
                         </div>
                 </div> 
-         
-           
  
-           
+        {{ encore_entry_script_tags('app') }}
+        {{ encore_entry_script_tags('bootstrap') }}
+        {{ encore_entry_script_tags('chartjs') }}
         {% block javascripts %}
-             {{ encore_entry_script_tags('app') }}
-             {{ encore_entry_script_tags('bootstrap') }}
+             
         {% endblock %}
 
 

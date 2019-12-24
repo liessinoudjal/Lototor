@@ -76,4 +76,101 @@ class LotteryController extends AbstractController
             $simulationEuromillion=$simulateurEuro->simuler($grille->getNums(),$grille->getEtoiles(),$grille->getNbTirage());
        return $this->json($simulationEuromillion);
     }
+
+    /**
+     * @Route("/pertinance_simulateur", name="pertinance")
+     * @Method({"GET"})
+     */
+    public function stat(  ){
+            
+            $pertinance= array(
+   
+        3271,
+ 
+   
+        3277,
+   
+    
+        3324,
+  
+   
+        3361,
+   
+    
+        3319,
+   
+        3313,
+    
+        3279,
+    
+        3230,
+   
+        3361,
+   
+        3285,
+   
+        3350,
+   
+        3332,
+   
+        3409,
+   
+        3330,
+   
+        3343,
+  
+        3327,
+   
+        3294,
+  
+        3270,
+  
+        3281,
+   
+        3367,
+    
+        3298,
+    
+        3290,
+  
+        3334,
+  
+        3234,
+   
+        3290,
+  
+        3181,
+    
+        3222,
+    
+        3376,
+   
+        3314,
+   
+        3257,
+   
+        3267,
+        3306,
+        3297,
+        3324,
+        3236,
+        3383,
+        3272,
+        3309,
+        3193,
+        3308,
+        3357,
+        3336,
+        3267,
+        3422,
+        3207,
+        3258,
+        3267,
+        3360,
+        3238,
+        3274);
+ 
+            return $this->render('lottery/pertinance.html.twig',["pertinance"=> json_encode($pertinance)]);
+    }
+
 }
