@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use App\Lototo\Lottery\LotteryManager;
 use App\Lototo\Lottery\Euromillion;
 use App\Lototo\Lottery\Grille\Grille;
+use App\Repository\StatRepository;
 
 class LotteryController extends AbstractController
 {
@@ -52,125 +53,32 @@ class LotteryController extends AbstractController
     }
 
      /**
-     * @Route("/api/euromillion/{nbTirage}/{num1}/{num2}/{num3}/{num4}/{num5}/{etoile1}/{etoile2}", name="apiEuromillion")
-     * @Method({"GET"})
+      * not yet functionnal, don't use
+     * @Route("/api/simulator/{$LotteryName}", name="apiSimulator")
+     * @Method({"POST"})
+     *
      */
-    public function apiEuromillion (Request $request, int $nbTirage,int $num1,int $num2, int $num3, int $num4, int $num5, int $etoile1, int $etoile2)
+    public function apiSimulator (Request $request, string $LotteryName, LotteryManager $lotteryManager)
     {
-             $grille = new Grille();
-       //  dump($request->attributes->get('nbTirage'));
-       // $grillejson=json_encode($request->attributes->get('grille'));
-        $grille->setNbTirage($request->attributes->get('nbTirage'))
-                ->setNum1($request->attributes->get('num1'))
-                ->setNum2($request->attributes->get('num2'))
-                ->setNum3($request->attributes->get('num3'))
-                ->setNum4($request->attributes->get('num4'))
-                ->setNum5($request->attributes->get('num5'))
-                ->setEtoile1($request->attributes->get('etoile1'))
-                ->setEtoile2($request->attributes->get('etoile2'));
-            //    dump($grille);
-      // return new Response( $grille,200,['content-type'=>'application/json']);
-      // 
-            $simulateurEuro = new SimulateurEuromillion();
+        $grille = $lotteryManager->getGrille($request);
 
-            $simulationEuromillion=$simulateurEuro->simuler($grille->getNums(),$grille->getEtoiles(),$grille->getNbTirage());
-       return $this->json($simulationEuromillion);
+        $lotteryManager->setConfiguration($grilleInfos['lotteryName']);
+     
+        return $this->json($lotteryManager->getLottery()->getSimulator()->simuler($grille));
     }
 
     /**
      * @Route("/pertinance_simulateur", name="pertinance")
      * @Method({"GET"})
      */
-    public function stat(){
-            
-            $pertinance= array(
-   
-        3271,
- 
-   
-        3277,
-   
-    
-        3324,
-  
-   
-        3361,
-   
-    
-        3319,
-   
-        3313,
-    
-        3279,
-    
-        3230,
-   
-        3361,
-   
-        3285,
-   
-        3350,
-   
-        3332,
-   
-        3409,
-   
-        3330,
-   
-        3343,
-  
-        3327,
-   
-        3294,
-  
-        3270,
-  
-        3281,
-   
-        3367,
-    
-        3298,
-    
-        3290,
-  
-        3334,
-  
-        3234,
-   
-        3290,
-  
-        3181,
-    
-        3222,
-    
-        3376,
-   
-        3314,
-   
-        3257,
-   
-        3267,
-        3306,
-        3297,
-        3324,
-        3236,
-        3383,
-        3272,
-        3309,
-        3193,
-        3308,
-        3357,
-        3336,
-        3267,
-        3422,
-        3207,
-        3258,
-        3267,
-        3360,
-        3238,
-        3274);
- 
-            return $this->render('lottery/pertinance.html.twig',["pertinance"=> json_encode($pertinance)]);
+    public function stat(StatRepository $statRepo){
+            //récupération en BDD des hits (nombre de tirage pour chaque nombre du simulateur pour N simulation)
+            $hits = $statRepo->findHits();
+        
+            return $this->render('lottery/pertinance.html.twig',[
+                "hits"=> json_encode($hits),
+                "nbTiragesSimules"=> 160000
+            ]);
     }
 
 }

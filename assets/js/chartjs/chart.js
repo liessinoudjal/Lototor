@@ -3,13 +3,14 @@ require('../../css/chartjs/chartjs.scss');
 import Chart from 'chart.js';
 
 const ctx = document.getElementById('myChart');
+const hits = JSON.parse(ctx.dataset.hits);
 const myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels:[...Array(50).keys()].map(x => x++),
+        labels:[...Array(hits.length).keys()].map(x => "boule "+ ++x),
         datasets: [{
             label: 'nombres de fois tiré',
-            data: JSON.parse(ctx.dataset.pertinance),
+            data: hits,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
