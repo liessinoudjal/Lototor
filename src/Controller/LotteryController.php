@@ -68,7 +68,7 @@ class LotteryController extends AbstractController
     }
 
     /**
-     * @Route("/pertinance_simulateur", name="pertinance")
+     * @Route("/fiabilite-du-tirage-aleatoire", name="pertinance")
      * @Method({"GET"})
      */
     public function stat(StatRepository $statRepo){
@@ -77,7 +77,7 @@ class LotteryController extends AbstractController
         
             return $this->render('lottery/pertinance.html.twig',[
                 "hits"=> json_encode($hits),
-                "nbTiragesSimules"=> 160000
+                "countHits"=> array_sum($hits)
             ]);
     }
 

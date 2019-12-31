@@ -40,11 +40,11 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Simulateurs
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                           <a class="dropdown-item" href="{{ path('lottery',{'lotteryName': 'euromillion'}) }}">Euromillion</a>
-                             <a class="dropdown-item" href="{{ path('lottery',{'lotteryName': 'loto'}) }}">Loto</a>
+                        <div class="dropdown-menu bg-dark ml-3" aria-labelledby="navbarDropdown">
+                           <a class="nav-link" href="{{ path('lottery',{'lotteryName': 'euromillion'}) }}">Euromillion</a>
+                             <a class="nav-link" href="{{ path('lottery',{'lotteryName': 'loto'}) }}">Loto</a>
                           <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ path('pertinance') }}">Comment ça marche</a>
+                            <a class="nav-link" href="{{ path('pertinance') }}">Comment ça marche</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -70,7 +70,6 @@
  
         {{ encore_entry_script_tags('app') }}
         {{ encore_entry_script_tags('bootstrap') }}
-        {{ encore_entry_script_tags('chartjs') }}
         {% block javascripts %}
              
         {% endblock %}

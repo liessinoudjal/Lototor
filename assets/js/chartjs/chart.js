@@ -4,30 +4,28 @@ import Chart from 'chart.js';
 
 const ctx = document.getElementById('myChart');
 const hits = JSON.parse(ctx.dataset.hits);
+const countNumber= hits.length;
+const reducer = (accumulator, currentValue) => parseInt(accumulator) + parseInt(currentValue);
+
+
+const moyenneHits = hits.reduce(reducer)/50;
+
 const myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels:[...Array(hits.length).keys()].map(x => "boule "+ ++x),
+        labels:[...Array(hits.length).keys()].map(x => "numero "+ ++x),
         datasets: [{
-            label: 'nombres de fois tiré',
+            label: 'nombres de sorti',
             data: hits,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
+            backgroundColor:  Array(countNumber).fill( 'rgba(255, 99, 132, 0.2)'),
+            borderColor:  Array(countNumber).fill( 'rgba(255, 99, 132, 1)'),
+            borderWidth: 1,
+            order: 1
+        }, {
+            label: 'Moyenne idéale',
+            data: Array(countNumber).fill(moyenneHits),
+            type: 'line',
+            order: 2
         }]
     },
     options: {
