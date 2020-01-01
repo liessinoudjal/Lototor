@@ -74,10 +74,18 @@ class LotteryController extends AbstractController
     public function stat(StatRepository $statRepo){
             //récupération en BDD des hits (nombre de tirage pour chaque nombre du simulateur pour N simulation)
             $hits = $statRepo->findHits();
-        
+            //nombre totale de chiffres simulés
+            $countHits =  array_sum($hits);
+            //hits maximum lors des tirages
+            $max = max($hits);
+            // hits minimum lors des tirages
+            $min = min($hits);
+
             return $this->render('lottery/pertinance.html.twig',[
                 "hits"=> json_encode($hits),
-                "countHits"=> array_sum($hits)
+                "countHits"=> $countHits,
+                "max" =>   number_format ( ( $max - (  $countHits/50) )/ (  $countHits/50), 3,',', ' ') ,
+                "min" => number_format ( ( $min - (  $countHits/50) )/ (  $countHits/50) , 3, ',',' ')
             ]);
     }
 
