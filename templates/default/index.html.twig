@@ -2,32 +2,61 @@
 
 {% block body %}
 <!-- Header -->
-<header class="masthead">
+<section class="masthead">
     <div class="container">
         <div class="intro-text jumbotron">
-            <h1 class="intro-lead-in">Bienvenue dans le simulateur de loterie!</h1>
-            <h2 class="intro-heading ">Avez-vous les numéros gagnant ?</h2>
-            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{{ path('lottery',{'lotteryName': 'euromillion'}) }}">
+            <h1 class="intro-heading">Lototor le simulateur de loterie.</h1>
+            <h2 class="intro-lead-in ">Avez-vous les numéros gagnant ?</h2>
+
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h3 class="card-title">Simulation sur plusieurs années</h3>
+                     <ul class="text-left">
+                        <li>Choix de la simulation sur 10, 20 ... jusquà 500 ans si l'envie vous prend !</li>
+                        <li>A raison de 2 tirages par semaine pour l'euromillion et 3 par semaine pour le loto.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h3 class="card-title">Essayer vos numeros fêtiches</h3>
+                    <ul class="text-left">
+                        <li>Mettez à l'épreuve vos numeros fêtiches</li>
+                        <li>Saissisez vos numéros et faites parler votre chance.</li>
+                        <li>Lancez la simulation !</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h3 class="card-title">Vos gains/pertes simulées</h3>
+                    <ul class="text-left">
+                        <li>Lototor fait des tirages aléatoires et compare ses tirages à vos numeros</li>
+                        <li>Affichage detaillé de vos gains/pertes durant toute la période simulée pour chaque rang de gain possible.</li>
+                        <li>Le resultat reflète, en moyenne, vos gains/pertes si vous vous aviez réellement joué ces numeros durant toutes ces années.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h2 class="mt-4">Essayez Lototor</h2>
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger mt-3" href="{{ path('simulateur',{'lotteryName': 'euromillion'}) }}">
             	Euromillion <i class="fas fa-futbol" aria-hidden="true"></i>> 
             </a>
-             <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{{ path('lottery',{'lotteryName': 'loto'}) }}">
+             <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger mt-3" href="{{ path('simulateur',{'lotteryName': 'loto'}) }}">
                 Loto <i class="fas fa-futbol" aria-hidden="true"></i>> 
             </a>
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- lototor display horizontal -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-2986814021877593"
-                 data-ad-slot="6190522532"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-           {# <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{{ path('loto') }}">Loto > </a>#}
+            {% include 'adsense-horizontale.html' %}
+
         </div>
     </div>
-</header>
+</section>
 
 
 

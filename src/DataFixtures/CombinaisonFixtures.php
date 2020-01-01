@@ -56,44 +56,45 @@ class CombinaisonFixtures extends Fixture
                     <i class="fas fa-futbol text-success" aria-hidden="true"></i> 
                     <i class="fas fa-futbol text-success" aria-hidden="true"></i> 
                     <i class="fas fa-futbol text-success" aria-hidden="true"></i>
-                    <i class="far fa-star text-success"></i><i class="far fa-star text-success"></i>',
+                    <i class="far fa-star text-success"></i>',
 
         "3,2" =>    '<i class="fas fa-futbol text-success" aria-hidden="true"></i> 
                     <i class="fas fa-futbol text-success" aria-hidden="true"></i> 
                     <i class="fas fa-futbol text-success" aria-hidden="true"></i> 
-                    <i class="fas fa-futbol text-success" aria-hidden="true"></i>
+                    <i class="far fa-star text-success"></i>
                     <i class="far fa-star text-success"></i>',
 
         "4,0" =>    '<i class="fas fa-futbol text-success" aria-hidden="true"></i> 
                     <i class="fas fa-futbol text-success" aria-hidden="true"></i> 
                     <i class="fas fa-futbol text-success" aria-hidden="true"></i>
-                    <i class="far fa-star text-success"></i><i class="far fa-star text-success"></i',
+                    <i class="fas fa-futbol text-success" aria-hidden="true"></i>',
 
         "2,2" =>    '<i class="fas fa-futbol text-success" aria-hidden="true"></i> 
                     <i class="fas fa-futbol text-success" aria-hidden="true"></i> 
-                    <i class="fas fa-futbol text-success" aria-hidden="true"></i> 
-                    <i class="fas fa-futbol text-success" aria-hidden="true"></i>
+                    <i class="far fa-star text-success"></i>
                     <i class="far fa-star text-success"></i>',
 
         "3,1" =>    '<i class="fas fa-futbol text-success" aria-hidden="true"></i> 
                     <i class="fas fa-futbol text-success" aria-hidden="true"></i>
-                    <i class="far fa-star text-success"></i><i class="far fa-star text-success"></i>',
+                    <i class="fas fa-futbol text-success" aria-hidden="true"></i>
+                    <i class="far fa-star text-success"></i>',
 
         "3,0" =>    '<i class="fas fa-futbol text-success" aria-hidden="true"></i> 
                     <i class="fas fa-futbol text-success" aria-hidden="true"></i> 
                     <i class="fas fa-futbol text-success" aria-hidden="true"></i>
-                    <i class="far fa-star text-success"></i>',
+                    ',
 
         "1,2" =>    '<i class="fas fa-futbol text-success" aria-hidden="true"></i> 
-                    <i class="fas fa-futbol text-success" aria-hidden="true"></i> 
-                    <i class="fas fa-futbol text-success" aria-hidden="true"></i>',
+                    <i class="far fa-star text-success"></i>
+                    <i class="far fa-star text-success"></i>',
 
         "2,1" =>    '<i class="fas fa-futbol text-success" aria-hidden="true"></i> 
-                    <i class="far fa-star text-success"></i> <i class="far fa-star text-success"></i>',
+                    <i class="fas fa-futbol text-success" aria-hidden="true"></i> 
+                    <i class="far fa-star text-success">',
 
         "2,0" =>    '<i class="fas fa-futbol text-success" aria-hidden="true">
                     </i> <i class="fas fa-futbol text-success" aria-hidden="true"></i> 
-                    <i class="far fa-star text-success"></i>'
+                    '
     ];
     private $gainsMoyenParRangLoto = [
         "5,1"=> 2000000,

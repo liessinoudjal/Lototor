@@ -19,22 +19,24 @@ class StatRepository extends ServiceEntityRepository
         parent::__construct($registry, Stat::class);
     }
 
-    // /**
-    //  * @return Stat[] Returns an array of Stat objects
-    //  */
-    /*
-    public function findByExampleField($value)
+     /**
+      * @return int[] Returns an array of hits
+      */
+    
+    public function findHits(): array
     {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
+        $result = $this->createQueryBuilder('s')
+            ->select('COUNT(s.numero) AS hit')
+            ->groupBy('s.numero')
+            ->orderBy('s.numero', 'ASC')
             ->getQuery()
             ->getResult()
         ;
+        return array_map(function($hit){
+               return $hit['hit'];
+        }, $result);
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Stat
