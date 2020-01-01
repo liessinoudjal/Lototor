@@ -1,6 +1,6 @@
 
    {% include 'adsense-horizontale.html' %}
-    <a href="{{path('lottery',{'lotteryName': lotteryName }) }}" class="btn btn-warning">Recommencer avec d'autres numéros</a>
+    <a href="{{path('simulateur',{'lotteryName': lotteryName }) }}" class="btn btn-warning">Recommencer avec d'autres numéros</a>
     <!--<a href="https://www.fdj.fr/jeux-de-tirage/euromillions-my-million/" class="btn btn-success" onclick="window.open(this.href);return false"
     	Jouer sur <img width="50"src="{{asset('img/fdj-logo.svg')}}">
     </a>>-->
@@ -82,7 +82,7 @@
                    
                     {% for combinaison , historique in simulation.historiqueDesTirages  %}
                      <tr>
-                        <th>{{ simulation.combinaisons[combinaison]['icon']|raw}}</th>
+                        <th class="text-left">{{ simulation.combinaisons[combinaison]['icon']|raw}}</th>
                         <td colspan="2">{{ historique['nb_combinaison'] }} </td>
                         <td colspan="2">{{ historique['gain_totale_combinaison'] }} € </td>
                       </tr>

@@ -15,15 +15,15 @@
 					<h1>Comment fonctionne le simulateur lototor ?</h1>
 					<p >Vous etes nombreux à me demander comment lototor simule des tirages de loteries. Je vais donc vous apporter quelques precisions sur son fonctionnement et ainsi qu'à la pertinance de ses tirages aléatoires.</p>
 					<p class="text-left">
-						J'ai pris mon temps, ça a été long, mais j'ai testé pour vous le simulateur "Lototor - euromillion" et enregistré les données des {{countHits/5}} tirages en base de données. L'algorythme de Lototor utilise une fonctionnalité qui elle même utilise le générateur de nombre aléatoire <a class="blockquote-footer" href="https://fr.wikipedia.org/wiki/Mersenne_Twister" target="_blank">Mersenne Twister</a>. D'apres les dire de Wikipedia, il est "réputé pour sa qualité" et est ainsi utilisé "dans un grand nombre de domaines, migration de photons, coalescence du génome, biologie cellulaire et finance informatique". Oui c'est du charabia pour moi aussi ....
+						J'ai pris mon temps, ça a été long, mais j'ai mis à l'epreuve le simulateur <a href="{{path("simulateur",{lotteryName : 'euromillion'})}}">Lototor - euromillion</a> et enregistré les données des {{ (countHits/5)|number_format(0, ',', ' ')}} tirages en base de données. L'algorythme de Lototor utilise une fonctionnalité qui elle même utilise le générateur de nombre aléatoire <a class="blockquote" href="https://fr.wikipedia.org/wiki/Mersenne_Twister" target="_blank">Mersenne Twister</a>. D'apres les dire de Wikipedia, il est "réputé pour sa qualité" et est ainsi utilisé "dans un grand nombre de domaines, migration de photons, coalescence du génome, biologie cellulaire et finance informatique". Oui c'est du charabia pour moi aussi ....
 					</p>
 					<p class="text-left">
-						J'ai retroussé mes manches et me suis armé de patience pour laisser tourner en boucle une simulation sur un tirage euromillion.
-						L'étude se porte donc, sur le nombre de fois où les numeros de 1 à 50 sont sortis au terme de ces {{countHits/5}} tirages. 
-						Pour chaque tirage, 5 nombres ont été tirés au hasard ce qui fait un echantillon de {{countHits}} nombres au total. Dans un monde idéal et parfait, un numero a 1 chance sur 50 d'etre tiré au hasard, nous devrions donc trouver que chaque numeros est sorti {{countHits }}/50 = {{countHits/50}} fois.
+						J'ai retroussé mes manches et me suis armé de patience pour faire un nombre assez significatif de simulations sur un tirage euromillion.
+						L'étude se porte donc, sur le nombre de fois où les numeros de 1 à 50 sont sortis au terme de ces {{(countHits/5)|number_format(0, ',', ' ')}} tirages. 
+						Pour chaque tirage, 5 nombres ont été tirés au hasard. Ce qui fait un echantillon de {{countHits|number_format(0, ',', ' ')}} nombres au total. Dans un monde idéal et parfait, un numero a 1 chance sur 50 d'être tiré au hasard, nous devrions donc trouver que chaque numero est sorti {{countHits }}/50 = {{ (countHits/50)|number_format(2, ',', ' ')}} fois.
 					</p>
 					<p class="text-left">
-						Nous pouvons voir dans le diagramme ci-dessous que le nombre de sorti de chaque numero osscille autour des {{countHits/50}}. pour une marge de supérieure de +{{max}}% et une marge inférieur de  {{ min }}%.
+						Nous pouvons voir dans le diagramme ci-dessous que le nombre de sorti de chaque numero oscille autour des {{countHits/50}}. pour une marge d'erreur supérieure de +{{max}}% et une marge inférieur de  {{ min }}%.
 					</p>	
 				</article>
 				<article>

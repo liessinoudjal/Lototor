@@ -18,7 +18,7 @@ class LotteryController extends AbstractController
 
 
      /**
-     * @Route("/lottery/{lotteryName}",options={"expose"=true}, name="lottery")
+     * @Route("/simulateur/{lotteryName}",options={"expose"=true}, name="simulateur")
      * @Method({"POST","GET"})
      */
     public function euromillion(Request $request, $_route, LotteryManager $lotteryManager, string $lotteryName)
