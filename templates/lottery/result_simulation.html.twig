@@ -1,19 +1,9 @@
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <!-- lototor display horizontal -->
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-2986814021877593"
-         data-ad-slot="6190522532"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-    <a href="{{path('lottery',{'lotteryName': lotteryName }) }}" class="btn btn-warning">Recommencer</a>
-    <a href="https://www.fdj.fr/jeux-de-tirage/euromillions-my-million/" class="btn btn-success" onclick="window.open(this.href);return false">
+   {% include 'adsense-horizontale.html' %}
+    <a href="{{path('simulateur',{'lotteryName': lotteryName }) }}" class="btn btn-warning">Recommencer avec d'autres numéros</a>
+    <!--<a href="https://www.fdj.fr/jeux-de-tirage/euromillions-my-million/" class="btn btn-success" onclick="window.open(this.href);return false"
     	Jouer sur <img width="50"src="{{asset('img/fdj-logo.svg')}}">
-    </a>
+    </a>>-->
     <div class="card">
    
       <div class="card-header {{ simulation.gagnant? "bg-success" : "bg-danger" }}  text-white ">
@@ -40,7 +30,7 @@
       </div>
 
         <div class="card-body">
-                <h2>Résultats simulation</h2>
+                <h2 class="card-header">Résultats</h2>
                     <ul class="list-group">
                       <li class="list-group-item d-flex justify-content-between align-items-center">
                         Nombre d'années jouées
@@ -92,7 +82,7 @@
                    
                     {% for combinaison , historique in simulation.historiqueDesTirages  %}
                      <tr>
-                        <th>{{ simulation.combinaisons[combinaison]['icon']|raw}}</th>
+                        <th class="text-left">{{ simulation.combinaisons[combinaison]['icon']|raw}}</th>
                         <td colspan="2">{{ historique['nb_combinaison'] }} </td>
                         <td colspan="2">{{ historique['gain_totale_combinaison'] }} € </td>
                       </tr>

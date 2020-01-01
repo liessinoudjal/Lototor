@@ -7,7 +7,7 @@ if(readCookie("RGBD-accepted") == null){
 		document.querySelector('.rgbd').classList.remove("d-none");
 		document.querySelector('.rgbd  button').addEventListener("click", (event) =>{
 			event.preventDefault();
-			document.cookie = "RGBD-accepted=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+			document.cookie = "RGBD-accepted=true; expires=Fri, 31 Dec 9999 23:59:59 GMT;SameSite=Strict";
 			document.querySelector('.rgbd').classList.add("d-none")
 			})	
 }
