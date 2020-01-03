@@ -1,0 +1,19 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<section class="masthead">
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Oooopss !!</h1>
+
+            <p>
+                Il y a eu une erreur inconnue qui a empêché l'aboutissement de votre requête.
+            </p>
+            <p>
+                Essayez de recharger cette page dans quelques minutes ou <a href="{{ path('homepage') }}">retournez sur la page d'acceuil</a>.
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

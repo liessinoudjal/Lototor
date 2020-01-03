@@ -1,0 +1,17 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<!-- Header -->
+<section class="masthead">
+    <div class="container">
+    <div class="jumbotron">
+        <h1>Oooopsss</h1>
+        <p>La page est introuvable.</p>
+        <p>
+            La page que vous cherchez n'existe pas. Verfiez votre URL ou  <a href="{{ path('homepage') }}">retounez à la page d'accueil.</a>.
+        </p>
+    </div>
+    </div>
+</section>
+{% endblock %}
