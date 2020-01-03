@@ -1,0 +1,16 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<section class="masthead">
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Oooopss</h1>
+
+            <p>
+                Vous n'avez pas les droits pour acceder à cette page, <a href="{{ path('homepage') }}">retournez à la page d'accueil.</a>.
+            </p>
+     </div>
+    </div>
+</section>
+{% endblock %}
