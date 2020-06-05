@@ -10,6 +10,27 @@
             grid-gap: 10px;
             grid-template-rows: repeat(3, 1fr);
         }
+        table {
+            border-collapse: collapse;
+            text-center: center;
+        }
+        td {
+            height: 50px;
+            text-align: center;
+        }
+        table,  td {
+            border: 1px solid black;
+        }
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        @media print {
+            html, body {
+                width: 210mm;
+                height: 297mm;
+            }
+        }
     </style>
 </head>
 <body>
