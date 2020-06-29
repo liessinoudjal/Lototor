@@ -7,14 +7,14 @@ use Knp\Snappy\Pdf;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 
 class LotoQuineGenerator{
-    private int $nbPlaque;
-    private int $nbGrillePerPlaque;
+    private  $nbPlaque;
+    private  $nbGrillePerPlaque;
 
-    private array $plaquesQuines= [];
+    private  $plaquesQuines= [];
 
-    private Environment $twig;
+    private  $twig;
 
-    private Pdf $pdf;
+    private  $pdf;
 
     private $htmlToGenerate;
 

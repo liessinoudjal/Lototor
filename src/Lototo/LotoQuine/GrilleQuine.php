@@ -2,7 +2,6 @@
 namespace App\Lototo\LotoQuine;
 
 use App\Exception\WrongCountNumberException;
-use Doctrine\Common\Collections\ArrayCollection;
 
 class GrilleQuine {
 
@@ -12,11 +11,11 @@ class GrilleQuine {
 
     const NOMBRE_LIGNE_PAR_GRILLE = 3;
 
-    private array $casesKeysToFill;
-    private int $nombreDeCases;
-    private array $numeros;
+    private  $casesKeysToFill;
+    private  $nombreDeCases;
+    private  $numeros;
 
-    private array $grille= [];
+    private  $grille= [];
 
     
     public function fill(...$numeros)

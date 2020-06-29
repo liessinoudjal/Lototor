@@ -7,9 +7,9 @@ class PlaqueQuine  {
 
     const NOMBRE_NUMERO_PLAQUE_QUINE = 90;
 
-    private array $numeros;
+    private  $numeros;
     private $nbGrilleQuine;
-    private array $grillesQuines=[];
+    private  $grillesQuines=[];
 
     public function fillPlaque(int $nbGrilleQuine = 6)
     {
@@ -44,8 +44,9 @@ class PlaqueQuine  {
 
     public function getGrillesQuinesToArray(){
       
-        return array_map(fn($grilleQuine)=>
-                        $grilleQuine->getGrille()
+        return array_map(function($grilleQuine){
+              return $grilleQuine->getGrille();
+            }          
                 ,$this->grillesQuines);
     }
 }

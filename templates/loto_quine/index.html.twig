@@ -1,20 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LotoQuineController!{% endblock %}
+{% block title %}{{parent()}} - Générateur de Grille de Lotoquine{% endblock %}
+{% block metaDescription %}Générateur de grilles Lotoquine gratuites. Idéal pour les associations ou les lotos entre amis. {% endblock %}
+
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<section class="masthead">
+    <div class="container">
+        <div class="intro-text jumbotron">
+        	<h1 class="intro-heading ">Des grilles de Lotoquine gratuits !</h1>
+            <div class="intro-lead-in">Lototor vous offre 50 plaques de 6 grilles de lotoquine à télécharger et imprimer gratuitement.  </div>
+         	<div>
+         		<p>Lototor vous garantie que chaque plaque est unique et melangée aléatoirement.</p>
+         		<div class="row text-center">
+                  <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger mt-3" href="{{ path('loto_quine_generator') }}">
+            	Télécharger les plaques lotoquine gratuites <i class="fas fa-futbol" aria-hidden="true"></i>> 
+                </a>
+                 <img src="{{asset("build/images/lotoquine.png")}}" alt="plaque lotoquine" class="img-fluid"/>
 
-<div class="example-wrapper">
-    <h1>Hello ! ✅</h1>
-    
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/laragon/www/Lototor/src/Controller/LotoQuineController.php'|file_link(0) }}">src/Controller/LotoQuineController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/laragon/www/Lototor/templates/loto_quine/index.html.twig'|file_link(0) }}">templates/loto_quine/index.html.twig</a></code></li>
-    </ul>
-</div>
+                </div>
+
+         	</div>
+        </div>
+    </div>
+</header>
 {% endblock %}
