@@ -21,22 +21,25 @@ class AppExtension extends AbstractExtension
             $table.="<tr>";
                 for($c=0; $c < 9 ; $c++){
                     $value = !empty($grille[$c])  ? $grille[$c]:  "&nbsp; &nbsp;";
-                    $table.="<td>". $value."</td>";
+                    $class =  !empty($grille[$c])  ? "filled" :  "empty";
+                    $table.="<td class='$class'>". $value."</td>";
                 }
             $table.="</tr>";
             
             $table.="<tr>";
             for($c=9; $c < 18 ; $c++){
                 
-                $value = !empty($grille[$c])  ? $grille[$c]:  "&nbsp; &nbsp;";
-                $table.="<td>".$value ."</td>";
+                $value = !empty($grille[$c])  ? $grille[$c] :  "&nbsp; &nbsp;";
+                $class =  !empty($grille[$c])  ? "filled" :  "empty";
+                $table.="<td class='$class'>".$value ."</td>";
             }
             $table.="</tr>";
 
             $table.="<tr>";
             for($c=18; $c < 27 ; $c++){
                 $value = !empty($grille[$c])  ? $grille[$c]:  "&nbsp; &nbsp;";
-                $table.="<td>". $value ."</td>";
+                $class =  !empty($grille[$c])  ? "filled" :  "empty";
+                $table.="<td class='$class'>". $value ."</td>";
             }
             $table.="</tr>";
 
