@@ -12,12 +12,13 @@
         </script>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         {% include 'adsense.html' %}
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="simulateur euromillion, lottery simulator, loto">
-        <meta name="author" content="Liess INOUDJAL">
+        
 
         <title>{% block title %}LototoR - Simulateur de loterie {% endblock %}</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="{% block metaDescription %}simulateur euromillion, lottery simulator, loto {% endblock %}">
+        <meta name="author" content="Liess INOUDJAL">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         {{ encore_entry_link_tags('app') }}
         {{ encore_entry_link_tags('bootstrap') }}
@@ -36,6 +37,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ml-auto">
+                 <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="{{path('loto_quine')}}">Lotoquine</a>
+                    </li>
                      <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Simulateurs
