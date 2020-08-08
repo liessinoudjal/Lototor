@@ -1,0 +1,8 @@
+{% extends 'loto_quine/base_plaque_quine.html.twig' %}
+
+
+{% block body %}
+    {% for key,grille in plaque %}
+        {{getGrilleTable(grille)|raw}}
+    {% endfor %}
+{% endblock %}
