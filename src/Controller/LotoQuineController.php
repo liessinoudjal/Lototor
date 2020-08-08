@@ -23,7 +23,8 @@ class LotoQuineController extends AbstractController
      * )
      */
     public function generate(LotoQuineGenerator $generator, int $nbPlaque = 50){
-        $pdf = $generator->setConfiguration($nbPlaque)->generate()->getPdfFromHtml();
-        return new PdfResponse($pdf,"file.pdf");
+        $nbplaque= $nbPlaque > 50 ? 50 : $nbPlaque;
+        $pdf = $generator->execute($nbplaque);
+        return $pdf;
     }
 }
