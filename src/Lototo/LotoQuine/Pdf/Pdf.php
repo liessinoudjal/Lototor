@@ -1,7 +1,11 @@
 <?php
 namespace App\Lototo\LotoQuine\Pdf;
 
+use App\Lototo\Event\LotoQuinePdfGeneratedEvent;
 use App\Lototo\LotoQuine\PlaqueQuineFactory;
+use App\Lototo\Notification\SmsFreeNotificator;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpClient\Exception\ClientException;
 use TCPDF;
 use Twig\Environment;
 
@@ -12,8 +16,11 @@ class Pdf {
     private $pdf;
     private $twig;
     private  $plaquesQuines= [];
-    public function __construct(Environment $twig)
+    private $eventDispatcher;
+    public function __construct(Environment $twig, SmsFreeNotificator $smsFreeNotificator, EventDispatcherInterface $eventDispatcher)
     {
+        $this->eventDispatcher = $eventDispatcher;
+        $this->notificator = $smsFreeNotificator;
         $this->twig = $twig;
         $this->pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
         // set document information
@@ -61,7 +68,8 @@ class Pdf {
             // reset pointer to the last page
             $this->pdf->lastPage();
         }
-        // dd($this->pdf);
+        //envoi du sms de notification
+        $this->eventDispatcher->dispatch( new LotoQuinePdfGeneratedEvent(), LotoQuinePdfGeneratedEvent::NAME);
          //Close and output PDF document
         return  $this->pdf->Output('lotoquine_'.$nbPlaque.'_plaques.pdf', 'D');
 
