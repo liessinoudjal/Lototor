@@ -3,6 +3,7 @@ namespace App\Lototo\Lottery\Simulator;
 
 
 use App\Lototo\Lottery\Grille\Grille;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 abstract class SimulatorAbstract{
 
@@ -16,7 +17,12 @@ abstract class SimulatorAbstract{
     public $prizePool = 0;
     public $nbAnnees;
     public $nbTirages;
+    public $dispatcher;
 
+    public function __construct( EventDispatcherInterface $eventDispatcher)
+    {
+        $this->dispatcher = $eventDispatcher;
+    }
 
 
 	abstract function simuler(Grille $grille): self;

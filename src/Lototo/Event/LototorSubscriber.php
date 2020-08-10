@@ -3,7 +3,9 @@ namespace App\Lototo\Event;
 
 use App\Lototo\Event\LotoQuinePdfGeneratedEvent;
 use App\Lototo\Notification\SmsFreeNotificator;
+
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+
 
 class LototorSubscriber implements EventSubscriberInterface
 {
@@ -17,11 +19,12 @@ class LototorSubscriber implements EventSubscriberInterface
     {
         return [
             LotoQuinePdfGeneratedEvent::NAME => 'notify',
+            LotterySimulatedEvent::NAME => 'notify',
         ];
     }
 
-
-    public function notify(LotoQuinePdfGeneratedEvent $event)
+   
+    public function notify( LototorEventInterface $event)
     {
         $this->smsNotificator->notify($event->getMessage());
     }

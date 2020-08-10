@@ -5,7 +5,7 @@ use App\Lototo\Event\LotoQuinePdfGeneratedEvent;
 use App\Lototo\LotoQuine\PlaqueQuineFactory;
 use App\Lototo\Notification\SmsFreeNotificator;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\HttpClient\Exception\ClientException;
+
 use TCPDF;
 use Twig\Environment;
 

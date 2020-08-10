@@ -1,10 +1,12 @@
 <?php
 namespace App\Lototo\Lottery\Simulator;
 
+use App\Lototo\Event\LotterySimulatedEvent;
 use App\Lototo\Lottery\Grille\Grille;
 use App\Lototo\Lottery\Loto;
 use App\Lototo\Lottery\Simulator\SimulatorAbstract;
 use App\Repository\LotoCombinaisonRepository;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class LotoSimulator extends SimulatorAbstract
 {
@@ -32,8 +34,9 @@ class LotoSimulator extends SimulatorAbstract
 
   
 
-	public function __construct(TirageLoto $tirageLoto, LotoCombinaisonRepository $combinaisonRepository ){
+	public function __construct(TirageLoto $tirageLoto, LotoCombinaisonRepository $combinaisonRepository, EventDispatcherInterface $eventDispatcher){
      // Parent::__construct();
+     parent::__construct($eventDispatcher);
 		$this->tirageLoto = $tirageLoto;
 
         foreach( $combinaisonRepository->findAll() as $combinaison){
@@ -103,7 +106,9 @@ class LotoSimulator extends SimulatorAbstract
         }
         //calcule des gains potentieles
         $this->benef = $this->gains - $this->miseTotale;
-   
+        
+        $event = new LotterySimulatedEvent("Loto");
+        $this->dispatcher->dispatch($event, LotterySimulatedEvent::NAME);
         return $this;
 	}
 

@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Lototo\Lottery\Grille\Grille;
 use App\Lototo\Lottery\Euromillion;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class LotteryManager {
 
@@ -14,11 +15,13 @@ class LotteryManager {
     protected $lotteryName;
     protected $registry;
     protected $lotteryInstance;
+    protected $disptacher;
 
-    public function __construct(ManagerRegistry $registry ){
+    public function __construct(ManagerRegistry $registry ,  EventDispatcherInterface $eventDispatcher){
         
         //$this->lottery = $euromillion;
         $this->registry = $registry;
+        $this->disptacher = $eventDispatcher;
   
     }
     /**
@@ -35,7 +38,7 @@ class LotteryManager {
         $repository = "App\\Repository\\".$this->lotteryName."CombinaisonRepository";
         $tirage = "App\\Lototo\\Lottery\\Simulator\\Tirage".$this->lotteryName;
       
-        $this->lotteryInstance = new $loterryClass(new $tirage(), new $repository($this->registry));
+        $this->lotteryInstance = new $loterryClass(new $tirage(), new $repository($this->registry), $this->disptacher);
     }
 
     /**
