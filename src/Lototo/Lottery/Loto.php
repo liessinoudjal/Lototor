@@ -4,6 +4,7 @@ use App\Lototo\Lottery\LotteryInterface;
 use App\Lototo\Lottery\Simulator\LotoSimulator;
 use App\Repository\LotoCombinaisonRepository;
 use App\Lototo\Lottery\Simulator\TirageLoto;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class Loto implements LotteryInterface {
     const  ETOILE_MAX= 10, NUMERO_MAX = 49, NUMERO_MIN=1, NB_MAX_NUMERO = 5, NB_MAX_ETOILE = 1;
@@ -20,9 +21,9 @@ class Loto implements LotteryInterface {
      *
      * @return void
      */
-    public function __construct(TirageLoto $tirageLoto, LotoCombinaisonRepository $combinaisonRepository )
+    public function __construct(TirageLoto $tirageLoto, LotoCombinaisonRepository $combinaisonRepository, EventDispatcherInterface $eventDispatcher )
     {
-      $this->lotoSimulator = new LotoSimulator( $tirageLoto, $combinaisonRepository );
+      $this->lotoSimulator = new LotoSimulator( $tirageLoto, $combinaisonRepository , $eventDispatcher);
     }
 
     public function init(){

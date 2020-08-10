@@ -7,6 +7,7 @@ use App\Lototo\Lottery\Simulator\EuromillionSimulator;
 use App\Lototo\Lottery\Simulator\SimulatorAbstract;
 use App\Repository\EuromillionCombinaisonRepository;
 use App\Lototo\Lottery\Simulator\TirageEuromillion;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class Euromillion implements LotteryInterface {
    const ETOILE_MAX= 12, NUMERO_MAX = 50, NUMERO_MIN=1, NB_MAX_NUMERO = 5, NB_MAX_ETOILE = 2;
@@ -24,9 +25,9 @@ class Euromillion implements LotteryInterface {
      *
      * @return void
      */
-    public function __construct(TirageEuromillion $tirageEuromillion, EuromillionCombinaisonRepository $combinaisonRepository )
+    public function __construct(TirageEuromillion $tirageEuromillion, EuromillionCombinaisonRepository $combinaisonRepository ,  EventDispatcherInterface $eventDispatcher)
     {
-      $this->euromillionSimulator = new EuromillionSimulator( $tirageEuromillion, $combinaisonRepository );
+      $this->euromillionSimulator = new EuromillionSimulator( $tirageEuromillion, $combinaisonRepository, $eventDispatcher );
     }
 
  public function init(){

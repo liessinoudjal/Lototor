@@ -1,10 +1,12 @@
 <?php
 namespace App\Lototo\Lottery\Simulator;
 
+use App\Lototo\Event\LotterySimulatedEvent;
 use App\Lototo\Lottery\Grille\Grille;
 use App\Lototo\Lottery\Euromillion;
 use App\Lototo\Lottery\Simulator\SimulatorAbstract;
 use App\Repository\EuromillionCombinaisonRepository;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class EuromillionSimulator extends SimulatorAbstract
 {
@@ -35,8 +37,9 @@ class EuromillionSimulator extends SimulatorAbstract
 
   
 
-	public function __construct(TirageEuromillion $tirageEuromillion, EuromillionCombinaisonRepository $combinaisonRepository ){
+	public function __construct(TirageEuromillion $tirageEuromillion, EuromillionCombinaisonRepository $combinaisonRepository ,  EventDispatcherInterface $eventDispatcher){
      // Parent::__construct();
+     parent::__construct($eventDispatcher);
 		$this->tirageEuromillion = $tirageEuromillion;
 
         foreach( $combinaisonRepository->findAll() as $combinaison){
@@ -106,7 +109,9 @@ class EuromillionSimulator extends SimulatorAbstract
         }
         //calcule des gains potentieles
         $this->benef = $this->gains - $this->miseTotale;
-   
+        //dd($this);
+        $event = new LotterySimulatedEvent("Euromillion");
+        $this->dispatcher->dispatch($event, LotterySimulatedEvent::NAME);
         return $this;
 	}
 

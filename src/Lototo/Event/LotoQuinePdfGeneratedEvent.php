@@ -7,7 +7,7 @@ use Symfony\Contracts\EventDispatcher\Event;
  * The order.placed event is dispatched each time an order is created
  * in the system.
  */
-class LotoQuinePdfGeneratedEvent extends Event
+class LotoQuinePdfGeneratedEvent extends Event implements LototorEventInterface
 {
     public const NAME = 'lotoquinepdf.generated';
 
