@@ -109,7 +109,7 @@ class EuromillionSimulator extends SimulatorAbstract
         }
         //calcule des gains potentieles
         $this->benef = $this->gains - $this->miseTotale;
-        //dd($this);
+
         $event = new LotterySimulatedEvent("Euromillion");
         $this->dispatcher->dispatch($event, LotterySimulatedEvent::NAME);
         return $this;

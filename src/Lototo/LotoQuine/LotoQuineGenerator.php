@@ -3,9 +3,6 @@ namespace App\Lototo\LotoQuine;
 
 use App\Lototo\LotoQuine\Pdf\Pdf ;
 
-// dd(dirname(__DIR__),$_SERVER);
-
-
 class LotoQuineGenerator{
     private  $nbPlaque;
     private  $nbGrillePerPlaque;

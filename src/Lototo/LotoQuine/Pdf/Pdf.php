@@ -39,17 +39,19 @@ class Pdf {
         for($i=0; $i < $nbPlaque; $i++){
             $this->plaquesQuines[]= PlaqueQuineFactory::createPlaqueQuine($nbGrillePerPlaque);
         }
-
+      
         foreach($this->plaquesQuines as $plaqueQuine){
             // add a page
             $this->pdf->AddPage();
             $this->setBackgroundImage();
-
+        
             // MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
             $arrayPlaqueQuine = $plaqueQuine->getGrillesQuinesToArray();
+       
             foreach($arrayPlaqueQuine as $key => $grille){
-                $html=  $this->twig->render("loto_quine/plaque_quine.html.twig",["plaque"=>[$grille]]);
-                //dd($html);
+         
+                $html=  $this->twig->render("loto_quine/plaque_quine.html.twig",["grille"=>$grille]);
+              
                 if($key % 2 == 0){
                       $ln = 0;
                       $border = 0;
