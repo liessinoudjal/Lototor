@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Organizer;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,21 +23,34 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-            $user->setPassword(
-                $passwordEncoder->encodePassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
-
+            // dd($user, $form->get('isAssociation')->getData());
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
+            if($form->get('isAssociation')->getData()){
+                $orga= new Organizer();
+                $orga->setEmail($user->getEmail())
+                    ->setUsername($user->getUsername())
+                    ->setPassword(
+                        $passwordEncoder->encodePassword(
+                            $orga,
+                            $form->get('plainPassword')->getData()
+                        )
+                    );
+                $entityManager->persist($orga);
+            }else{
+                // encode the plain password
+                $user->setPassword(
+                    $passwordEncoder->encodePassword(
+                        $user,
+                        $form->get('plainPassword')->getData()
+                    )
+                );
+                $entityManager->persist($user);
+            }
             $entityManager->flush();
 
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('registration/register.html.twig', [

@@ -39,6 +39,7 @@ Encore
     .addEntry('fontawesome', './assets/css/fontawesome/scss/fontawesome.scss')
     .addEntry('AppComponent', './assets/js/components/App.jsx')
      .addEntry('chartjs', './assets/js/chartjs/chart.js')
+     .addEntry('login', './assets/js/login.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

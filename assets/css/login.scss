@@ -1,0 +1,15 @@
+section.masthead {
+  
+    background-image: none !important;
+    #login_form{
+        background-color: white;
+        width: 500px;
+        border-radius: 5%;
+        -webkit-box-shadow: 10px 10px 50px 10px rgba(0,0,0,0.54);
+        -moz-box-shadow: 10px 10px 50px 10px rgba(0,0,0,0.54);
+        box-shadow: 10px 10px 50px 10px rgba(0,0,0,0.54);
+        margin : 0 auto;
+        padding: 2rem;
+
+    }
+}

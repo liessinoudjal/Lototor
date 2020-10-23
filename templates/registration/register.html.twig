@@ -1,15 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription{% endblock %}
+{% block stylesheets %}
+      {{ encore_entry_link_tags('login') }}
+{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <section class="masthead">
+        <div class="container">
+            <div id="login_form">
+                <h1>Inscription</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+                {{ form_start(registrationForm) }}
+                    {{ form_row(registrationForm.email) }}
+                    {{ form_row(registrationForm.username) }}
+                    {{ form_row(registrationForm.plainPassword) }}
+                    {{ form_row(registrationForm.isAssociation) }}
+                    {{ form_row(registrationForm.agreeTerms) }}
 
-        <button class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+                    <button class="btn btn-primary">S'inscrire</button>
+                {{ form_end(registrationForm) }}
+            </div>
+        </div>
+    </section>
+    
 {% endblock %}

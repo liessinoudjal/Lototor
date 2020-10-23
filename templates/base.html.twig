@@ -37,24 +37,50 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ml-auto">
-                 <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="{{path('loto_quine')}}">Loto Quine</a>
                     </li>
-                     <li class="nav-item dropdown">
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Simulateurs
+                            Simulateurs
                         </a>
                         <div class="dropdown-menu bg-dark ml-3" aria-labelledby="navbarDropdown">
-                           <a class="nav-link" href="{{ path('simulateur',{'lotteryName': 'euromillion'}) }}">Euromillion</a>
-                             <a class="nav-link" href="{{ path('simulateur',{'lotteryName': 'loto'}) }}">Loto</a>
-                          <div class="dropdown-divider"></div>
+                            <a class="nav-link" href="{{ path('simulateur',{'lotteryName': 'euromillion'}) }}">Euromillion</a>
+                                <a class="nav-link" href="{{ path('simulateur',{'lotteryName': 'loto'}) }}">Loto</a>
+                            <div class="dropdown-divider"></div>
                             <a class="nav-link" href="{{ path('pertinance') }}">Comment ça marche</a>
                         </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="{{path('CGU')}}">CGU</a>
                     </li>
-                    
+                    {% if app.user %}
+                        <li class=" nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="user">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span class="caret"></span>
+                                <span class="{# sr-only #}">{{ app.user.username }}</span>
+                            </a>
+                            <div class="dropdown-menu bg-dark ml-3 user" role="menu" aria-labelledby="user">
+                                
+                                    <a class="nav-link"  href="{# {{ path('user_edit') }} #}">
+                                        <i class="fa fa-edit" aria-hidden="true"></i> {{ 'menu.user'|trans }}
+                                    </a>
+                                
+                                <div class="dropdown-divider"></div>
+                                    <a class="nav-link"  href="{# {{ path('security_logout') }} #}">
+                                        <i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'menu.logout'|trans }}
+                                    </a>
+                            </div>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="{{path('app_register')}}">S'inscrire</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="{{path('app_login')}}">Se connecter</a>
+                        </li>
+                    {% endif %}
               
                 </ul>
             </div>
