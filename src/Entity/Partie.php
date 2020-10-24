@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Entity\LiveLoto;
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\LiveLoto\PartieRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\PartieRepository")
  */
 class Partie
 {
@@ -22,7 +22,7 @@ class Partie
     private $title;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\LiveLoto\LotoEvent", inversedBy="parties")
+     * @ORM\ManyToOne(targetEntity="App\Entity\LotoEvent", inversedBy="parties")
      * @ORM\JoinColumn(nullable=false)
      */
     private $lotoEvent;

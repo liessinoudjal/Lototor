@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository\LiveLoto;
+namespace App\Repository;
 
-use App\Entity\LiveLoto\LotoEvent;
+use App\Entity\LotoEvent;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 

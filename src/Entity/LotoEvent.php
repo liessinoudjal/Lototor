@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Entity\LiveLoto;
+namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\LiveLoto\LotoEventRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\LotoEventRepository")
  */
 class LotoEvent
 {
@@ -39,9 +39,15 @@ class LotoEvent
     private $rules;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\LiveLoto\Partie", mappedBy="lotoEvent", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Partie", mappedBy="lotoEvent", orphanRemoval=true)
      */
     private $parties;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Organizer", inversedBy="LotoEvents")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $organizer;
 
     public function __construct()
     {
@@ -128,6 +134,18 @@ class LotoEvent
                 $party->setLotoEvent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOrganizer(): ?Organizer
+    {
+        return $this->organizer;
+    }
+
+    public function setOrganizer(?Organizer $organizer): self
+    {
+        $this->organizer = $organizer;
 
         return $this;
     }
