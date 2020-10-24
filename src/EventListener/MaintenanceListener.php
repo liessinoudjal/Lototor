@@ -25,8 +25,7 @@ class MaintenanceListener
         // $debug = in_array($this->container->get('kernel')->getEnvironment(), ['dev']);
         // If maintenance is active and in prod environment
         if ($maintenance AND !in_array($currentIP, $this->ipAuthorized)) {
-            // We load our maintenance template
-            // $engine = $this->container->get('templating');
+    
             $template = $this->twig->render('maintenance/maintenance.html.twig');
             // We send our response with a 503 response code (service unavailable)
             $event->setResponse(new Response($template, 503));
