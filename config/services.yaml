@@ -6,7 +6,9 @@
 parameters:
     freeLogin: '%env(FREE_LOGIN)%'
     freeKey: '%env(FREE_KEY)%'
-
+    maintenance:
+        statut: false
+        ipAuthorized: ["::1"]
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -28,7 +30,11 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
-
+    
+    App\EventListener\MaintenanceListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.request }
+        arguments: ['%maintenance%']
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
