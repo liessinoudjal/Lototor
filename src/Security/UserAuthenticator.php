@@ -2,6 +2,7 @@
 
 namespace App\Security;
 
+use App\Entity\Organizer;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -94,6 +95,11 @@ class UserAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
             return new RedirectResponse($targetPath);
         }
 
+        $user = $token->getUser();
+        //redirection organisateur
+        if($user instanceof Organizer)
+            return new RedirectResponse($this->urlGenerator->generate('organizer-account'));
+        //redirection joueur    
         return new RedirectResponse($this->urlGenerator->generate('homepage'));
     }
 
