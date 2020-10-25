@@ -7,8 +7,8 @@ parameters:
     freeLogin: '%env(FREE_LOGIN)%'
     freeKey: '%env(FREE_KEY)%'
     maintenance:
-        statut: false
-        ipAuthorized: ["::1"]
+        statut: '%env(MAINTENANCE_STATUS)%'
+        ipAuthorized: '%env(MAINTENANCE_IP)%'
 services:
     # default configuration for services in *this* file
     _defaults:
