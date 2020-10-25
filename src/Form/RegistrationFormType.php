@@ -29,7 +29,7 @@ class RegistrationFormType extends AbstractType
             )
             ->add('isAssociation', CheckboxType::class, [
                 'mapped' => false,
-                'label' => "Je m'inscris en tant qu'association",
+                'label' => "Je veux organiser des lotos live !",
                 'required' => false,
             ])
             ->add('agreeTerms', CheckboxType::class, [
