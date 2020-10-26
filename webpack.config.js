@@ -40,6 +40,7 @@ Encore
     .addEntry('AppComponent', './assets/js/components/App.jsx')
      .addEntry('chartjs', './assets/js/chartjs/chart.js')
      .addEntry('login', './assets/js/login.js')
+     .addEntry('organizer', './assets/js/organizer.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

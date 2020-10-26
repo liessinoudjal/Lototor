@@ -21,7 +21,7 @@ class MaintenanceListener
         // This will get the value of our maintenance parameter
         $maintenance = $this->maintenance === "1" ? true : false;
         $currentIP = $_SERVER['REMOTE_ADDR'];
-        dd($maintenance ,$currentIP,$this->ipAuthorized);
+        // dd($maintenance ,$currentIP,$this->ipAuthorized);
         // This will detect if we are in dev environment (app_dev.php)
         // $debug = in_array($this->container->get('kernel')->getEnvironment(), ['dev']);
         // If maintenance is active and in prod environment

@@ -16,9 +16,15 @@ class Organizer extends User
      */
     private $LotoEvents;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Association", mappedBy="organizer")
+     */
+    private $associations;
+
     public function __construct()
     {
         $this->LotoEvents = new ArrayCollection();
+        $this->associations = new ArrayCollection();
     }
 
     /**
@@ -58,6 +64,37 @@ class Organizer extends User
             // set the owning side to null (unless already changed)
             if ($lotoEvent->getOrganizer() === $this) {
                 $lotoEvent->setOrganizer(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Association[]
+     */
+    public function getAssociations(): Collection
+    {
+        return $this->associations;
+    }
+
+    public function addAssociation(Association $association): self
+    {
+        if (!$this->associations->contains($association)) {
+            $this->associations[] = $association;
+            $association->setOrganizer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAssociation(Association $association): self
+    {
+        if ($this->associations->contains($association)) {
+            $this->associations->removeElement($association);
+            // set the owning side to null (unless already changed)
+            if ($association->getOrganizer() === $this) {
+                $association->setOrganizer(null);
             }
         }
 

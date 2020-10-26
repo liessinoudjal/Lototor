@@ -23,7 +23,22 @@
 		color: blue;
 		cursor: pointer;
 	}	
-		.masthead{
+
+
+	
+	.wrapper{
+		background-color: white;
+        width: 90%;
+        border-radius: 2%;
+        -webkit-box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.54);
+        -moz-box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.54);
+        box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.54);
+        margin : 5em auto;
+        padding: 2rem;
+	}
+
+
+	.masthead{
 		height: 100%;
 		padding-top: 0.5rem;
 		.jumbotron{

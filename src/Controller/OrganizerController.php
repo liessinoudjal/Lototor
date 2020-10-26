@@ -15,9 +15,9 @@ class OrganizerController extends AbstractController
      */
     public function account()
     {
-        dump($this->getUser());
+        $organizer = $this->getUser();
         return $this->render('organizer/account.html.twig', [
-            'controller_name' => 'OrganizerController',
+            'organizer' => $organizer,
         ]);
     }
 }

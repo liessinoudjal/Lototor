@@ -1,0 +1,22 @@
+.container{
+   
+    .wrapper{
+        position: relative;
+        a.cursor{
+            cursor: pointer;
+        }
+        a.angle-r{
+            position: absolute;
+            top: 0.5em;
+            right: 0.5em
+        }
+        // width: 90%;
+        border-radius: 2%;
+        -webkit-box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.54);
+        -moz-box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.54);
+        box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.54);
+        margin : 1rem 0.3rem;
+        padding: 2rem;
+ 
+	}
+}
