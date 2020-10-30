@@ -6,6 +6,7 @@ use App\Entity\Association;
 use App\Form\AssociationType;
 use App\Lototo\Api\SireneApi;
 use App\Repository\AssociationRepository;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,12 +35,23 @@ class AssociationController extends AbstractController
      */
     public function new(Request $request, SireneApi $api): Response
     {   
-        $siret = $request->request->get("siret");
-        $response = $api->getEtablissement($siret);
-        dd($request,$response->toArray());
-        if ($response->getStatusCode() === 200){
-
+        if($request->isXmlHttpRequest()){
+            $siret = $request->request->get("siret");
+          
+                $response = $api->getEtablissement($siret);
+                if(200 === $statusCode = $response->getStatusCode()){
+                    $message="ok";
+                }elseif(404 === $statusCode){
+                    $message = "Le siret ne correspond à aucune Association";
+                }else{
+                    $message = "Une erreur s'est produite. Veuillez verifier votre siret";
+                }
+                return $this->json([
+                    "statusCode"=> $statusCode,
+                    "message" => $message
+                ]);
         }
+     
         $association = new Association();
         $form = $this->createForm(AssociationType::class, $association);
         $form->handleRequest($request);
