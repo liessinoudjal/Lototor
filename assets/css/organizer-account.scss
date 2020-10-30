@@ -1,0 +1,30 @@
+.container{
+   
+    .wrapper{
+        position: relative;
+        transition: transform 500ms ease;
+        &:hover{
+            transform:  perspective(100px) translateZ(5px);
+        }
+        a{
+            color: black;
+            &.cursor{
+                cursor: pointer;
+            }
+            &.angle-r{
+                position: absolute;
+                top: 0.5em;
+                right: 0.5em
+            }
+        }
+    
+        // width: 90%;
+        border-radius: 2%;
+        -webkit-box-shadow:  3px 3px 10px 0 rgba(0,0,0,.2);
+        -moz-box-shadow:  3px 3px 10px 0 rgba(0,0,0,.2);
+        box-shadow: 3px 3px 10px 0 rgba(0,0,0,.2);
+        margin : 1rem 0.3rem;
+        padding: 2rem;
+ 
+	}
+}

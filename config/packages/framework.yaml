@@ -14,4 +14,14 @@ framework:
     #fragments: true
     php_errors:
         log: true
-
+    # http_client:
+        # scoped_clients:
+            # only requests matching scope will use these options
+            # sirene.api:
+                # base_uri: 'https://api.insee.fr'
+                # auth_bearer: 'f00954c0-bbb8-3497-8256-524e68fe4e85'
+                # headers:
+                    # Accept: 'application/json'
+                    # Authorization: 'Bearer f00954c0-bbb8-3497-8256-524e68fe4e85'
+        
+                    

@@ -27,6 +27,10 @@ class Organizer extends User
         $this->associations = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getUsername();
+    }
     /**
      * @see UserInterface
      */
@@ -99,5 +103,14 @@ class Organizer extends User
         }
 
         return $this;
+    }
+
+    /**
+     * if organizer is authorized to publish lotoEvent
+     * @return bool
+     */
+    public function canOrganize(): bool
+    {
+        return $this->associations->count() > 0 ? true : false;
     }
 }
