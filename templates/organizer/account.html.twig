@@ -11,78 +11,23 @@
 {% endblock %}
 
 {% block body %}
-<section  class="container">
+
+<section  class="container jumbotron">
 {# {{dump(organizer)}} #}
 <h1>Mon compte organisateur</h1>
     <div class="row">
         <div class="col-md-6">
-             <div class="custom_card ">
-                <h2>Mes associations  <span class="badge badge-primary"> {{organizer.associations|length}} </span></h2>
-                <a class="btn btn-primary cursor angle-r" id="js_btn_add_association" title="Ajouter une association"><i class="fas fa-plus"></i></a>
-                 <ul>
-                    {% for asso in organizer.associations %}
-                        <li>
-                            <a>{{ asso.name }}</a>
-                        </li>
-                    {% else %}
-                        <li>Vous n'avez pas encore d'association</li>
-                    {% endfor %}
-                </ul>
-                <form method="post" action="{{ path('organizer_ajax_add_association')}}" id="js_form_add_association"style="display:none">
-                    <div class="form-group " >
-                        <input class="form-control" type="text" 
-                            name="siret" id="siret" maxlength="14" autocomplete="off" 
-                            required placeholder="Siret de l'association à lier à votre compte"/>
-                    </div>
-                    <button class="btn btn-primary"type="submit" name="newAssociationSubmit"  >Ajouter</button>
-                </form>
-            </div>
+             {% include 'organizer/_info_asso.html.twig'  %}
         </div>
         <div class=" col-md-6" > 
-            <div class="custom_card ">
-                <h2>Mes infos personnels </h2>
-                <a class="btn btn-primary cursor angle-r" title="Modifier mes infos"><i class="far fa-edit"></i></a>
-                <p>Pseudo :  {{ organizer.username }}</p>
-                <p>Email :  {{ organizer.username }}</p>
-                <p>Pseudo :  {{ organizer.username }}</p>
-            </div>
-
+            {% include 'organizer/_info_organizer.html.twig'  %}
         </div>
         
     </div>
 
     <div class="row">
         <div class="col-md-6" > 
-            <div class="custom_card ">
-                <h2>Lotos organisés <span class="badge badge-primary"> {{organizer.LotoEvents|length}} </span> </h2>
-                {% if canOrganize %}
-                    <a class="btn btn-primary cursor angle-r" title="Ajouter un loto"><i class="fas fa-plus"></i></a>
-                {% endif %}
-                <ul>
-                {% for loto in organizer.LotoEvents %}
-                    <li>
-                        <a>{{ loto.title }}</a>
-                    </li>
-                {% else %}
-                    <li>Vous n'avez pas encore créé de loto</li>
-                {% endfor %}
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-6" > 
-            <div class="custom_card ">
-                <h2>Lotos organisés <span class="badge badge-primary"> {{organizer.LotoEvents|length}} </span> </h2>
-                <a class="btn btn-primary cursor angle-r" title="Ajouter un loto"><i class="fas fa-plus"></i></a>
-                <ul>
-                {% for loto in organizer.LotoEvents %}
-                    <li>
-                        <a>{{ loto.title }}</a>
-                    </li>
-                {% else %}
-                    <li>Vous n'avez pas encore créé de loto</li>
-                {% endfor %}
-                </ul>
-            </div>
+             {% include 'organizer/_info_list_loto.html.twig'  %}
         </div>
     </div>
      <!-- Modal -->

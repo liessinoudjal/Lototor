@@ -68,6 +68,8 @@ class AssociationApiManager {
         $this->em->persist($organizer);
         // $em->persist($asso);
         $this->em->flush();
+
+        
       
     }
     public function getHttpClient(): array{

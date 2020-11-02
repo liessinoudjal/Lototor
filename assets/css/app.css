@@ -27,32 +27,17 @@
 	.flash_message{
 		margin-top: 4em !important;
 	}
-	
-	.wrapper{
-		background-color: white;
-        width: 90%;
-        border-radius: 2%;
-        -webkit-box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.54);
-        -moz-box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.54);
-        box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.54);
-        margin : 5em auto;
-        padding: 2rem;
-	}
 
 
-	.masthead{
-		height: 100%;
-		padding-top: 0.5rem;
-		.jumbotron{
-				margin-top: 4rem;
-				.intro-heading {
-				font-size: 2rem !important;
-				}
-
-		}
+	.jumbotron{
+			margin-top: 3rem;
+			.intro-heading {
+			font-size: 2rem !important;
+			}
 
 	}
-	
+
+
 	
 	
 	
@@ -68,5 +53,6 @@
 .flash_message{
 	margin-top: 4em !important;
 }
+
 	
 

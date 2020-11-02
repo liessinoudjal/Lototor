@@ -61,8 +61,8 @@ formAddAsso.addEventListener("submit", function(e){
                     },
                     body: JSON.stringify( etablissement )
                 }).then(function(response){
-                    // console.log(reponse)
-                    window.location.reload();
+                    console.log(reponse)
+                    // window.location.reload();
                 })
                 
                

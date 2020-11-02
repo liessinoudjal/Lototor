@@ -52,5 +52,11 @@ class OrganizerController extends AbstractController
             'Ajout réussi !'
         );
 
+        return $this->json([
+            "status"=> $associationApiManager->getStatusCode(),
+            "statusText" => $associationApiManager->getMessage(),
+            "etablissement" => $associationApiManager->getEtablissement()
+        ]);
+
     }
 }

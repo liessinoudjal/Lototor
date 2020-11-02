@@ -119,7 +119,7 @@ class Association
         return $this->siret;
     }
 
-    public function setSiret(string $siret): self
+    public function setSiret(?string $siret): self
     {
         $this->siret = $siret;
 
