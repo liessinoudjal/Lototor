@@ -16,13 +16,13 @@
 <h1>Mon compte organisateur</h1>
     <div class="row">
         <div class="col-md-6">
-             <div class="wrapper ">
+             <div class="custom_card ">
                 <h2>Mes associations  <span class="badge badge-primary"> {{organizer.associations|length}} </span></h2>
                 <a class="btn btn-primary cursor angle-r" id="js_btn_add_association" title="Ajouter une association"><i class="fas fa-plus"></i></a>
                  <ul>
-                    {% for loto in organizer.associations %}
+                    {% for asso in organizer.associations %}
                         <li>
-                            <a>{{ associations.name }}</a>
+                            <a>{{ asso.name }}</a>
                         </li>
                     {% else %}
                         <li>Vous n'avez pas encore d'association</li>
@@ -34,12 +34,12 @@
                             name="siret" id="siret" maxlength="14" autocomplete="off" 
                             required placeholder="Siret de l'association à lier à votre compte"/>
                     </div>
-                    <button class="btn btn-primary"type="submit" name="newAssociationSubmit" style="display:none" >Ajouter</button>
+                    <button class="btn btn-primary"type="submit" name="newAssociationSubmit"  >Ajouter</button>
                 </form>
             </div>
         </div>
         <div class=" col-md-6" > 
-            <div class="wrapper ">
+            <div class="custom_card ">
                 <h2>Mes infos personnels </h2>
                 <a class="btn btn-primary cursor angle-r" title="Modifier mes infos"><i class="far fa-edit"></i></a>
                 <p>Pseudo :  {{ organizer.username }}</p>
@@ -53,7 +53,7 @@
 
     <div class="row">
         <div class="col-md-6" > 
-            <div class="wrapper ">
+            <div class="custom_card ">
                 <h2>Lotos organisés <span class="badge badge-primary"> {{organizer.LotoEvents|length}} </span> </h2>
                 {% if canOrganize %}
                     <a class="btn btn-primary cursor angle-r" title="Ajouter un loto"><i class="fas fa-plus"></i></a>
@@ -70,7 +70,7 @@
             </div>
         </div>
         <div class="col-md-6" > 
-            <div class="wrapper ">
+            <div class="custom_card ">
                 <h2>Lotos organisés <span class="badge badge-primary"> {{organizer.LotoEvents|length}} </span> </h2>
                 <a class="btn btn-primary cursor angle-r" title="Ajouter un loto"><i class="fas fa-plus"></i></a>
                 <ul>

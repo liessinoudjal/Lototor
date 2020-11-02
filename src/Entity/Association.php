@@ -33,7 +33,7 @@ class Association
     private $phone;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $siret;
 
@@ -42,6 +42,36 @@ class Association
      * @ORM\JoinColumn(nullable=false)
      */
     private $organizer;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $rna;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $siteWeb;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $objet;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $numeroReconnaissanceUtilitePublique;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $email;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $autorisationPublicationWeb;
 
     public function getId(): ?int
     {
@@ -104,6 +134,78 @@ class Association
     public function setOrganizer(?Organizer $organizer): self
     {
         $this->organizer = $organizer;
+
+        return $this;
+    }
+
+    public function getRna(): ?string
+    {
+        return $this->rna;
+    }
+
+    public function setRna(string $rna): self
+    {
+        $this->rna = $rna;
+
+        return $this;
+    }
+
+    public function getSiteWeb(): ?string
+    {
+        return $this->siteWeb;
+    }
+
+    public function setSiteWeb(?string $siteWeb): self
+    {
+        $this->siteWeb = $siteWeb;
+
+        return $this;
+    }
+
+    public function getObjet(): ?string
+    {
+        return $this->objet;
+    }
+
+    public function setObjet(?string $objet): self
+    {
+        $this->objet = $objet;
+
+        return $this;
+    }
+
+    public function getNumeroReconnaissanceUtilitePublique(): ?string
+    {
+        return $this->numeroReconnaissanceUtilitePublique;
+    }
+
+    public function setNumeroReconnaissanceUtilitePublique(?string $numeroReconnaissanceUtilitePublique): self
+    {
+        $this->numeroReconnaissanceUtilitePublique = $numeroReconnaissanceUtilitePublique;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getAutorisationPublicationWeb(): ?bool
+    {
+        return $this->autorisationPublicationWeb;
+    }
+
+    public function setAutorisationPublicationWeb(?bool $autorisationPublicationWeb): self
+    {
+        $this->autorisationPublicationWeb = $autorisationPublicationWeb;
 
         return $this;
     }

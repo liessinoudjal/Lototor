@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Lototo\Api\SireneApi;
+use App\Lototo\Manager\AssociationApiManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request; 
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,42 +26,31 @@ class OrganizerController extends AbstractController
     }
 
      /**
-     * @Route("/ajaxAddAsso", name="organizer_ajax_add_association", methods={"GET","POST"})
+     * @Route("/ajaxAddAsso", name="organizer_ajax_add_association", methods={"POST"})
      */
-    public function ajaxAddAssociation(Request $request, SireneApi $api){
-        // 79307290100010
+    public function ajaxAddAssociation(Request $request, AssociationApiManager $associationApiManager){
+ 
         if($request->isXmlHttpRequest()){
-            $siret = $request->request->get("siret");
-                $response = $api->getEtablissement($siret);
-                $association= [];
-                if(200 === $statusCode = $response->getStatusCode()){
-                    $etablissement = $response->toArray()["etablissement"];
-                    $nomEtablissement = $etablissement["uniteLegale"]["denominationUniteLegale"];
-                    $addresse =  $etablissement["adresseEtablissement"]["numeroVoieEtablissement"]." "
-                                . $etablissement["adresseEtablissement"]["typeVoieEtablissement"]. " "
-                                . $etablissement["adresseEtablissement"]["libelleVoieEtablissement"]. ", "
-                                . $etablissement["adresseEtablissement"]["codePostalEtablissement"]. ", "
-                                . $etablissement["adresseEtablissement"]["libelleCommuneEtablissement"]. ", ";
-                    $message= "Est ce le bon établissement ? </br>".$nomEtablissement ."</br>". $addresse;
-                    $content = $response->toArray();
-
-                }elseif(404 === $statusCode){
-                    $message = "Le siret ne correspond à aucune Association";
-                }else{
-                    $message = "Une erreur s'est produite. Veuillez verifier votre siret";
-                }
+                 $associationApiManager->handleRequestForAjaxResponse($request);
+             
                 return $this->json([
-                    "status"=> $statusCode,
-                    "statusText" => $message,
-                    "content" => $content
+                    "status"=> $associationApiManager->getStatusCode(),
+                    "statusText" => $associationApiManager->getMessage(),
+                    "etablissement" => $associationApiManager->getEtablissement()
                 ]);
         }
     }
     /**
-     * @Route("/addAssociation", name="add_association")
+     * @Route("/addAssociation", name="add_association", methods={"POST"})
      */
-    public function addAssociation(Request $request){
-        //enregistrer l'association en bdd
-        dd($request);
+    public function addAssociation(Request $request, AssociationApiManager $associationApiManager, EntityManagerInterface $em){
+        $etablissement = json_decode($request->getContent(), true);
+        $associationApiManager->addAssociationToOrganizer($this->getUser(),$etablissement);
+        
+        $this->addFlash(
+            'success',
+            'Ajout réussi !'
+        );
+
     }
 }

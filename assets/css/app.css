@@ -24,7 +24,9 @@
 		cursor: pointer;
 	}	
 
-
+	.flash_message{
+		margin-top: 4em !important;
+	}
 	
 	.wrapper{
 		background-color: white;
@@ -63,5 +65,8 @@
 		font-size: 3rem !important;
 	}
 
-
+.flash_message{
+	margin-top: 4em !important;
+}
+	
 

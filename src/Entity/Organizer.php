@@ -17,7 +17,7 @@ class Organizer extends User
     private $LotoEvents;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Association", mappedBy="organizer")
+     * @ORM\OneToMany(targetEntity="App\Entity\Association", mappedBy="organizer", cascade={"persist", "remove"})
      */
     private $associations;
 

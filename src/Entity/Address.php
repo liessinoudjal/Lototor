@@ -36,6 +36,11 @@ class Address
      */
     private $country;
 
+    public function __construct()
+    {
+        $this->country = "France";
+    }
+
     public function getId(): ?int
     {
         return $this->id;
