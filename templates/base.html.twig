@@ -86,23 +86,34 @@
             </div>
         </div>
     </nav>
-        {% block body %}{% endblock %}
+   
+    {% for label, messages in app.flashes %}
+        <section class="container flash_message">
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </section>   
+    {% endfor %}
+    
+    
+    {% block body %}{% endblock %}  
 
-             
-                <div class="rgbd d-none">  
-                        <div class="form-group"> Lototor conserve vos données de navigation pour ses statistiques. Vos données personnelles ne sont pas conservées ou utlisées.
-                        </div>
-                        <div class="form-group">    
-                            <button class="btn btn-success"> J'ai compris</button>
-                            <a href="{{ path('CGU') }}"> plus d'info</a>
-                        </div>
-                </div> 
- 
-        {{ encore_entry_script_tags('app') }}
-        {{ encore_entry_script_tags('bootstrap') }}
-        {% block javascripts %}
-             
-        {% endblock %}
+    <div class="rgbd d-none">  
+            <div class="form-group"> Lototor conserve vos données de navigation pour ses statistiques. Vos données personnelles ne sont pas conservées ou utlisées.
+            </div>
+            <div class="form-group">    
+                <button class="btn btn-success"> J'ai compris</button>
+                <a href="{{ path('CGU') }}"> plus d'info</a>
+            </div>
+    </div> 
+
+    {{ encore_entry_script_tags('app') }}
+    {{ encore_entry_script_tags('bootstrap') }}
+    {% block javascripts %}
+            
+    {% endblock %}
 
 
 
