@@ -46,10 +46,11 @@ formAddAsso.addEventListener("submit", function(e){
         if(json.status == 200){
             //on ajoute le message de confirmation de l'etablissement
             const etablissement = json.etablissement
-            modalBody.innerHTML = json.statusText;
+            modalBody.innerHTML = json.statusText+ "</br>";
             const button = document.createElement("button");                 // Create a <li> node
             const textnode = document.createTextNode("Oui");         // Create a text node
-            button.appendChild(textnode);  
+            button.appendChild(textnode); 
+            button.classList.add("btn","btn-success", "mt-2", "float-right") 
             modalBody.appendChild(button)
             //si l'organizer    confirme l'identité de l'etablissement qu'il veut ajouter, on envoie une requette pour l'associer à son compte
             button.addEventListener("click",function (){
@@ -61,8 +62,8 @@ formAddAsso.addEventListener("submit", function(e){
                     },
                     body: JSON.stringify( etablissement )
                 }).then(function(response){
-                    console.log(reponse)
-                    // window.location.reload();
+                    // console.log(reponse)
+                    window.location.reload();
                 })
                 
                
