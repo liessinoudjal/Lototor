@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Association;
 use App\Lototo\Manager\AssociationApiManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request; 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -58,5 +60,23 @@ class OrganizerController extends AbstractController
             "etablissement" => $associationApiManager->getEtablissement()
         ]);
 
+    }
+
+    /**
+     * @Route("/deleteAsso/{id}", name="organizer_association_delete", methods={"DELETE"})
+     */
+    public function delete(Request $request, Association $association): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$association->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($association);
+            $entityManager->flush();
+            $this->addFlash(
+                'success',
+                'Supprssion réussie !'
+            );
+        }
+
+        return $this->redirectToRoute('organizer-account');
     }
 }
