@@ -1,13 +1,19 @@
 <div class="custom_card ">
     <h2>Lotos organisés <span class="badge badge-primary"> {{organizer.LotoEvents|length}} </span> </h2>
-    <a class="btn btn-primary cursor angle-r" title="Ajouter un loto"><i class="fas fa-plus"></i></a>
-    <ul>
-    {% for loto in organizer.LotoEvents %}
-        <li>
-            <a>{{ loto.title }}</a>
-        </li>
+    {% if organizer.canOrganize %}
+        <a class="btn btn-primary cursor angle-r" title="Ajouter un loto"><i class="fas fa-plus"></i></a>
+        {% for loto in organizer.LotoEvents %}
+            <li>
+                <a>{{ loto.title }}</a>
+            </li>
+        {% else %}
+            <li>Vous n'avez pas encore créé de loto</li>
+        {% endfor %}
+
     {% else %}
-        <li>Vous n'avez pas encore créé de loto</li>
-    {% endfor %}
+    <p>Vous devez ajouter votre association pour pouvoir commencer à organiser des lotos live.</p>
+    {% endif %}    
+    <ul>
+    
     </ul>
 </div>
