@@ -1,24 +1,27 @@
-section.masthead {
-  
-    background-image: none !important;
-    #login_form{
-        background-color: white;
-        width: 90%;
-        border-radius: 2%;
-        -webkit-box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.54);
-        -moz-box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.54);
-        box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.54);
-        margin : 5em auto;
-        padding: 2rem;
+.jumbotron {
+     height: 100vh;
+    .container{
+        height: 100vh;
 
+        #login_form{
+            background-color: white;
+            width: 90%;
+            border-radius: 2%;
+            -webkit-box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.54);
+            -moz-box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.54);
+            box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.54);
+            margin : 5em auto;
+            padding: 2rem;
+
+        }
     }
+   
 }
 
 @media screen and (min-width: 576px) {
 
-    section.masthead {
-  
-        background-image: none !important;
+    .jumbotron {
+
         #login_form{
             max-width: 500px;
             margin : 0 auto;
