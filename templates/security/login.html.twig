@@ -6,8 +6,8 @@
 {% endblock %}
 
 {% block body %}
-<section class="jumbotron">
-    <div class="container">
+<section class="container jumbotron">
+
         <div class="login_form">
                 <form method="post">
                 {% if error %}
@@ -31,14 +31,13 @@
 
                 
 
-                    <div class="checkbox mb-3">
-                        <label>
-                            <input type="checkbox" name="_remember_me"> Se souvenir de moi
-                        </label>
+                    <div class="checkbox mb-3 form-group">
+                        <input id="checkbox" type="checkbox" name="_remember_me"> 
+                        <label for="checkbox">Se souvenir de moi</label>
                     </div>
                 
                     <div class="form-group">
-                        <button class="btn btn-lg btn-primary" type="submit">
+                        <button class="btn btn-block btn-primary" type="submit">
                             Connexion
                         </button>
                     </div>
@@ -48,6 +47,5 @@
             </form>
         </div>
             
-    </div>
 </section>
 {% endblock %}

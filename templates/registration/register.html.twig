@@ -6,8 +6,8 @@
 {% endblock %}
 
 {% block body %}
-    <section class="jumbotron">
-        <div class="container">
+    <section class="container jumbotron">
+       
             <div class="login_form">
                 <h1 class="h3 mb-3 font-weight-normal">Inscription</h1>
 
@@ -18,12 +18,12 @@
                     {{ form_row(registrationForm.isAssociation) }}
                     {{ form_row(registrationForm.agreeTerms) }}
                     <div class="form-group">
-                        <button class="btn btn-primary">S'inscrire</button>
+                        <button class="btn btn-primary btn-block">S'inscrire</button>
                     </div>
                    
                 {{ form_end(registrationForm) }}
             </div>
-        </div>
+     
     </section>
     
 {% endblock %}

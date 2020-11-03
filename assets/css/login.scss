@@ -1,6 +1,5 @@
-.jumbotron {
-     height: 100vh;
-    .container{
+.container.jumbotron {
+
         height: 100vh;
 
         .login_form{
@@ -14,15 +13,14 @@
             padding: 2rem;
 
         }
-    }
    
 }
 
 @media screen and (min-width: 576px) {
 
-    .jumbotron {
+    .container.jumbotron {
 
-        #login_form{
+        .login_form{
             max-width: 500px;
             margin : 0 auto;
     
