@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Association;
+use App\Form\OrganizerType;
 use App\Lototo\Manager\AssociationApiManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -43,7 +44,7 @@ class OrganizerController extends AbstractController
         }
     }
     /**
-     * @Route("/addAssociation", name="add_association", methods={"POST"})
+     * @Route("/addAssociation", name="add_association", methods={"POST"}, options = { "expose" = true })
      */
     public function addAssociation(Request $request, AssociationApiManager $associationApiManager, EntityManagerInterface $em){
         $etablissement = json_decode($request->getContent(), true);
@@ -78,5 +79,19 @@ class OrganizerController extends AbstractController
         }
 
         return $this->redirectToRoute('organizer-account');
+    }
+
+    /**
+     *@Route("/formEdit", name="organizer_render_form_edit", options = { "expose" = true })
+     */
+    public function formEdit( Request $request){
+        //on rend le formulaire pour la modal
+        if($request->isXmlHttpRequest()){
+            /**@var Organizer $organizer */
+            $organizer = $this->getUser();
+            $form = $this->createForm(OrganizerType::class, $organizer);
+            // dd($this->renderView("organizer/form/_edit_organizer.html.twig", ["form" => $form->createView()]));
+            return $this->json( $this->renderView("organizer/form/_edit_organizer.html.twig", ["form" => $form->createView()]));
+        }
     }
 }

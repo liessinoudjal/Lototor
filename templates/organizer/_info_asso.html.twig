@@ -16,11 +16,7 @@
 
             </div>
             <div class="col-sm-2">
-                <form method="post" action="{{ path('organizer_association_delete', {'id': asso.id}) }}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer l'affiliation à cette association ?');">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ asso.id) }}">
-                    <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-                </form>
+                {% include "organizer/form/_delete_asso.html.twig" %}
             </div>
 
             </div>

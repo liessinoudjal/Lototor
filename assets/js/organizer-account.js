@@ -9,15 +9,22 @@
 
 require('../css/organizer-account.scss');
 
+const routes = require('../../public/js/fos_js_routes.json');
+import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
+
+Routing.setRoutingData(routes);
+
 const formAddAsso = document.querySelector("#js_form_add_association")
 const btnsubmitAddAsso = document.querySelector("#js_form_add_association button[name='newAssociationSubmit']")
 const inputSiret = document.querySelector("#js_form_add_association #siret")
-const modal = $("#modal-association");
-const modalBody = document.querySelector("#modal-association .modal-body");
-const loader = document.querySelector("#modal-association .modal-body").innerHTML;
+const modal = $("#modal-organizer");
+let modalTitle = document.querySelector("#exampleModalLongTitle");
+const modalBody = document.querySelector("#modal-organizer .modal-body");
+const loader = document.querySelector("#modal-organizer .modal-body").innerHTML;
 //à la fermture de la modal, on remet le loader
 modal.on('hide.bs.modal', function () {
-	modalBody.innerHTML = loader
+    modalBody.innerHTML = loader
+    modalTitle.innerHTML = ""
 });
 
 //gestion ouverture et femeture du formulaire d'ajout d'asso
@@ -33,6 +40,7 @@ formAddAsso.addEventListener("submit", function(e){
     e.preventDefault();
     var form = new FormData(formAddAsso);
     modal.modal("show");
+    modalTitle.innerHTML = "Association trouvée"
     //on verifie si l'asso existe bien
     fetch(formAddAsso.getAttribute("action"),{
         method : 'POST',
@@ -50,7 +58,7 @@ formAddAsso.addEventListener("submit", function(e){
             const button = document.createElement("button");                 // Create a <li> node
             const textnode = document.createTextNode("Oui");         // Create a text node
             button.appendChild(textnode); 
-            button.classList.add("btn","btn-success", "mt-2", "float-right") 
+            button.classList.add("btn","btn-success", "mt-2") 
             modalBody.appendChild(button)
             //si l'organizer    confirme l'identité de l'etablissement qu'il veut ajouter, on envoie une requette pour l'associer à son compte
             button.addEventListener("click",function (){
@@ -76,6 +84,27 @@ formAddAsso.addEventListener("submit", function(e){
     });
     
 
+})
+
+document.querySelector("#js_edit_info").addEventListener("click",function(e){
+    e.preventDefault();
+    modal.modal("show");
+    modalTitle.innerHTML = "Infos personnelles"
+
+    fetch(Routing.generate("organizer_render_form_edit"),{
+        method : 'GET',
+        headers: {
+            "X-Requested-With": "XMLHttpRequest"
+        }/* ,
+        body: JSON.stringify( etablissement ) */
+    }).then(function(response){
+        console.log(response)
+        return response.json()
+        // window.location.reload();
+    }).then(function(json){
+        console.log(json)
+        modalBody.innerHTML = json
+    })
 })
 
  

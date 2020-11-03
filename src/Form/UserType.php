@@ -2,35 +2,32 @@
 
 namespace App\Form;
 
-use App\Entity\Organizer;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class OrganizerType extends AbstractType
+class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        /* $builder
-            ->add('email')
-            ->add('roles')
-            ->add('password')
-            ->add('username')
+        $builder
+            ->add('firstName', TextType::class)
+            ->add('lastName', TextType::class)
+            ->add('email', EmailType::class)
             ->add('birthday', DateType::class)
-            ->add('phone')
+            ->add('phone', TextType::class)
             ->add('address', AddressType::class)
-        ; */
+        ;
     }
 
-    public function getParent()
-    {
-        return UserType::class;
-    }
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Organizer::class,
+            'data_class' => User::class,
         ]);
     }
 }
