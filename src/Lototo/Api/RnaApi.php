@@ -5,8 +5,6 @@ use Symfony\Component\HttpFoundation\Request ;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class RnaApi {
-
-
     private $httpClient;
 
     private $baseApi = "https://entreprise.data.gouv.fr/api/rna/v1/id/";

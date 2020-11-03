@@ -66,15 +66,14 @@ class OrganizerController extends AbstractController
     /**
      * @Route("/deleteAsso/{id}", name="organizer_association_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Association $association): Response
+    public function delete(Request $request, Association $association, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$association->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($association);
             $entityManager->flush();
             $this->addFlash(
                 'success',
-                'Supprssion réussie !'
+                'Suppréssion réussie !'
             );
         }
 
@@ -84,14 +83,32 @@ class OrganizerController extends AbstractController
     /**
      *@Route("/formEdit", name="organizer_render_form_edit", options = { "expose" = true })
      */
-    public function formEdit( Request $request){
+    public function formEdit( Request $request, EntityManagerInterface $em){
+
+        /**@var Organizer $organizer */
+        $organizer = $this->getUser();
+        $form = $this->createForm(OrganizerType::class, $organizer, [
+            'action' => $this->generateUrl('organizer_render_form_edit'),
+            'method' => 'post',
+        ]);
         //on rend le formulaire pour la modal
         if($request->isXmlHttpRequest()){
-            /**@var Organizer $organizer */
-            $organizer = $this->getUser();
-            $form = $this->createForm(OrganizerType::class, $organizer);
+            
             // dd($this->renderView("organizer/form/_edit_organizer.html.twig", ["form" => $form->createView()]));
             return $this->json( $this->renderView("organizer/form/_edit_organizer.html.twig", ["form" => $form->createView()]));
         }
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $em->persist($organizer);
+            $em->flush();
+            $this->addFlash(
+                'success',
+                'Infos personnelles enregistrées!'
+            );
+        }
+
+        return $this->redirectToRoute('organizer-account');
     }
 }

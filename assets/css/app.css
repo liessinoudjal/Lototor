@@ -32,3 +32,10 @@ body .rgbd a{
 		font-size: 2rem !important;
 	}
 }
+
+.required:after{
+	content: "*";
+}
+.invalid-feedback{
+	color: red;
+}
