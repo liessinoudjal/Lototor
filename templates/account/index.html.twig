@@ -12,9 +12,10 @@
 
 {% block body %}
 
-<section  class="container jumbotron">
+{% set typeAccount =   is_granted("ROLE_ORGANIZER") ? "organizer" : "user"%}
+<section  class="container jumbotron" id="js_account_page" data-type-account="{{typeAccount}}">
 {# {{dump(user)}} #}
-<h1>Mon compte</h1>
+<h1 >Mon compte</h1>
     <div class="row">
     {% if is_granted("ROLE_ORGANIZER") %}
         <div class="col-md-6">
