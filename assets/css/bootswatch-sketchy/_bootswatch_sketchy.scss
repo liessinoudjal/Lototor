@@ -38,7 +38,22 @@ $border-radius-sm-sketchy: 255px 25px 225px 25px / 25px 225px 25px 255px;
     font-family: $headings-font-family;
     font-weight: 400;
     text-decoration: none;
+    color: $yellow !important; 
   }
+
+  .nav-item{
+    &.show{
+      .nav-link{
+        background-color: $gray-800 !important;
+      }
+    }
+    .nav-link{
+      color: $yellow !important;
+    }
+  }
+    
+
+  
 }
 
 // Buttons =====================================================================
@@ -53,6 +68,11 @@ $border-radius-sm-sketchy: 255px 25px 225px 25px / 25px 225px 25px 255px;
 
   &-sm {
     border-radius: $border-radius-sm-sketchy;
+  }
+
+  &-primary{
+    background-color: $yellow !important;
+    color: $black;
   }
 }
 
@@ -324,6 +344,11 @@ select.form-control {
 
   &-warning {
     color: $white;
+  }
+
+  &-primary{
+    background-color: $yellow !important;
+    color: $black;
   }
 }
 

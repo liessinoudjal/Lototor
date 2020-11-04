@@ -55,7 +55,7 @@
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="{{path('CGU')}}">CGU</a>
                     </li>
-                    {% if app.user %}
+                    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                         <li class=" nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="user">
                                 <i class="fa fa-user" aria-hidden="true"></i>
@@ -63,16 +63,14 @@
                                 <span class="{# sr-only #}">{{ app.user.username }}</span>
                             </a>
                             <div class="dropdown-menu bg-dark ml-3 user" role="menu" aria-labelledby="user">
-                                {% if is_granted("ROLE_ORGANIZER") %}
                                 <a class="nav-link"  href="{{ path('account') }}">
                                     <i class="fa fa-edit" aria-hidden="true"></i> Mon compte
                                 </a>
-                                {% endif %}
                                 <div class="dropdown-divider"></div>
-                                    <a class="nav-link"  href="{{ path('app_logout') }}">
-                                        <i class="fas fa-sign-out-alt"></i> Déconnexion
-                                    </a>
-                                </div>
+                                <a class="nav-link"  href="{{ path('app_logout') }}">
+                                    <i class="fas fa-sign-out-alt"></i> Déconnexion
+                                </a>
+                            </div>
                         </li>
                     {% else %}
                         <li class="nav-item">

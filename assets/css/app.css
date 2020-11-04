@@ -3,6 +3,12 @@ body,html{
 	position: relative;
 	padding: 0px;
 	margin: 0px;
+
+	background-image: url('../img/header-bg.jpg');
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: center center;
+	background-size: cover;
 }
 body .rgbd{
 	position: absolute; 
