@@ -19,7 +19,7 @@ class ResetPasswordType extends AbstractType
             'required' => true,
             "label" => "Mot de passe actuel"
         ))
-        ->add('password', RepeatedType::class, array(
+        ->add('newPassword', RepeatedType::class, array(
             'type' => PasswordType::class,
             'invalid_message' => 'Les deux mots de passe doivent être identiques',
             'first_options'  => ['label' => 'Nouveau mot de passe'],
@@ -30,6 +30,7 @@ class ResetPasswordType extends AbstractType
                 )
             ),
             'required' => true,
+            "mapped" =>false
         ))
     ;
 }

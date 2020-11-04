@@ -137,31 +137,22 @@ class AccountController extends AbstractController
             return $this->json( $this->renderView("account/form/_reset_password.html.twig", ["form" => $form->createView()]));
         }
     	$form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             // dd($request->request);
-            $oldPassword = $request->request->get('reset_password')['oldPassword'];
-
+            $oldPassword = $form->get('oldPassword')->getData();
+            $newPasssword = $form->get('newPassword')->getData();
             // Si l'ancien mot de passe est bon
-            dd($passwordEncoder->isPasswordValid($user, $oldPassword), $user->getPassword(), $oldPassword);
             if ($passwordEncoder->isPasswordValid($user, $oldPassword)) {
-                
-                $newEncodedPassword = $passwordEncoder->encodePassword($user, $user->getPassword());
-
+                $newEncodedPassword = $passwordEncoder->encodePassword($user,  $newPasssword);
                 $user->setPassword($newEncodedPassword);
-
                 $em->persist($user);
-
                 $em->flush();
-
                 $this->addFlash('success', 'Votre mot de passe à bien été changé !');
-
             } else {
-                dd("error");
-                $form->addError(new FormError('Ancien mot de passe incorrect'));
-
+                $this->addFlash('danger', 'Ancien mot de passe incorrecte !');
             }
-
+        }else{
+            $this->addFlash('danger', "Votre Nouveau mot de passe est incorrecte");
         }
     	return $this->redirectToRoute("account");
     }
