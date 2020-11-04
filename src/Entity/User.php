@@ -2,16 +2,15 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @ORM\InheritanceType("SINGLE_TABLE")
- * @ORM\DiscriminatorColumn(name="type", type="string")
- * @ORM\DiscriminatorMap({"user" = "User", "organizer" = "Organizer"})
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"email"}, message="Cet Email existe déjà.")
  */
 class User implements UserInterface
 {
@@ -36,37 +35,58 @@ class User implements UserInterface
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
-    private $password;
+    protected $password;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $username;
+    protected $username;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $birthday;
+    protected $birthday;
 
     /**
      * @ORM\Column(type="string", length=10, nullable=true)
      */
-    private $phone;
+    protected $phone;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Address", cascade={"persist", "remove"})
      */
-    private $address;
+    protected $address;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $firstName;
+    protected $firstName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $lastName;
+    protected $lastName;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\LotoEvent", mappedBy="organizer")
+     */
+    private $LotoEvents;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Association", mappedBy="organizer", cascade={"persist", "remove"})
+     */
+    private $associations;
+
+    public function __construct()
+    {
+        $this->LotoEvents = new ArrayCollection();
+        $this->associations = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->getUsername();
+    }
 
     public function getId(): ?int
     {
@@ -216,5 +236,82 @@ class User implements UserInterface
     public function getFullName(): string
     {
         return $this->firstName ." ". $this->lastName;
+    }
+    
+    
+
+    /**
+     * @return Collection|LotoEvent[]
+     */
+    public function getLotoEvents(): Collection
+    {
+        return $this->LotoEvents;
+    }
+
+    public function addLotoEvent(LotoEvent $lotoEvent): self
+    {
+        if (!$this->LotoEvents->contains($lotoEvent)) {
+            $this->LotoEvents[] = $lotoEvent;
+            $lotoEvent->setOrganizer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLotoEvent(LotoEvent $lotoEvent): self
+    {
+        if ($this->LotoEvents->contains($lotoEvent)) {
+            $this->LotoEvents->removeElement($lotoEvent);
+            // set the owning side to null (unless already changed)
+            if ($lotoEvent->getOrganizer() === $this) {
+                $lotoEvent->setOrganizer(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Association[]
+     */
+    public function getAssociations(): Collection
+    {
+        return $this->associations;
+    }
+
+    public function addAssociation(Association $association): self
+    {
+        if (!$this->associations->contains($association)) {
+            $this->associations[] = $association;
+            $association->setOrganizer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAssociation(Association $association): self
+    {
+        if ($this->associations->contains($association)) {
+            $this->associations->removeElement($association);
+            // set the owning side to null (unless already changed)
+            if ($association->getOrganizer() === $this) {
+                $association->setOrganizer(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * if organizer is authorized to publish lotoEvent
+     * @return bool
+     */
+    public function canOrganize(): bool
+    {
+        return ($this->associations->count() > 0 && $this->isOrganizer() ) ? true : false;
+    }
+
+    public function isOrganizer():bool{
+       return  in_array("ROLE_ORGANIZER", $this->roles);
     }
 }

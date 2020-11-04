@@ -4,6 +4,7 @@ namespace App\Lototo\Manager;
 use App\Entity\Address;
 use App\Entity\Association;
 use App\Entity\Organizer;
+use App\Entity\User;
 use App\Lototo\Api\RnaApi;
 use App\Lototo\Api\SireneApi;
 use Doctrine\ORM\EntityManagerInterface;
@@ -45,7 +46,7 @@ class AssociationApiManager {
         }
     }
 
-    public function addAssociationToOrganizer( Organizer $organizer,array $etablissement){
+    public function addAssociationToOrganizer( User $organizer,array $etablissement){
         $this->httpClient->setETablissement($etablissement);
         $address = new Address();
         $address->setStreet($this->httpClient->getStreet())

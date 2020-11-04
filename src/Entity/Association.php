@@ -38,7 +38,7 @@ class Association
     private $siret;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Organizer", inversedBy="associations")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="associations")
      * @ORM\JoinColumn(nullable=false)
      */
     private $organizer;
@@ -126,12 +126,12 @@ class Association
         return $this;
     }
 
-    public function getOrganizer(): ?Organizer
+    public function getOrganizer(): ?User
     {
         return $this->organizer;
     }
 
-    public function setOrganizer(?Organizer $organizer): self
+    public function setOrganizer(?User $organizer): self
     {
         $this->organizer = $organizer;
 

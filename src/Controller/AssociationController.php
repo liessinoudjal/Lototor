@@ -44,7 +44,7 @@ class AssociationController extends AbstractController
             $entityManager->persist($association);
             $entityManager->flush();
 
-            return $this->redirectToRoute('organizer-account');
+            return $this->redirectToRoute('account');
         }
 
         return $this->render('association/new.html.twig', [

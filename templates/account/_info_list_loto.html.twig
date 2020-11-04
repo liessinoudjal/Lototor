@@ -1,8 +1,8 @@
 <div class="custom_card ">
-    <h2>Lotos organisés <span class="badge badge-primary"> {{organizer.LotoEvents|length}} </span> </h2>
-    {% if organizer.canOrganize %}
+    <h2>Lotos organisés <span class="badge badge-pill badge-primary"> {{user.LotoEvents|length}} </span> </h2>
+    {% if user.canOrganize() %}
         <a class="btn btn-primary cursor angle-r" title="Ajouter un loto"><i class="fas fa-plus"></i></a>
-        {% for loto in organizer.LotoEvents %}
+        {% for loto in user.LotoEvents %}
             <li>
                 <a>{{ loto.title }}</a>
             </li>

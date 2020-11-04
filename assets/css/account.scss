@@ -43,4 +43,18 @@
         background-color: lightgrey;
 
     }
+
+    #js_toggle_info_list:hover{
+        cursor : pointer;
+    }
+    #js_info_list{
+        height: 100px;
+        -webkit-transition: height .3s ease;
+        transition : height .3s ease;
+        &.closed{   
+            height: 0;
+            overflow: hidden;
+        }
+        
+    }
 }

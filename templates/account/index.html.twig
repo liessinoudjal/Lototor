@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block stylesheets %}
+      {{ encore_entry_link_tags('account') }}
+{% endblock %}
+  
+{% block javascripts %}
+        {{ encore_entry_script_tags('account') }}
+{% endblock %}
+
+{% block body %}
+
+<section  class="container jumbotron">
+{# {{dump(user)}} #}
+<h1>Mon compte</h1>
+    <div class="row">
+    {% if is_granted("ROLE_ORGANIZER") %}
+        <div class="col-md-6">
+             {% include 'account/_info_asso.html.twig'  %}
+        </div>
+    {% endif %}
+        <div class=" col-md-6" > 
+            {% include 'account/_info_perso.html.twig'  %}
+        </div>
+        
+    </div>
+
+    <div class="row">
+    {%  if is_granted("ROLE_ORGANIZER") %}
+        <div class="col-md-6" > 
+             {% include 'account/_info_list_loto.html.twig'  %}
+        </div>
+    {% endif %}
+    </div>
+    {% include 'account/modal/_account_modal.html.twig'  %}
+</section>
+
+{% endblock %}

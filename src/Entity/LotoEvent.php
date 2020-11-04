@@ -44,7 +44,7 @@ class LotoEvent
     private $parties;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Organizer", inversedBy="LotoEvents")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="LotoEvents")
      * @ORM\JoinColumn(nullable=false)
      */
     private $organizer;
@@ -138,12 +138,12 @@ class LotoEvent
         return $this;
     }
 
-    public function getOrganizer(): ?Organizer
+    public function getOrganizer(): ?User
     {
         return $this->organizer;
     }
 
-    public function setOrganizer(?Organizer $organizer): self
+    public function setOrganizer(?User $organizer): self
     {
         $this->organizer = $organizer;
 

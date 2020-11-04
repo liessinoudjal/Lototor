@@ -1,12 +1,12 @@
 <div class="custom_card ">
-    <h2>Mon association  <span class="badge badge-primary"> {{organizer.associations|length}} </span></h2>
+    <h2>Mon association  <span class="badge badge-pill badge-primary"> {{user.associations|length}} </span></h2>
     <a class="btn btn-primary cursor angle-r" id="js_btn_add_association" title="Ajouter une association" 
         {# on bloque pour l'instant l'affiliation à plus d'une association  #}
-        {% if organizer.associations|length > 0 %} style="display:none;"{% endif %} >
+        {% if user.associations|length > 0 %} style="display:none;"{% endif %} >
         <i class="fas fa-plus"></i>
     </a>
         
-        {% for asso in organizer.associations %}
+        {% for asso in user.associations %}
             <div class="row mb-2 customer_card_content">
             <div class="col-sm-10">
                 <h4>{{ asso.name }}</h4>
@@ -16,7 +16,7 @@
 
             </div>
             <div class="col-sm-2">
-                {% include "organizer/form/_delete_asso.html.twig" %}
+                {% include "account/form/_delete_asso.html.twig" %}
             </div>
 
             </div>
@@ -27,7 +27,7 @@
             <li>Vous n'avez pas encore d'association</li>
         {% endfor %}
     </ul>
-    <form method="post" action="{{ path('organizer_ajax_add_association')}}" class="mt-2"id="js_form_add_association"style="display:none">
+    <form method="post" action="{{ path('account_ajax_add_association')}}" class="mt-2"id="js_form_add_association"style="display:none">
         <div class="form-group " >
             <label for="siret">Code RNA de votre association</label>
             <input class="form-control" type="text" 

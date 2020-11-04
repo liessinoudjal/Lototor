@@ -94,13 +94,9 @@ class UserAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
-
+        /**@var App\Entity\User $user */
         $user = $token->getUser();
-        //redirection organisateur
-        if($user instanceof Organizer)
-            return new RedirectResponse($this->urlGenerator->generate('organizer-account'));
-        //redirection joueur    
-        return new RedirectResponse($this->urlGenerator->generate('homepage'));
+        return new RedirectResponse($this->urlGenerator->generate('account'));
     }
 
     protected function getLoginUrl()
