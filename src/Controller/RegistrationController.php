@@ -24,9 +24,12 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if($form->get('isAssociation')->getData()){
+            /* if($form->get('isAssociation')->getData()){
                 $user->setRoles(["ROLE_ORGANIZER"]);
-            }
+            } */
+
+            //pour la première version en prod, on va inscrire que des organisateurs
+            $user->setRoles(["ROLE_ORGANIZER"]);
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
