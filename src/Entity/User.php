@@ -68,9 +68,14 @@ class User implements UserInterface
     protected $lastName;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\LotoEvent", mappedBy="organizer")
+     * @ORM\OneToMany(targetEntity="App\Entity\LiveLotoEvent", mappedBy="organizer")
      */
-    private $LotoEvents;
+    private $liveLotoEvents;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\IndoorLotoEvent", mappedBy="organizer")
+     */
+    private $indoorLotoEvents;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Association", mappedBy="organizer", cascade={"persist", "remove"})
@@ -79,7 +84,8 @@ class User implements UserInterface
 
     public function __construct()
     {
-        $this->LotoEvents = new ArrayCollection();
+        $this->liveLotoEvents = new ArrayCollection();
+        $this->indoorLotoEvents = new ArrayCollection();
         $this->associations = new ArrayCollection();
     }
 
@@ -241,34 +247,82 @@ class User implements UserInterface
     
 
     /**
-     * @return Collection|LotoEvent[]
+     * @return Collection|LiveLotoEvent[]
      */
-    public function getLotoEvents(): Collection
+    public function getLiveLotoEvents(): Collection
     {
-        return $this->LotoEvents;
+        return $this->liveLotoEvents;
     }
 
-    public function addLotoEvent(LotoEvent $lotoEvent): self
+    public function addLiveLotoEvent(LiveLotoEvent $liveLotoEvent): self
     {
-        if (!$this->LotoEvents->contains($lotoEvent)) {
-            $this->LotoEvents[] = $lotoEvent;
-            $lotoEvent->setOrganizer($this);
+        if (!$this->liveLotoEvents->contains($liveLotoEvent)) {
+            $this->liveLotoEvents[] = $liveLotoEvent;
+            $liveLotoEvent->setOrganizer($this);
         }
 
         return $this;
     }
 
-    public function removeLotoEvent(LotoEvent $lotoEvent): self
+    public function removeLiveLotoEvent(LiveLotoEvent $liveLotoEvent): self
     {
-        if ($this->LotoEvents->contains($lotoEvent)) {
-            $this->LotoEvents->removeElement($lotoEvent);
+        if ($this->liveLotoEvents->contains($liveLotoEvent)) {
+            $this->liveLotoEvents->removeElement($liveLotoEvent);
             // set the owning side to null (unless already changed)
-            if ($lotoEvent->getOrganizer() === $this) {
-                $lotoEvent->setOrganizer(null);
+            if ($liveLotoEvent->getOrganizer() === $this) {
+                $liveLotoEvent->setOrganizer(null);
             }
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection|IndoorLotoEvent[]
+     */
+    public function getIndoorLotoEvents(): Collection
+    {
+        return $this->indoorLotoEvents;
+    }
+
+    public function addIndoorLotoEvent(IndoorLotoEvent $indoorLotoEvent): self
+    {
+        if (!$this->indoorLotoEvents->contains($indoorLotoEvent)) {
+            $this->indoorLotoEvents[] = $indoorLotoEvent;
+            $indoorLotoEvent->setOrganizer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIndoorLotoEvent(IndoorLotoEvent $indoorLotoEvent): self
+    {
+        if ($this->indoorLotoEvents->contains($indoorLotoEvent)) {
+            $this->indoorLotoEvents->removeElement($indoorLotoEvent);
+            // set the owning side to null (unless already changed)
+            if ($indoorLotoEvent->getOrganizer() === $this) {
+                $indoorLotoEvent->setOrganizer(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Retourne le tableau de tous les lotos
+     * @return array
+     */
+    public function getLotoEvents(): array
+    {
+        $events= [];
+
+        if(!$this->liveLotoEvents->isEmpty())
+            $events["Live"]= $this->liveLotoEvents;
+
+        if(!$this->indoorLotoEvents->isEmpty())
+            $events["En salle"]= $this->indoorLotoEvents;
+
+        return $events;
     }
 
     /**
