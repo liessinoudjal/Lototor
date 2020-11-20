@@ -8,9 +8,9 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Neucha|Cabin+Sketch&dis
 @import url($web-font-path);
 
 // stylelint-disable scss/dollar-variable-default
-$border-radius-sketchy:    255px 25px 225px 25px / 25px 225px 25px 255px;
-$border-radius-lg-sketchy: 555px 25px 15px 25px / 25px 5px 35px 555px;
-$border-radius-sm-sketchy: 255px 25px 225px 25px / 25px 225px 25px 255px;
+$border-radius-sketchy:    255px 25px 225px 25px / 25px 225px 25px 255px !important;
+$border-radius-lg-sketchy: 555px 25px 15px 25px / 25px 5px 35px 555px !important;
+$border-radius-sm-sketchy: 255px 25px 225px 25px / 25px 225px 25px 255px !important;
 // style-enable scss/dollar-variable-default
 
 // Navbar ======================================================================
@@ -165,6 +165,7 @@ input,
 .input-group-text,
 .custom-file-label {
   border-radius: $border-radius-sketchy;
+  border: 1px solid #333;
 }
 
 textarea,
@@ -172,6 +173,7 @@ textarea.form-control,
 select,
 select.form-control {
   border-radius: $border-radius-lg-sketchy !important;
+  border: 1px solid #333;
 }
 
 [type="checkbox"] {
@@ -305,7 +307,7 @@ select.form-control {
   }
 }
 
-.nav-pills .nav-link, {
+.nav-pills .nav-link {
   border-radius: $border-radius-sketchy;
 }
 
@@ -319,7 +321,12 @@ select.form-control {
 .nav-tabs {
   .nav-link {
     border-radius: 45px 15px 225px 5px/25px 225px 25px 255px;
+    // border: 1px solid #333;
+    &.active{
+      background-color: $gray-400;
+    }
   }
+  
 }
 
 .breadcrumb {
