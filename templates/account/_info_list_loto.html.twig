@@ -1,17 +1,21 @@
 <div class="custom_card ">
-    <h2>Lotos organisés <span class="badge badge-pill badge-primary"> {{user.LotoEvents|length}} </span> </h2>
+    <h2>Lotos organisés <span class="badge badge-pill badge-primary"> {{user.lotoEvents|length}} </span> </h2>
     {% if user.canOrganize() %}
-        <a class="btn btn-primary cursor angle-r" title="Ajouter un loto"><i class="fas fa-plus"></i></a>
-        {% for loto in user.LotoEvents %}
+        <a class="btn btn-primary cursor angle-r" href="{{ path("account_add_loto")}}" id="js_add_loto" title="Ajouter un loto"><i class="fas fa-plus"></i></a>
+        {% for type,lotos in user.lotoEvents %}
+            <h3>{{type}}</h3>
+            {% for loto in lotos %}
             <li>
                 <a>{{ loto.title }}</a>
             </li>
+            {% endfor %}
+
         {% else %}
             <li>Vous n'avez pas encore créé de loto</li>
         {% endfor %}
 
     {% else %}
-    <p>Vous devez ajouter votre association pour pouvoir commencer à organiser des lotos live.</p>
+    <p>Vous devez lier votre association à votre compte pour ajouter des lotos.</p>
     {% endif %}    
     <ul>
     

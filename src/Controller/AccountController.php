@@ -3,12 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Association;
+use App\Entity\IndoorLotoEvent;
+use App\Entity\LiveLotoEvent;
+use App\Form\IndoorLotoEventType;
+use App\Form\LiveLotoEventType;
 use App\Form\ResetPasswordType;
 use App\Form\UserType;
+use App\Lototo\Manager\AccountManager;
 use App\Lototo\Manager\AssociationApiManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,6 +21,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * @Route("/mon_compte")
+ * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
  */
 class AccountController extends AbstractController
 {
@@ -26,6 +31,8 @@ class AccountController extends AbstractController
     public function account()
     {
         $user = $this->getUser();
+
+        // dd($user);
      
         return $this->render('account/index.html.twig', [
             'user' => $user
@@ -90,7 +97,7 @@ class AccountController extends AbstractController
     /**
      *@Route("/formEdit", name="account_render_form_edit", options = { "expose" = true })
      */
-    public function formEdit( Request $request, EntityManagerInterface $em){
+    public function formEdit( Request $request, EntityManagerInterface $em, AccountManager $accountManager){
 
         /**@var User $organizer */
         $user = $this->getUser();
@@ -101,8 +108,7 @@ class AccountController extends AbstractController
         //on rend le formulaire pour la modal
         if($request->isXmlHttpRequest()){
             
-            // dd($this->renderView("account/form/_edit_organizer.html.twig", ["form" => $form->createView()]));
-            return $this->json( $this->renderView("account/form/_edit_organizer.html.twig", ["form" => $form->createView()]));
+            return $this->json( $accountManager->renderEditOrganiserForm($form));
         }
 
         $form->handleRequest($request);
@@ -121,7 +127,7 @@ class AccountController extends AbstractController
     /**
      * @Route("/resetPassword", name="account_reset_password", options = { "expose" = true })
      */
-    public function resetPassword(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder){
+    public function resetPassword(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder, AccountManager $accountManager){
 
         $user = $this->getUser();
 
@@ -133,8 +139,7 @@ class AccountController extends AbstractController
         //on rend le formulaire pour la modal
         if($request->isXmlHttpRequest()){
             
-            // dd($this->renderView("account/form/_reset_password.html.twig", ["form" => $form->createView()]));
-            return $this->json( $this->renderView("account/form/_reset_password.html.twig", ["form" => $form->createView()]));
+            return $this->json( $accountManager->renderResetPasswordForm($form));
         }
     	$form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -155,5 +160,22 @@ class AccountController extends AbstractController
             $this->addFlash('danger', "Votre Nouveau mot de passe est incorrecte");
         }
     	return $this->redirectToRoute("account");
+    }
+
+    /**
+     * @Route("/add_loto", name= "account_add_loto",  options = { "expose" = true })
+     * 
+     */
+    public function addLoto(Request $request){
+
+        $liveLotoEvent = new LiveLotoEvent;
+        $indoorLotoEvent = new IndoorLotoEvent;
+        $liveLotoForm = $this->createForm(LiveLotoEventType::class, $liveLotoEvent);
+        $indoorLotoForm = $this->createForm(IndoorLotoEventType::class, $indoorLotoEvent); 
+
+        return $this->render("account/add_loto.html.twig", [
+            "liveLotoForm" => $liveLotoForm->createView(), 
+            "indoorLotoForm" => $indoorLotoForm->createView()
+            ]);
     }
 }

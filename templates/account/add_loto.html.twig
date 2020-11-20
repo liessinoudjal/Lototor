@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Publier un loto{% endblock %}
+
+{% block stylesheets %}
+      {# {{ encore_entry_link_tags('account') }} #}
+{% endblock %}
+  
+{% block javascripts %}
+        {# {{ encore_entry_script_tags('account') }} #}
+{% endblock %}
+
+{% block body %}
+<section  class="container jumbotron">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#live">Loto live</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#indoor">Loto en salle</a>
+    </li>
+
+  </ul>
+  <div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade active show" id="live">
+      <div class="form">
+        {{ form_start(liveLotoForm) }}
+            {{ form_widget(liveLotoForm) }}
+            <button class="btn btn-primary btn-block">{{ button_label|default('Publier') }}</button>
+        {{ form_end(liveLotoForm) }}
+    </div>
+    </div>
+    <div class="tab-pane fade" id="indoor">
+     <div class="form">
+        {{ form_start(indoorLotoForm) }}
+            {{ form_widget(indoorLotoForm) }}
+            <button class="btn btn-primary btn-block">{{ button_label|default('Publier') }}</button>
+        {{ form_end(indoorLotoForm) }}
+    </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
