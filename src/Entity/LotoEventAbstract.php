@@ -7,57 +7,36 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\LotoEventRepository")
+ * @ORM\MappedSuperclass
+ * 
  */
-class LotoEvent
+class LotoEventAbstract
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $title;
+    protected $title;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $dateEvent;
+    protected $dateEvent;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $createAt;
+    protected $createAt;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $rules;
+    protected $rules;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Partie", mappedBy="lotoEvent", orphanRemoval=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\JoinColumn(name="organizer_id", referencedColumnName="id",nullable=false)
      */
-    private $parties;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="LotoEvents")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $organizer;
-
-    public function __construct()
-    {
-        $this->parties = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+    protected $organizer;
 
     public function getTitle(): ?string
     {
@@ -107,37 +86,6 @@ class LotoEvent
         return $this;
     }
 
-    /**
-     * @return Collection|Partie[]
-     */
-    public function getParties(): Collection
-    {
-        return $this->parties;
-    }
-
-    public function addParty(Partie $party): self
-    {
-        if (!$this->parties->contains($party)) {
-            $this->parties[] = $party;
-            $party->setLotoEvent($this);
-        }
-
-        return $this;
-    }
-
-    public function removeParty(Partie $party): self
-    {
-        if ($this->parties->contains($party)) {
-            $this->parties->removeElement($party);
-            // set the owning side to null (unless already changed)
-            if ($party->getLotoEvent() === $this) {
-                $party->setLotoEvent(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getOrganizer(): ?User
     {
         return $this->organizer;
@@ -149,4 +97,6 @@ class LotoEvent
 
         return $this;
     }
+
+    
 }

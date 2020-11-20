@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\LotoEvent;
+use App\Entity\LiveLotoEvent;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -12,11 +12,11 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  * @method LotoEvent[]    findAll()
  * @method LotoEvent[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class LotoEventRepository extends ServiceEntityRepository
+class LiveLotoEventRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, LotoEvent::class);
+        parent::__construct($registry, LiveLotoEvent::class);
     }
 
     // /**
