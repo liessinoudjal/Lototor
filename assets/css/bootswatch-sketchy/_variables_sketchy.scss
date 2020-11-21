@@ -28,6 +28,13 @@ $green:   #28a745 !default;
 $teal:    #20c997 !default;
 $cyan:    #17a2b8 !default;
 
+
+$breakpoint-xs: 0;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
 // $primary:       $gray-800 !default;
 $primary:       $yellow !default;
 $secondary:     $gray-700 !default;

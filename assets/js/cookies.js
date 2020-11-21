@@ -1,6 +1,6 @@
 require('../css/rgbd.scss');
 //document.cookie = "RGBD-accepted=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
-console.log(readCookie("doSomethingOnlyOnce"))
+// console.log(readCookie("doSomethingOnlyOnce"))
 
 //si les RGBD n'ont pas été accepté on affichge le message d'alert et on set l'event sur le boutton d'acceptation
 if(readCookie("RGBD-accepted") == null){

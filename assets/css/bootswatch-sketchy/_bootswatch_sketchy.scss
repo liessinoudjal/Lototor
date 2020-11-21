@@ -14,7 +14,9 @@ $border-radius-sm-sketchy: 255px 25px 225px 25px / 25px 225px 25px 255px !import
 // style-enable scss/dollar-variable-default
 
 // Navbar ======================================================================
-
+body{
+  font-family: $headings-font-family;
+}
 .navbar {
   border-width: 2px;
   border-style: solid;
@@ -428,7 +430,8 @@ select.form-control {
 
 .card {
   border-radius: 5px 5px 5px 5px/25px 25px 25px 5px;
-
+  border: 2px solid #333;
+  margin: 1rem;
   &-outline {
     &-primary,
     &-success,
