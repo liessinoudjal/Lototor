@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="{{ path('homepage') }}"> LototoR <i class="fas fa-futbol" aria-hidden="true"></i> <i class="fas fa-futbol" aria-hidden="true"></i> <i class="fas fa-futbol" aria-hidden="true"></i></a></a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="{{path('loto_quine')}}">Loto Quine</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Simulateurs
+                        </a>
+                        <div class="dropdown-menu bg-dark ml-3" aria-labelledby="navbarDropdown">
+                            <a class="nav-link" href="{{ path('simulateur',{'lotteryName': 'euromillion'}) }}">Euromillion</a>
+                                <a class="nav-link" href="{{ path('simulateur',{'lotteryName': 'loto'}) }}">Loto</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="nav-link" href="{{ path('pertinance') }}">Comment ça marche</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="{{path('CGU')}}">CGU</a>
+                    </li>
+                    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                        <li class=" nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="user">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span class="caret"></span>
+                                <span class="{# sr-only #}">{{ app.user.username }}</span>
+                            </a>
+                            <div class="dropdown-menu bg-dark ml-3 user" role="menu" aria-labelledby="user">
+                                <a class="nav-link"  href="{{ path('account') }}">
+                                    <i class="fa fa-edit" aria-hidden="true"></i> Mon compte
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="nav-link"  title="Déconnexion" href="{{ path('app_logout') }}">
+                                    <i class="fas fa-sign-out-alt"></i> 
+                                </a>
+                            </div>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" title="S'inscrire" href="{{path('app_register')}}"> <i class="fas fa-user-plus"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" title="Se connecter" href="{{path('app_login')}}"><i class="fas fa-sign-in-alt"></i></a>
+                        </li>
+                    {% endif %}
+              
+                </ul>
+            </div>
+        </div>
+    </nav>

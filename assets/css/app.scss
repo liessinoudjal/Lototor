@@ -14,8 +14,6 @@ body,html{
 	background-position: center center;
 	background-size: cover; */
 
-
-	
 	header{
 		height: 200px;
 		position: relative;
@@ -36,6 +34,7 @@ body,html{
 	section.container{
 	
 		margin-bottom: 2rem;
+		width: 100%;
 		iframe{
 				width:300px;
 				height: 200px;
@@ -45,11 +44,13 @@ body,html{
 			&.custom_card_linked{
 				text-decoration: none;
 				color: inherit;
+				width: 100%;
 			}
 		}
 		.custom_card{
 			position: relative;
 			transition: transform 500ms linear;
+			
 			&.cursor{
 				&:hover{
 					cursor: pointer;
@@ -89,6 +90,9 @@ body,html{
 		}
 	}
 
+	footer{
+		color: $white;
+	}
 	.rgbd{
 		position: absolute; 
 		bottom: 0; 
@@ -133,11 +137,13 @@ body,html{
 		header{
 			height: 300px;
 		}
-
-		iframe{
-			width:500px;
-			height: 320px;
+		section.container{
+			iframe{
+				width:500px;
+				height: 320px;
+			}
 		}
+		
 	}
 }
 
