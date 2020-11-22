@@ -15,7 +15,14 @@ use App\Repository\StatRepository;
 
 class LotteryController extends AbstractController
 {
+    /**
+     * @Route("/simulateurs", name="lottery_simulators")
+     */
+    public function index(){
 
+
+        return $this->render("lottery/index.html.twig");
+    }
 
      /**
      * @Route("/simulateur/{lotteryName}",options={"expose"=true}, name="simulateur")
