@@ -30,7 +30,10 @@ class LiveLotoEventType extends AbstractType
                 "label" => "Titre de votre loto"
             ])
             ->add('dateEvent', DateTimeType::class, [
-                "label" => "Date de votre loto"
+                "label" => "Date de votre loto",
+                "widget" => "single_text",
+                "html5" => false,
+                "attr" => ["class" => "single_daterangepicker"]
             ])
             ->add('rules', TextareaType::class, [
                 "label" => "Présentation",

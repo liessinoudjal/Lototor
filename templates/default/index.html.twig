@@ -5,7 +5,7 @@
   <header class="container-fluid d-flex justify-content-center">
   <div class="jumbotron text-center">
     <h1>Lototor</h1>
-    <h2>L'annuaire des lotos associatifs</h2> 
+    <h2>Pour les dingues de loto</h2> 
   </div>
     
   </header>
@@ -14,11 +14,11 @@
 {% block body %}
   <section class="container">
     <div class="d-flex jystify-content-center">
-      <a class="custom_card_linked" href="{{path("lottery_simulators")}}">
+      <a class="custom_card_linked" href="{{path("lotto_calendar")}}">
         <div class="custom_card text-center  cursor">
             <div class="custom_card_header">
-                <h1>Simulateurs de loteries</h1>
-                <p>Lototor c'est aussi des simulateurs de loteries tels que le loto et l'euromillions</p>
+                <h1>L'annuaire des lotos</h1>
+                <p>Retrouvez tous les lotos livre et les lotos en salle de france.</p>
             </div>
             <div class="customer_card_content">
               <p>Mettez vos numéros fétiches à l'épreuve et simulez vos gains sur 10 ans, 50 ans ou même 500ans !!</p>
@@ -41,6 +41,23 @@
             <div class="customer_card_content">
               <p>Mettez vos numéros fétiches à l'épreuve et simulez vos gains sur 10 ans, 50 ans ou même 500ans !!</p>
                 Loto et Euromillions
+            </div>
+
+        </div>
+      </a>
+    </div>
+    {% include 'adsense-horizontale.html' %}
+  </section>
+  <section class="container">
+    <div class="d-flex jystify-content-center">
+      <a class="custom_card_linked" href="{{path("loto_quine")}}">
+        <div class="custom_card text-center  cursor">
+            <div class="custom_card_header">
+                <h1>Cartons loto à imprimer</h1>
+                <p>Gratuitement</p>
+            </div>
+            <div class="customer_card_content">
+              <p>Lototor vous met à disposition un générateur de Cartons, à imprimer gratuitement, pour vos lotos associatifs.</p>
             </div>
 
         </div>
