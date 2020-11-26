@@ -3,8 +3,11 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Form\DataTransformer\DateTimeTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -28,6 +31,16 @@ class RegistrationFormType extends AbstractType
                 'label' => "Pseudo"
                 ]
             )
+            ->add('birthday', DateTimeType::class, [
+                "widget" => "single_text",
+                "label" => "Date de naissance",
+                "help" => "Votre date de naissance est necéssaire pour savoir si vous êtes majeur",
+                // "html5" => false ,
+                'input' => 'datetime',
+                'format' => 'dd-MM-yyyy',
+                "attr" => ["class" => "birthday_flatpickr"]
+
+            ])
             ->add('isAssociation', HiddenType::class /* CheckboxType::class */, [
                 'mapped' => false,
                 'label' => "Je veux organiser des lotos live !",

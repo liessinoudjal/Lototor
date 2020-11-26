@@ -12,6 +12,8 @@ require('../css/account.scss');
 const routes = require('../../public/js/fos_js_routes.json');
 import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
 
+import flatpickr from "flatpickr"
+
 Routing.setRoutingData(routes);
 
 
@@ -27,29 +29,6 @@ modal.on('hide.bs.modal', function () {
     modalBody.innerHTML = loader
     modalTitle.innerHTML = ""
 });
-
-//gestion affichage forumlaire edition infos personnelles
-document.querySelector("#js_edit_info").addEventListener("click",function(e){
-    e.preventDefault();
-    modal.modal("show");
-    modalTitle.innerHTML = "Infos personnelles"
-
-    fetch(Routing.generate("account_render_form_edit"),{
-        method : 'GET',
-        headers: {
-            "X-Requested-With": "XMLHttpRequest"
-        }/* ,
-        body: JSON.stringify( etablissement ) */
-    }).then(function(response){
-        console.log(response)
-        return response.json()
-        // window.location.reload();
-    }).then(function(json){
-        console.log(json)
-        modalBody.innerHTML = json
-    })
-
-})
 
 
 //gestion de l'affichage de la suite des infos personnelles

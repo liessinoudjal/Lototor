@@ -4,8 +4,9 @@ namespace App\EventListener;
 use App\Entity\IndoorLotoEvent;
 use App\Entity\LiveLotoEvent;
 use Doctrine\Common\EventSubscriber;
+use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
-use Doctrine\Persistence\Event\LifecycleEventArgs;
+;
 
 use Symfony\Component\Security\Core\Security ;
 

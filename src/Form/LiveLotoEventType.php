@@ -33,7 +33,7 @@ class LiveLotoEventType extends AbstractType
                 "label" => "Date de votre loto",
                 "widget" => "single_text",
                 "html5" => false,
-                "attr" => ["class" => "single_daterangepicker"]
+                "attr" => ["class" => "single_flatpickr"]
             ])
             ->add('rules', TextareaType::class, [
                 "label" => "Présentation",

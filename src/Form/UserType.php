@@ -3,9 +3,10 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Form\DataTransformer\DateTimeTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,10 +23,14 @@ class UserType extends AbstractType
             ->add('lastName', TextType::class,[
                 "label" => "Nom"
             ])
-            ->add('birthday', BirthdayType::class,[
-                "choice_translation_domain" => true,
+            ->add('birthday', DateTimeType::class,[
+                // "choice_translation_domain" => true,
                 "label" => "Date de naissance",
-                "help" => "Votre date de naissance est necéssaire pour savoir si vous êtes majeur"
+                "help" => "Votre date de naissance est necéssaire pour savoir si vous êtes majeur",
+                "widget" =>"single_text",
+                "input" => "datetime",
+                'format' => 'dd-MM-yyyy',
+                "attr" => ["class" => "birthday_flatpickr"]
             ])
             ->add('phone', TextType::class, [
                 "label" => "Téléphone",

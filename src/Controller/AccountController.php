@@ -106,10 +106,10 @@ class AccountController extends AbstractController
             'method' => 'post',
         ]);
         //on rend le formulaire pour la modal
-        if($request->isXmlHttpRequest()){
+       /*  if($request->isXmlHttpRequest()){
             
             return $this->json( $accountManager->renderEditOrganiserForm($form));
-        }
+        } */
 
         $form->handleRequest($request);
 
@@ -120,9 +120,10 @@ class AccountController extends AbstractController
                 'success',
                 'Infos personnelles enregistrées!'
             );
+            return $this->redirectToRoute('account');
         }
 
-        return $this->redirectToRoute('account');
+        return $this->render("account/edit_user.html.twig", ["form" => $form->createView()]); 
     }
     /**
      * @Route("/resetPassword", name="account_reset_password", options = { "expose" = true })

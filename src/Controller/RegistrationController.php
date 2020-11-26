@@ -22,7 +22,7 @@ class RegistrationController extends AbstractController
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-
+        // dd($form->get('birthday')->getData());
         if ($form->isSubmitted() && $form->isValid()) {
             /* if($form->get('isAssociation')->getData()){
                 $user->setRoles(["ROLE_ORGANIZER"]);

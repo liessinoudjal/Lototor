@@ -42,7 +42,7 @@ Encore
      .addEntry('chartjs', './assets/js/chartjs/chart.js')
      .addEntry('login', './assets/js/login.js')
      .addEntry('account', './assets/js/account.js')
-
+     .addEntry('flatpickr', './assets/js/flatpickr/flatpickr.js')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
