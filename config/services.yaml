@@ -10,6 +10,9 @@ parameters:
         statut: '%env(MAINTENANCE_STATUS)%'
         ipAuthorized: '%env(MAINTENANCE_IP)%'
     token_bearer: '%env(TOKEN_BEARER)%'
+    uploadImageDir: 'live_loto/image_upload'
+    uploadAbsoluteUploadImageDir: '%kernel.project_dir%/public/%uploadImageDir%'
+
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -20,6 +23,8 @@ services:
             $freeLogin: '%freeLogin%'
             $freeKey:  '%freeKey%'
             $bearerToken: '%token_bearer%'
+            $uploadImageDir: '%uploadImageDir%'
+            $uploadAbsoluteUploadImageDir:  '%uploadAbsoluteUploadImageDir%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -43,3 +48,7 @@ services:
     App\EventListener\LotoLifecycleSubscriber:
         tags:
             - { name: 'doctrine.event_subscriber' }
+    
+    App\EntityListener\LotoEventListener:
+        tags:
+            - {name : 'doctrine.orm.entity_listener'}

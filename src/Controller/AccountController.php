@@ -171,8 +171,17 @@ class AccountController extends AbstractController
 
         $liveLotoEvent = new LiveLotoEvent;
         $indoorLotoEvent = new IndoorLotoEvent;
-        $liveLotoForm = $this->createForm(LiveLotoEventType::class, $liveLotoEvent);
-        $indoorLotoForm = $this->createForm(IndoorLotoEventType::class, $indoorLotoEvent); 
+        $liveLotoForm = $this->createForm(LiveLotoEventType::class, $liveLotoEvent)->handleRequest($request);
+        $indoorLotoForm = $this->createForm(IndoorLotoEventType::class, $indoorLotoEvent)->handleRequest($request); 
+
+
+        if($liveLotoForm->isSubmitted() && $liveLotoForm->isValid()){
+            $this->getDoctrine()->getManager()->persist($liveLotoEvent);
+            $this->getDoctrine()->getManager()->flush();
+            // dd($liveLotoEvent);
+            return $this->redirectToRoute('account');
+        }
+        
 
         return $this->render("account/add_loto.html.twig", [
             "liveLotoForm" => $liveLotoForm->createView(), 

@@ -23,7 +23,7 @@ window.onload = () => {
         time_24hr: true,
         minDate: "today",
         maxDate: date1an,
-        dateFormat: "D d M Y à H:i",
+        dateFormat: "d-m-Y H:i",
         minuteIncrement: 15
     });
 }
