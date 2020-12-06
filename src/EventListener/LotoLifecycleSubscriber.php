@@ -3,6 +3,7 @@ namespace App\EventListener;
 
 use App\Entity\IndoorLotoEvent;
 use App\Entity\LiveLotoEvent;
+use App\Entity\LotoEventAbstract;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
@@ -40,8 +41,8 @@ class LotoLifecycleSubscriber implements EventSubscriber
     public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getObject();
-
-        if (!$entity instanceof LiveLotoEvent || !$entity instanceof IndoorLotoEvent) {
+        
+        if (!$entity instanceof LotoEventAbstract) {
             return;
         }
         $user = $this->security->getUser();

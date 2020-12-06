@@ -5,10 +5,11 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\MappedSuperclass
- * 
+ * @ORM\EntityListeners({"App\EntityListener\LotoEventListener"})
  */
 class LotoEventAbstract
 {
@@ -38,6 +39,16 @@ class LotoEventAbstract
      */
     protected $organizer;
 
+    /**
+     * @ORM\Column(type="string", length= 255, nullable= true)
+     */
+    protected $image;
+
+    /**
+     * @var UploadedFile $uploadedImage
+     */
+    protected $uploadedImage;
+    
     public function getTitle(): ?string
     {
         return $this->title;
@@ -99,4 +110,48 @@ class LotoEventAbstract
     }
 
     
+
+    /**
+     * Get the value of image
+     */ 
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set the value of image
+     *
+     * @return  self
+     */ 
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get $uploadedImage
+     *
+     * @return  UploadedFile
+     */ 
+    public function getUploadedImage()
+    {
+        return $this->uploadedImage;
+    }
+
+    /**
+     * Set $uploadedImage
+     *
+     * @param  UploadedFile  $uploadedImage  $uploadedImage
+     *
+     * @return  self
+     */ 
+    public function setUploadedImage(UploadedFile $uploadedImage)
+    {
+        $this->uploadedImage = $uploadedImage;
+
+        return $this;
+    }
 }

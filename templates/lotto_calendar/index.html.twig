@@ -12,6 +12,7 @@
   <div class="jumbotron text-center">
     <h1>Agenda des loto live de france</h1>
     <p>Trouvez les lotos live organiséés par les associations</p> 
+   
   </div>
     
   </header>
@@ -19,12 +20,21 @@
 
 {% block body %}
 
-    <section class="container jumbotron">
-         
-        {% include 'adsense-horizontale.html' %}
+    <main class="container ">
+      {% include 'adsense-horizontale.html' %}
+      <section class="d-flex flex-row">
+       {% for lotoEvent in liveLotoEvents%}
+          <article class="card d-flex justify-content-between" style="width:400px">
+              {# {{dump(lotoEvent)}} #}
+                <img class="card-img-top" src="{{ asset('live_loto/image_upload/') ~ lotoEvent.image }}"alt="Card image" height="200">
+              <div class="card-body">
+                <h2 class="card-title">{{lotoEvent.title}}</h2>
+                <p class="card-text">{{lotoEvent.rules}}</p>
+                <a href="#" class="btn btn-primary stretched-link">See Profile</a>
+          </article>
+        {% endfor %}
+      </section>
        
              
-    </section>
-  
-
+    </main>
 {% endblock %}

@@ -39,6 +39,8 @@ class LiveLotoEvent extends LotoEventAbstract
 
     
 
+    
+
     public function __construct()
     {
         $this->parties = new ArrayCollection();

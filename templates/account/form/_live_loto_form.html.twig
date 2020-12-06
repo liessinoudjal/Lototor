@@ -1,0 +1,59 @@
+ <div class="form">
+    {{ form_start(form) }}
+        
+            <div class="row">
+                <div class="form-group row col-md-6">
+                   
+                    <div class="col-md-12">
+                        {{ form_label(form.title) }} :
+                        <div class="invalid-feedback">
+                            {{ form_errors(form.title) }}
+                        </div>
+                        {{ form_widget(form.title) }}
+
+                        <small>{{ form_help(form.title) }}</small>
+                        
+                    </div>
+                </div>
+                <div class="form-group row col-md-6">
+                    <div class="col-md-12">
+                        {{ form_label(form.dateEvent) }} :
+                        <div class="invalid-feedback">
+                            {{ form_errors(form.dateEvent) }}
+                        </div>
+                        {{ form_widget(form.dateEvent) }}
+
+                        <small>{{ form_help(form.dateEvent) }}</small> 
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group row col-md-8">
+                    <div class="col-md-12">
+                        {{ form_label(form.rules) }} :
+                        <div class="invalid-feedback">
+                            {{ form_errors(form.rules) }}
+                        </div>
+                        {{ form_widget(form.rules) }}
+
+                        <small>{{ form_help(form.rules) }}</small>
+                        
+                    </div>
+                </div>
+                <div class="form-group row col-md-4">
+                    <div class="col-md-12">
+                        {{ form_label(form.uploadedImage) }} :
+                        <div class="invalid-feedback">
+                            {{ form_errors(form.uploadedImage) }}
+                        </div>
+                        {{ form_widget(form.uploadedImage) }}
+
+                        <small>{{ form_help(form.uploadedImage) }}</small> 
+                    </div>
+                </div>
+            </div>
+            {{ form_widget(form) }}
+        <button class="btn btn-primary btn-block">{{ button_label }}</button>
+    {{ form_end(form) }}
+    
+</div>
