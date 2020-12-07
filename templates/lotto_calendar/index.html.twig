@@ -26,8 +26,9 @@
        {% for lotoEvent in liveLotoEvents%}
           <article class="card d-flex justify-content-between" style="width:400px">
               {# {{dump(lotoEvent)}} #}
-                <img class="card-img-top" src="{{ asset('live_loto/image_upload/') ~ lotoEvent.image }}"alt="Card image" height="200">
+                
               <div class="card-body">
+              <img class="" src="{{ asset('live_loto/image_upload/') ~ lotoEvent.image }}"alt="Card image" height="200">
                 <h2 class="card-title">{{lotoEvent.title}}</h2>
                 <p class="card-text">{{lotoEvent.rules}}</p>
                 <a href="#" class="btn btn-primary stretched-link">See Profile</a>
