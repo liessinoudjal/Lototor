@@ -6,16 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\IndoorLotoEventRepository")
- * @ORM\AssociationOverrides({
- *      @ORM\AssociationOverride(name="organizer", inversedBy="indoorLotoEvents",
- *          joinColumns=@ORM\JoinColumn(
- *              name="indoor_organizer_id", referencedColumnName="id"
- *          )
- *      )
- * })
  * 
  */
-class IndoorLotoEvent extends LotoEventAbstract
+class IndoorLotoEvent extends LotoEvent
 {
     /**
      * @ORM\Id()

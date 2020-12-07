@@ -3,8 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Association;
-use App\Entity\LiveLotoEvent;
-use App\Repository\AssociationRepository;
+use App\Entity\LotoEvent;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -17,7 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Validator\Constraints\File;
 
-class LiveLotoEventType extends AbstractType
+class LotoEventType extends AbstractType
 {
 
     private $security;
@@ -84,7 +83,7 @@ class LiveLotoEventType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => LiveLotoEvent::class,
+            'data_class' => LotoEvent::class,
         ]);
     }
 }

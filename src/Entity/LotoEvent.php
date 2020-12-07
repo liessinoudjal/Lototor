@@ -7,17 +7,13 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\LiveLotoEventRepository")
- * @ORM\AssociationOverrides({
- *      @ORM\AssociationOverride(name="organizer", inversedBy="liveLotoEvents",
- *          joinColumns=@ORM\JoinColumn(
- *              name="live_organizer_id", referencedColumnName="id"
- *          )
- *      )
- * })
- * 
+ * @ORM\Entity(repositoryClass="App\Repository\LotoEventRepository")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({"live" = "LotoEvent", "indoor" = "IndoorLotoEvent"})
+ * @ORM\EntityListeners({"App\EntityListener\LotoEventListener"})
  */
-class LiveLotoEvent extends LotoEventAbstract
+class LotoEvent extends LotoEventAbstract
 {
     /**
      * @ORM\Id()
@@ -36,10 +32,6 @@ class LiveLotoEvent extends LotoEventAbstract
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $url;
-
-    
-
-    
 
     public function __construct()
     {

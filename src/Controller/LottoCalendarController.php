@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\LiveLotoEventRepository;
+use App\Repository\LotoEventRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -11,7 +11,7 @@ class LottoCalendarController extends AbstractController
     /**
      * @Route("/lotto/calendar", name="lotto_calendar")
      */
-    public function index(LiveLotoEventRepository $liveLotoEventRepository)
+    public function index(LotoEventRepository $liveLotoEventRepository)
     {
         ;
         return $this->render('lotto_calendar/index.html.twig', [

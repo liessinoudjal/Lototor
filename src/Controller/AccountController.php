@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Association;
 use App\Entity\IndoorLotoEvent;
-use App\Entity\LiveLotoEvent;
+use App\Entity\LotoEvent;
 use App\Form\IndoorLotoEventType;
-use App\Form\LiveLotoEventType;
+use App\Form\LotoEventType;
 use App\Form\ResetPasswordType;
 use App\Form\UserType;
 use App\Lototo\Manager\AccountManager;
@@ -169,9 +169,9 @@ class AccountController extends AbstractController
      */
     public function addLoto(Request $request){
 
-        $liveLotoEvent = new LiveLotoEvent;
+        $liveLotoEvent = new LotoEvent;
         $indoorLotoEvent = new IndoorLotoEvent;
-        $liveLotoForm = $this->createForm(LiveLotoEventType::class, $liveLotoEvent)->handleRequest($request);
+        $liveLotoForm = $this->createForm(LotoEventType::class, $liveLotoEvent)->handleRequest($request);
         $indoorLotoForm = $this->createForm(IndoorLotoEventType::class, $indoorLotoEvent)->handleRequest($request); 
 
 

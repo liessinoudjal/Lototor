@@ -22,7 +22,7 @@ class Partie
     private $title;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\LiveLotoEvent", inversedBy="parties")
+     * @ORM\ManyToOne(targetEntity="App\Entity\LotoEvent", inversedBy="parties")
      * @ORM\JoinColumn(nullable=false)
      */
     private $liveLotoEvent;
@@ -44,12 +44,12 @@ class Partie
         return $this;
     }
 
-    public function getLiveLotoEvent(): ?LiveLotoEvent
+    public function getLiveLotoEvent(): ?LotoEvent
     {
         return $this->liveLotoEvent;
     }
 
-    public function setLiveLotoEvent(?LiveLotoEvent $liveLotoEvent): self
+    public function setLiveLotoEvent(?LotoEvent $liveLotoEvent): self
     {
         $this->liveLotoEvent = $liveLotoEvent;
 

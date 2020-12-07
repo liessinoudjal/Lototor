@@ -1,8 +1,6 @@
 <?php
 namespace App\EventListener;
 
-use App\Entity\IndoorLotoEvent;
-use App\Entity\LiveLotoEvent;
 use App\Entity\LotoEventAbstract;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;

@@ -7,10 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-/**
- * @ORM\MappedSuperclass
- * @ORM\EntityListeners({"App\EntityListener\LotoEventListener"})
- */
+
 class LotoEventAbstract
 {
     /**
@@ -34,7 +31,7 @@ class LotoEventAbstract
     protected $rules;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="lotoEvents")
      * @ORM\JoinColumn(name="organizer_id", referencedColumnName="id",nullable=false)
      */
     protected $organizer;
