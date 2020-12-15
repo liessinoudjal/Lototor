@@ -2,13 +2,11 @@
     <h2>Lotos organisés <span class="badge badge-pill badge-primary"> {{user.lotoEvents|length}} </span> </h2>
     {% if user.canOrganize() %}
         <a class="btn btn-primary cursor angle-r" href="{{ path("account_add_loto")}}" id="js_add_loto" title="Ajouter un loto"><i class="fas fa-plus"></i></a>
-        {% for type,lotos in user.lotoEvents %}
-            <h3>{{type}}</h3>
-            {% for loto in lotos %}
+       
+        {% for loto in user.lotoEvents %}
             <li>
                 <a>{{ loto.title }}</a>
             </li>
-            {% endfor %}
 
         {% else %}
             <li>Vous n'avez pas encore créé de loto</li>

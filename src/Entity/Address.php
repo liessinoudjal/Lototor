@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AddressRepository")
@@ -18,28 +19,27 @@ class Address
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank( groups = {"loto.create.indoor"}, message = "Veuillez renseigner votre rue.")
      */
     private $street;
 
     /**
      * @ORM\Column(type="string", length=5)
+     * @Assert\NotBlank(groups={ "loto.create.indoor"}, message = "Veuillez renseigner votre code postal")
      */
     private $postalCode;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank(groups={"loto.create.indoor"}, message = "Veuillez renseigner votre ville")
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     * @Assert\NotBlank(groups={ "loto.create.indoor"}, message ="Veuillez renseigner votre pays.")
      */
     private $country;
-
-    public function __construct()
-    {
-        $this->country = "France";
-    }
 
     public function getId(): ?int
     {

@@ -1,54 +1,116 @@
  <div class="form">
     {{ form_start(form) }}
-        
             <div class="row">
                 <div class="form-group row col-md-6">
-                   
                     <div class="col-md-12">
-                        {{ form_label(form.title) }} :
-                        <div class="invalid-feedback">
-                            {{ form_errors(form.title) }}
-                        </div>
+                        {{ form_label(form.title) }} 
+                       
                         {{ form_widget(form.title) }}
 
                         <small>{{ form_help(form.title) }}</small>
                         
                     </div>
                 </div>
-                <div class="form-group row col-md-6">
+                <div class="form-group row col-md-3">
                     <div class="col-md-12">
-                        {{ form_label(form.dateEvent) }} :
-                        <div class="invalid-feedback">
-                            {{ form_errors(form.dateEvent) }}
-                        </div>
+                        {{ form_label(form.dateEvent) }} 
+                        
                         {{ form_widget(form.dateEvent) }}
 
                         <small>{{ form_help(form.dateEvent) }}</small> 
                     </div>
                 </div>
+                <div class="form-group row col-md-3">
+                    <div class="col-md-12">
+                        {{ form_label(form.association) }} 
+                       
+                        {{ form_widget(form.association) }}
+
+                        <small>{{ form_help(form.association) }}</small> 
+                    </div>
+                </div>
             </div>
             <div class="row">
-                <div class="form-group row col-md-8">
-                    <div class="col-md-12">
-                        {{ form_label(form.rules) }} :
-                        <div class="invalid-feedback">
-                            {{ form_errors(form.rules) }}
-                        </div>
+                <div class="col-md-6">
+                    {{ form_row(form.isLiveEvent) }}        
+                </div>
+                <div class="form-group col-md-6">
+                {# <div class="col-md-12"> #}
+                    {{ form_label(form.uploadedImage) }} 
+                        
+                    {{ form_widget(form.uploadedImage) }}
+
+                    <small>{{ form_help(form.uploadedImage) }}</small> 
+                {# </div> #}
+                </div>
+        </div>
+            <div class="row">
+                <div class="form-group row col-md-12">
+                        {{ form_label(form.rules) }} 
+                       
                         {{ form_widget(form.rules) }}
 
-                        <small>{{ form_help(form.rules) }}</small>
+                        <small>{{ form_help(form.rules) }}</small>  
+                </div>
+               
+            </div>
+            <div class="row">
+                <div class="form-group row col-md-12">
+                        {{ form_label(form.url) }} 
+                      
+                        {{ form_widget(form.url) }}
+
+                        <small>{{ form_help(form.url) }}</small>  
+                </div>
+               
+            </div>
+             <div class="row">
+             {# {{ form_help(form.address) }}  #}
+                <div class="form-group row col-md-9">
+                    <div class="col-md-12">
+                        {{ form_label(form.address.street) }} 
+                      
+                        {{ form_widget(form.address.street) }}
+
+                        <small>{{ form_help(form.address.street) }}</small>
                         
                     </div>
                 </div>
-                <div class="form-group row col-md-4">
+                
+            </div>
+             <div class="row">
+                <div class="form-group row col-md-3">
                     <div class="col-md-12">
-                        {{ form_label(form.uploadedImage) }} :
-                        <div class="invalid-feedback">
-                            {{ form_errors(form.uploadedImage) }}
+                        {{ form_label(form.address.postalCode) }} 
+                        <div class="text-danger">
+                            {{ form_errors(form.address.postalCode) }}
                         </div>
-                        {{ form_widget(form.uploadedImage) }}
+                        {{ form_widget(form.address.postalCode) }}
 
-                        <small>{{ form_help(form.uploadedImage) }}</small> 
+                        <small>{{ form_help(form.address.postalCode) }}</small> 
+                    </div>
+                </div>
+                <div class="form-group row col-md-6">
+                    <div class="col-md-12">
+                        {{ form_label(form.address.city) }} 
+                        <div class="text-danger">
+                            {{ form_errors(form.address.city) }}
+                        </div>
+                        {{ form_widget(form.address.city) }}
+
+                        <small>{{ form_help(form.address.city) }}</small>
+                        
+                    </div>
+                </div>
+                <div class="form-group row col-md-3">
+                    <div class="col-md-12">
+                        {{ form_label(form.address.country) }} 
+                        <div class="text-danger">
+                            {{ form_errors(form.address.country) }}
+                        </div>
+                        {{ form_widget(form.address.country) }}
+
+                        <small>{{ form_help(form.address.country) }}</small> 
                     </div>
                 </div>
             </div>

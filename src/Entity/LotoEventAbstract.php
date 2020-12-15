@@ -2,37 +2,42 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 class LotoEventAbstract
 {
+    const LIVE_GROUP = "loto.create.live";
+    const INDOOR_GROUP = "loto.create.indoor";
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(groups={"loto.create.live", "loto.create.indoor"}, message="Veuillez donner un titre à votre loto")
      */
     protected $title;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank(groups={"loto.create.live", "loto.create.indoor"}, message="Sélectionnez une date et une heure pour votre événement")
      */
     protected $dateEvent;
 
     /**
      * @ORM\Column(type="datetime")
+     *
      */
     protected $createAt;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(groups={"loto.create.live", "loto.create.indoor"}, message="veuillez remplir une description de votre événement.")
      */
     protected $rules;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="lotoEvents")
      * @ORM\JoinColumn(name="organizer_id", referencedColumnName="id",nullable=false)
+     * 
      */
     protected $organizer;
 

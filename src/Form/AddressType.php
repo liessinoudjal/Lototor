@@ -14,7 +14,7 @@ class AddressType extends AbstractType
     {
         $builder
             ->add('street', TextType::class, [
-                "label" => "Rue",
+                "label" => "Address",
                 
                 "attr" => ["placeholder" => "2 rue du loto chanceux"]
             ])

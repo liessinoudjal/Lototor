@@ -17,6 +17,7 @@ $gray-800: #333 !default;
 $gray-900: #212529 !default;
 $black:    #000 !default;
 
+$french_blue: #0055A4 !default;
 $blue:    #007bff !default;
 $indigo:  #6610f2 !default;
 $purple:  #6f42c1 !default;
@@ -36,7 +37,7 @@ $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
 
 // $primary:       $gray-800 !default;
-$primary:       $yellow !default;
+$primary:       $french_blue !default;
 $secondary:     $gray-700 !default;
 $success:       $green !default;
 $info:          $cyan !default;

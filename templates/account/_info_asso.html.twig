@@ -1,8 +1,8 @@
 <div class="custom_card ">
-    <h2>Mon association  <span class="badge badge-pill badge-primary"> {{user.associations|length}} </span></h2>
-    <a class="btn btn-primary cursor angle-r" id="js_btn_add_association" title="Ajouter une association" 
+    <h2>Association  <span class="badge badge-pill badge-primary"> {{user.associations|length}} </span></h2>
+    <a class="btn btn-primary cursor angle-r" id="js_btn_add_association" title="Ajouter une association"> 
         {# on bloque pour l'instant l'affiliation à plus d'une association  #}
-        {% if user.associations|length > 0 %} style="display:none;"{% endif %} >
+        {# {% if user.associations|length > 0 %} style="display:none;"{% endif %} > #}
         <i class="fas fa-plus"></i>
     </a>
         

@@ -167,25 +167,26 @@ class AccountController extends AbstractController
      * @Route("/add_loto", name= "account_add_loto",  options = { "expose" = true })
      * 
      */
-    public function addLoto(Request $request){
+    public function addLoto(Request $request, EntityManagerInterface $em){
 
         $liveLotoEvent = new LotoEvent;
-        $indoorLotoEvent = new IndoorLotoEvent;
-        $liveLotoForm = $this->createForm(LotoEventType::class, $liveLotoEvent)->handleRequest($request);
-        $indoorLotoForm = $this->createForm(IndoorLotoEventType::class, $indoorLotoEvent)->handleRequest($request); 
+        /* $validationGroups= ['validation_groups' =>['Default','loto.create.indoor']];
+        if($request->get("isLiveEvent",false)){
+            $validationGroups= ['validation_groups' => ['Default','loto.create.live']];
+        } */
+        $liveLotoForm = $this->createForm(LotoEventType::class, $liveLotoEvent/* ,$validationGroups */)->handleRequest($request);
 
 
         if($liveLotoForm->isSubmitted() && $liveLotoForm->isValid()){
-            $this->getDoctrine()->getManager()->persist($liveLotoEvent);
-            $this->getDoctrine()->getManager()->flush();
-            // dd($liveLotoEvent);
-            return $this->redirectToRoute('account');
+            $em->persist($liveLotoEvent);
+            $em->flush();
+            // return $this->redirectToRoute('account');
         }
         
 
         return $this->render("account/add_loto.html.twig", [
             "liveLotoForm" => $liveLotoForm->createView(), 
-            "indoorLotoForm" => $indoorLotoForm->createView()
+           
             ]);
     }
 }

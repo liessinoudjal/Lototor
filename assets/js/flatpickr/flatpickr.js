@@ -24,6 +24,9 @@ window.onload = () => {
         minDate: "today",
         maxDate: date1an,
         dateFormat: "d-m-Y H:i",
-        minuteIncrement: 15
+        minuteIncrement: 15,
+        /* onChange: function(selectedDates, dateStr, instance) {
+            instance.close();
+        } */
     });
 }
