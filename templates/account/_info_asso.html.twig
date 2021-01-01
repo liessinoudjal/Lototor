@@ -5,7 +5,15 @@
         {# {% if user.associations|length > 0 %} style="display:none;"{% endif %} > #}
         <i class="fas fa-plus"></i>
     </a>
-        
+    <form method="post" action="{{ path('account_ajax_add_association')}}" class="mt-2"id="js_form_add_association"style="display:none">
+        <div class="form-group " >
+            <label for="siret">Code RNA de votre association</label>
+            <input class="form-control" type="text" 
+                name="siret" id="siret" maxlength="10" autocomplete="off" 
+                required placeholder="WXXXXXXXXX"/>
+        </div>
+        <button class="btn btn-primary"type="submit" name="newAssociationSubmit"  >Ajouter</button>
+    </form>
         {% for asso in user.associations %}
             <div class="row mb-2 customer_card_content">
             <div class="col-sm-10">
@@ -27,13 +35,5 @@
             <li>Vous n'avez pas encore d'association</li>
         {% endfor %}
     </ul>
-    <form method="post" action="{{ path('account_ajax_add_association')}}" class="mt-2"id="js_form_add_association"style="display:none">
-        <div class="form-group " >
-            <label for="siret">Code RNA de votre association</label>
-            <input class="form-control" type="text" 
-                name="siret" id="siret" maxlength="10" autocomplete="off" 
-                required placeholder="WXXXXXXXXX"/>
-        </div>
-        <button class="btn btn-primary"type="submit" name="newAssociationSubmit"  >Ajouter</button>
-    </form>
+    
 </div>

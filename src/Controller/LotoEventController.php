@@ -6,16 +6,16 @@ use App\Repository\LotoEventRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class LotoCalendarController extends AbstractController
+class LotoEventController extends AbstractController
 {
     /**
      * @Route("/loto/agenda", name="lotto_calendar")
      */
-    public function index(LotoEventRepository $liveLotoEventRepository)
+    public function index(LotoEventRepository $lotoEventRepository)
     {
         
-        return $this->render('lotto_calendar/index.html.twig', [
-            'liveLotoEvents' => $liveLotoEventRepository->findAll(),
+        return $this->render('loto_event/index.html.twig', [
+            'liveLotoEvents' => $lotoEventRepository->findAll(),
         ]);
     }
 }

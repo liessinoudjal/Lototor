@@ -22,17 +22,9 @@
 
     <main class="container ">
       {% include 'adsense-horizontale.html' %}
-      <section class="d-flex flex-row">
-       {% for lotoEvent in liveLotoEvents%}
-          <article class="card d-flex justify-content-between" style="width:400px">
-              {# {{dump(lotoEvent)}} #}
-                
-              <div class="card-body">
-              <img class="" src="{{ asset('live_loto/image_upload/') ~ lotoEvent.image }}"alt="Card image" height="200">
-                <h2 class="card-title">{{lotoEvent.title}}</h2>
-                <p class="card-text">{{lotoEvent.rules}}</p>
-                <a href="#" class="btn btn-primary stretched-link">See Profile</a>
-          </article>
+      <section class="d-flex flex-column container">
+       {% for lotoEvent in liveLotoEvents %}
+          {% include 'account/_loto_card.html.twig' %}
         {% endfor %}
       </section>
        

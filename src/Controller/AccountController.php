@@ -165,28 +165,48 @@ class AccountController extends AbstractController
 
     /**
      * @Route("/add_loto", name= "account_add_loto",  options = { "expose" = true })
+     *
      * 
      */
     public function addLoto(Request $request, EntityManagerInterface $em){
 
-        $liveLotoEvent = new LotoEvent;
-        /* $validationGroups= ['validation_groups' =>['Default','loto.create.indoor']];
-        if($request->get("isLiveEvent",false)){
-            $validationGroups= ['validation_groups' => ['Default','loto.create.live']];
-        } */
-        $liveLotoForm = $this->createForm(LotoEventType::class, $liveLotoEvent/* ,$validationGroups */)->handleRequest($request);
-
+        $lotoEvent = new LotoEvent;
+        
+        $liveLotoForm = $this->createForm(LotoEventType::class, $lotoEvent)->handleRequest($request);
 
         if($liveLotoForm->isSubmitted() && $liveLotoForm->isValid()){
-            $em->persist($liveLotoEvent);
+            $em->persist($lotoEvent);
             $em->flush();
-            // return $this->redirectToRoute('account');
+            $this->addFlash('success', 'Loto créé!');
+            return $this->redirectToRoute('account');
         }
         
 
-        return $this->render("account/add_loto.html.twig", [
+        return $this->render("account/loto_form.html.twig", [
             "liveLotoForm" => $liveLotoForm->createView(), 
-           
+            "buttonLabel" => "Publier"
+            ]);
+    }
+    /**
+     * @Route("/edit_loto/{id}", name= "account_edit_loto"
+     * , requirements={"id"="\d+"})
+     * 
+     */
+    public function editLoto(Request $request, EntityManagerInterface $em, LotoEvent $lotoEvent){
+
+        $liveLotoForm = $this->createForm(LotoEventType::class, $lotoEvent)->handleRequest($request);
+
+        if($liveLotoForm->isSubmitted() && $liveLotoForm->isValid()){
+            $em->persist($lotoEvent);
+            $em->flush();
+            $this->addFlash('success', 'Loto modifié!');
+            return $this->redirectToRoute('account');
+        }
+        
+
+        return $this->render("account/loto_form.html.twig", [
+            "liveLotoForm" => $liveLotoForm->createView(), 
+            "buttonLabel" => "Modifier"
             ]);
     }
 }

@@ -16,25 +16,33 @@
 <section  class="container jumbotron" id="js_account_page" data-type-account="{{typeAccount}}">
 {# {{dump(user)}} #}
 <h1 >Mon compte</h1>
-    <div class="row">
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#profil">Profil</a>
+  </li>
     {% if is_granted("ROLE_ORGANIZER") %}
-        <div class="col-md-6">
-             {% include 'account/_info_asso.html.twig'  %}
-        </div>
-    {% endif %}
-        <div class=" col-md-6" > 
-            {% include 'account/_info_perso.html.twig'  %}
-        </div>
-        
-    </div>
-
-    <div class="row">
-    {%  if is_granted("ROLE_ORGANIZER") %}
-        <div class="col-md-6" > 
-             {% include 'account/_info_list_loto.html.twig'  %}
-        </div>
-    {% endif %}
-    </div>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#associations">Associations</a>
+    </li>
+  {% endif %}
+    {% if is_granted("ROLE_ORGANIZER") %}
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#lotos">Mes lotos</a>
+    </li>
+  {% endif %}
+</ul>
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade active show" id="profil">
+    {% include 'account/_info_perso.html.twig'  %}
+  </div>
+  <div class="tab-pane fade " id="associations">
+    {% include 'account/_info_asso.html.twig'  %}
+  </div>
+  <div class="tab-pane fade " id="lotos">
+    {% include 'account/_info_list_loto.html.twig'  %}
+  </div>
+</div>
+   
     {% include 'account/modal/_account_modal.html.twig'  %}
 </section>
 

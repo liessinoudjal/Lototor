@@ -29,7 +29,10 @@
         "symfony/web-link": "4.4.*",
         "symfony/webpack-encore-bundle": "^1.6",
         "symfony/yaml": "4.4.*",
-        "tecnickcom/tcpdf": "^6.3"
+        "tecnickcom/tcpdf": "^6.3",
+        "twig/extra-bundle": "^3.1",
+        "twig/intl-extra": "^3.1",
+        "twig/string-extra": "^3.1"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.2",

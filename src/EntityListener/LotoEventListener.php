@@ -1,28 +1,34 @@
 <?php
 namespace App\EntityListener;
 
-use App\Entity\LotoEventAbstract;
+use App\Entity\LotoEvent;
+
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\Security\Core\Security ;
 
 class LotoEventListener {
 
     private $uploadAbsoluteUploadImageDir;
     private $uploadImageDir;
+    private $security;
 
-    public function __construct(string $uploadImageDir,string $uploadAbsoluteUploadImageDir) {
+    public function __construct(string $uploadImageDir,string $uploadAbsoluteUploadImageDir, Security $security) {
         $this->uploadImageDir = $uploadImageDir;
         $this->uploadAbsoluteUploadImageDir = $uploadAbsoluteUploadImageDir;
+        $this->security = $security;
     }
 
-    public function prePersist (LotoEventAbstract $lotoEvent){
+    public function prePersist (LotoEvent $lotoEvent){
+        $this->upload($lotoEvent);
+        $lotoEvent->setCreateAt(new \DateTime);
+        $lotoEvent->setOrganizer($this->security->getUser());
+    }
+
+    public function preUpdate (LotoEvent $lotoEvent){
         $this->upload($lotoEvent);
     }
 
-    public function preUpdate (LotoEventAbstract $lotoEvent){
-        $this->upload($lotoEvent);
-    }
-
-    public function upload(LotoEventAbstract $lotoEvent){
+    public function upload(LotoEvent $lotoEvent){
         // dd($lotoEvent);
           /** @var UploadedFile $imageFile */
           $imageFile = $lotoEvent->getUploadedImage();

@@ -29,7 +29,7 @@ class LotoEventType extends AbstractType
     }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // dd($options);
+        //  dd($options);
         $builder
             ->add('title', TextType::class,[
                 "label" => "Titre de votre loto"
@@ -48,14 +48,14 @@ class LotoEventType extends AbstractType
                             "rows" => 7
                     ]
             ])
-            ->add('url', TextType::class, [
+           /*  ->add('url', TextType::class, [
                 "label" => "Lien pour suivre votre direct",
                 "required" => false
-            ])
+            ]) */
             ->add("association", EntityType::class, [
                 "label" => "Association",
                 "class" => Association::class,
-                "mapped" => false,
+                "mapped" => true,
                 'choice_label' => 'name',
                 'multiple' => false,
                 'expanded' => false,
@@ -70,7 +70,7 @@ class LotoEventType extends AbstractType
                 "label" => "Affiche publicitaire de votre loto (PDF, PNG ou JPG)",
                 'constraints' => [
                     new File([
-                        'maxSize' => '1024k',
+                        'maxSize' => '6024k',
                         'mimeTypes' => [
                             'application/pdf',
                             'application/x-pdf',
@@ -86,10 +86,10 @@ class LotoEventType extends AbstractType
             ->add('address', AddressType::class,[
                 "help" => "Addresse où se déroule le loto",
                 "required" => false,
-                'constraints' => new \Symfony\Component\Validator\Constraints\Valid(),
+                'constraints' => [new \Symfony\Component\Validator\Constraints\Valid()],
             ])
             ->add("isLiveEvent", CheckboxType::class,[
-               "label" => "Loto Live (sur internet).",
+               "label" => "Loto en ligne.",
                "attr" => ["class" => "custom-control-input"],
                "label_attr" => ["class" => "custom-control-label"],
                "row_attr" => ["class" => "custom-control custom-switch"],
@@ -103,14 +103,14 @@ class LotoEventType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => LotoEvent::class,
-            'validation_groups' => function (FormInterface $form) {
+           /*  'validation_groups' => function (FormInterface $form) {
                 $data = $form->getData();
                 if ($data->getIsLiveEvent()) {
                     return [LotoEvent::LIVE_GROUP];
                 }
     
                 return [LotoEvent::INDOOR_GROUP];
-            },
+            }, */
             
         ]);
     }

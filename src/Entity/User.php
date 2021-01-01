@@ -68,7 +68,7 @@ class User implements UserInterface
     protected $lastName;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\LotoEvent", mappedBy="organizer" , fetch = "EAGER")
+     * @ORM\OneToMany(targetEntity="App\Entity\LotoEvent", mappedBy="organizer" , fetch = "LAZY")
      */
     private $lotoEvents;
 

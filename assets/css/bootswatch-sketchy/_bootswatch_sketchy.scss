@@ -13,9 +13,21 @@ $border-radius-lg-sketchy: 555px 25px 15px 25px / 25px 5px 35px 555px !important
 $border-radius-sm-sketchy: 255px 25px 225px 25px / 25px 225px 25px 255px !important;
 // style-enable scss/dollar-variable-default
 
+html{
+  height: 100%;
+}
 // Navbar ======================================================================
 body{
   font-family: $headings-font-family;
+  min-height: 100%;
+	position: relative;
+	padding: 0;
+	margin: 0;
+}
+footer{
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
 }
 .navbar {
   border-width: 2px;
@@ -326,9 +338,10 @@ select.form-control {
 .nav-tabs {
   .nav-link {
     border-radius: 45px 15px 225px 5px/25px 225px 25px 255px;
-    // border: 1px solid #333;
+    border: 2px solid transparent;
     &.active{
-      background-color: $gray-400;
+      background-color: $blue;
+      color: white;
     }
   }
   
