@@ -2,6 +2,9 @@
 {% block title %}
  {{parent()}}   - Simulateur {{state.lotteryName}}
 {% endblock %}
+{% block metaDescription %}
+   Page permettant de jouer gratuitement et de simuler ses gains à {{state.lotteryName}}. Le simulateur simule vos gains pour une période donnée et ne permet pas de prédire les tirages des futurs lotos.
+{% endblock %}
 
 {% block stylesheets %}
       {{ encore_entry_link_tags('AppComponent') }}

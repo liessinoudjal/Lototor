@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block title %}
- {{parent()}}   -  Agenda des lotos live de France
+ Lototor - Agenda des lotos associatifs de France
 {% endblock %}
 
 {% block metaDescription %}
-
+  {% for lotoEvent in liveLotoEvents %}
+    loto {{lotoEvent.title}} en {{lotoEvent.isLiveEvent? "ligne": "salle"}} du {{lotoEvent.dateEvent| format_datetime("full", 'medium', locale='fr', timezone='Europe/Paris')}} organisé par  {{lotoEvent.organizer.username}},
+  {% endfor %}
 {% endblock %}
 {% block stylesheets %}
       {{ encore_entry_link_tags('modalImage') }}

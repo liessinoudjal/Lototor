@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{buttonLabel}} un loto{% endblock %}
+{% block metaRobots %}
+   <meta name="robots" content="noindex,nofollow">
+{% endblock %}
+
 
 {% block body %}
 <section  class="container jumbotron">

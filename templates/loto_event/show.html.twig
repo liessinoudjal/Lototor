@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block title %}
- {{parent()}}   -  Agenda des lotos live de France
+ loto {{lotoEvent.title}} en {{lotoEvent.isLiveEvent? "ligne": "salle"}} du {{lotoEvent.dateEvent| format_datetime("full", 'medium', locale='fr', timezone='Europe/Paris')}} organisé par  {{lotoEvent.organizer.username}}
 {% endblock %}
 
 {% block metaDescription %}
-
+   loto {{lotoEvent.title}} en {{lotoEvent.isLiveEvent? "ligne": "salle"}} du {{lotoEvent.dateEvent| format_datetime("full", 'medium', locale='fr', timezone='Europe/Paris')}} organisé par  {{lotoEvent.organizer.username}}
 {% endblock %}
 
 {% block stylesheets %}
@@ -17,8 +17,8 @@
   <!-- Header -->
   <header class="container-fluid d-flex justify-content-center">
   <div class="jumbotron text-center">
-    <h1>Agenda des lotos associatifs de france</h1>
-    <p>Trouvez les lotos organisés par les associations</p> 
+    <h1>{{lotoEvent.title}}</h1>
+    <p>Loto {{lotoEvent.title}} en {{lotoEvent.isLiveEvent? "ligne": "salle"}} du {{lotoEvent.dateEvent| format_datetime("full", 'medium', locale='fr', timezone='Europe/Paris')}}</p> 
    
   </div>
     

@@ -14,10 +14,13 @@
         {% include 'adsense.html' %}
         
 
-        <title>{% block title %}LototoR - Simulateur de loterie {% endblock %}</title>
+        <title>{% block title %}LototoR - Simulateur de loterie - agenda des loto quine {% endblock %}</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="{% block metaDescription %}Agenda des lotos Live, loto quine. Simulateur de loteries loto et Euromillion.{% endblock %}">
+        {% block metaRobots %}
+        {% endblock %}
+
         <meta name="author" content="Liess INOUDJAL">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         

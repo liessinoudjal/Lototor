@@ -22,7 +22,7 @@
      
     {% if app.user %}
         {% if lotoEvent.isOwner(app.user.id) %}
-            <p><a href="{{path("account_edit_loto", {id : lotoEvent.id})}}" class="btn btn-primary ">Modifier</a></p>
+            <p><a rel="nofollow" href="{{path("account_edit_loto", {id : lotoEvent.id})}}" class="btn btn-primary ">Modifier</a></p>
         {% endif %}
     {% endif %}    
     </div>
