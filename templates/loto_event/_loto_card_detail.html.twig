@@ -1,0 +1,35 @@
+<article class="card">
+    <div class="card-body row">
+    <div class="col-md-4">
+        <img class="img-thumbnail" src="{{ asset('loto_event/image_upload/') ~ lotoEvent.image }}"alt="Card image" height="200">
+        <p class="bagde badge-light ">{{lotoEvent.dateEvent| format_datetime("full", 'medium', locale='fr', timezone='Europe/Paris')}}</p>
+        {% if lotoEvent.address %}
+            <p class="card-text">{{lotoEvent.address.street}}</p>
+            <p class="card-text">{{lotoEvent.address.postalCode}}, {{lotoEvent.address.city}}, {{lotoEvent.address.country}}</p>
+        {% endif %}
+    </div>
+    <div class="col-md-6">
+        <h2 class="card-title">{{lotoEvent.title}} </h2>
+       
+        <p class="card-text">Loto en {{lotoEvent.isLiveEvent ? 'ligne' : 'salle'}}</p>
+        <p class="card-text">
+            En faveur de l'association  {{lotoEvent.association.name}}
+           
+        </p>
+        {% if lotoEvent.maxPlayerAuthorized %}
+            <p>Maximum de {{lotoEvent.maxPlayerAuthorized}} joueurs.</p>
+        {% endif %}    
+        <p class="card-text">{{lotoEvent.rules}}</p>
+
+    </div>
+    
+    <div class="col-md-2"> 
+    {% if app.user %}
+        {% if lotoEvent.isOwner(app.user.id) %}
+            <a href="{{path("account_edit_loto", {id : lotoEvent.id})}}" class="btn btn-primary ">Modifier</a>
+        {% endif %}
+    {% endif %}    
+    </div>
+    
+
+</article>

@@ -1,7 +1,13 @@
 <article class="card">
     <div class="card-body row">
     <div class="col-md-4">
-        <img class="" src="{{ asset('live_loto/image_upload/') ~ lotoEvent.image }}"alt="Card image" height="200">
+        <img class="rounded mx-auto d-block" 
+            id="img-{{lotoEvent.id}}" aria-describedby="tooltip-img-{{lotoEvent.id}}"
+            src="{{ asset('loto_event/image_upload/') ~ lotoEvent.image }}"alt="flyer publicitaire du loto"  
+            height= "200px">
+   
+            <div id="tooltip-img-{{lotoEvent.id}}" role="tooltip">I'm a tooltip</div>
+            
         <p class="bagde badge-light ">{{lotoEvent.dateEvent| format_datetime("full", 'medium', locale='fr', timezone='Europe/Paris')}}</p>
     </div>
     <div class="col-md-6">
@@ -14,9 +20,13 @@
     </div>
     
     <div class="col-md-2"> 
-    
-    {% if lotoEvent.isOwner(app.user.id) %}
-        <a href="#" class="btn btn-primary ">Voir le détail</a>
+ 
+        <p><a href="{{path("loto_show", {slug : lotoEvent.slug})}}" class="btn btn-primary ">Voir le détail</a></p>
+     
+    {% if app.user %}
+        {% if lotoEvent.isOwner(app.user.id) %}
+            <p><a href="{{path("account_edit_loto", {id : lotoEvent.id})}}" class="btn btn-primary ">Modifier</a></p>
+        {% endif %}
     {% endif %}    
     </div>
     

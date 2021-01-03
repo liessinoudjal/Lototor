@@ -11,7 +11,7 @@ parameters:
         statut: '%env(MAINTENANCE_STATUS)%'
         ipAuthorized: '%env(MAINTENANCE_IP)%'
     token_bearer: '%env(TOKEN_BEARER)%'
-    uploadImageDir: 'live_loto/image_upload'
+    uploadImageDir: 'loto_event/image_upload'
     uploadAbsoluteUploadImageDir: '%kernel.project_dir%/public/%uploadImageDir%'
 
 services:

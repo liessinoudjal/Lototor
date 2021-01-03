@@ -12,7 +12,7 @@ class LotoEventListener {
     private $uploadImageDir;
     private $security;
 
-    public function __construct(string $uploadImageDir,string $uploadAbsoluteUploadImageDir, Security $security) {
+public function __construct(string $uploadImageDir,string $uploadAbsoluteUploadImageDir, Security $security) {
         $this->uploadImageDir = $uploadImageDir;
         $this->uploadAbsoluteUploadImageDir = $uploadAbsoluteUploadImageDir;
         $this->security = $security;
@@ -26,6 +26,8 @@ class LotoEventListener {
 
     public function preUpdate (LotoEvent $lotoEvent){
         $this->upload($lotoEvent);
+        $lotoEvent->setUpdatedAt(new \DateTime);
+        // dd("preupdate");
     }
 
     public function upload(LotoEvent $lotoEvent){

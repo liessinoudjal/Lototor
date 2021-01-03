@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\LotoEvent;
 use App\Repository\LotoEventRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,13 +10,25 @@ use Symfony\Component\Routing\Annotation\Route;
 class LotoEventController extends AbstractController
 {
     /**
-     * @Route("/loto/agenda", name="lotto_calendar")
+     * @Route("/loto/agenda", name="loto_list")
      */
-    public function index(LotoEventRepository $lotoEventRepository)
+    public function list(LotoEventRepository $lotoEventRepository)
     {
         
         return $this->render('loto_event/index.html.twig', [
-            'liveLotoEvents' => $lotoEventRepository->findAll(),
+            'liveLotoEvents' => $lotoEventRepository->findAllNext(),
         ]);
     }
+
+    /**
+     * @Route("/loto/agenda/{slug}", name="loto_show")
+     */
+    public function show(LotoEvent $lotoEvent)
+    {
+        
+        return $this->render('loto_event/show.html.twig', [
+            'lotoEvent' => $lotoEvent,
+        ]);
+    }
+
 }

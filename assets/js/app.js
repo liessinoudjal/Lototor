@@ -17,5 +17,3 @@ require('@fortawesome/fontawesome-free/css/all.min.css');
 require('@fortawesome/fontawesome-free/js/all.js');
 
 require('./cookies.js');
-
-console.log('Hello Webpack Encore! Edit me in assets/js/app.js');

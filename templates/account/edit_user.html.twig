@@ -45,7 +45,20 @@
                 </div>
             </div>
             <div class="row">
-                <div class="form-group row col-md-10 ">
+                <div class="form-group row col-md-6">
+                    <div class="col-md-4">
+                        {{ form_label(form.username) }} :
+                    </div>
+                    <div class="col-md-8">
+                        <div class="invalid-feedback">
+                            {{ form_errors(form.username) }}
+                        </div>
+                        {{ form_widget(form.username) }}
+
+                        <small>{{ form_help(form.username) }}</small> 
+                    </div>
+                </div>
+                <div class="form-group row col-md-6 ">
                     <div class="col-md-4">
                         {{ form_label(form.birthday) }} :
                     </div>

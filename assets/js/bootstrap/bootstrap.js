@@ -5,5 +5,4 @@ require('../../css/bootstrap/scss/bootstrap.scss');
 import 'bootstrap';
 //import'startbootstrap-agency';
 // require( "startbootstrap-agency/js/agency.js");
-console.log("bootstrap chargé !");
  

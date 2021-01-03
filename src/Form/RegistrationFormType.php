@@ -24,11 +24,13 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class,[
-                'label' => "Email"
+                'label' => "Email",
+                "help" => "Doit être unique, il servira à vous connecter sur le site.",
                 ]
             )
             ->add('username', TextType::class,[
-                'label' => "Pseudo"
+                'label' => "Pseudo",
+                "help" => "C'est le nom d'utilisateur qui sera affiché sur le site.",
                 ]
             )
             ->add('birthday', DateTimeType::class, [

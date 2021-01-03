@@ -6,10 +6,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\LotoEventRepository")
  * @ORM\EntityListeners({"App\EntityListener\LotoEventListener"})
+ * @UniqueEntity(fields={"title"}, message="Le titre existe déjà, il doit être unique.")
  */
 class LotoEvent
 {
@@ -25,7 +28,7 @@ class LotoEvent
     const LIVE_GROUP = "loto.create.live";
     const INDOOR_GROUP = "loto.create.indoor";
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique= true)
      * @Assert\NotBlank( message="Veuillez donner un titre à votre loto")
      */
     protected $title;
@@ -88,14 +91,30 @@ class LotoEvent
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 500,
+     *      notInRangeMessage = "Nombre de partipants authorisés entre {{ min }} et {{ max }} personnes maximum",
+     * )
      */
-    private $countPlayerMax;
+    private $maxPlayerAuthorized;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Association")
      * @ORM\JoinColumn(nullable=false)
      */
     private $association;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields= {"title", "dateEvent"})
+     */
+    private $slug;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
 
     public function getAddress(): ?Address
     {
@@ -294,14 +313,14 @@ class LotoEvent
         return $this;
     }
 
-    public function getCountPlayerMax(): ?int
+    public function getMaxplayerAuthorized(): ?int
     {
-        return $this->countPlayerMax;
+        return $this->maxPlayerAuthorized;
     }
 
-    public function setCountPlayerMax(?int $countPlayerMax): self
+    public function setMaxplayerAuthorized(?int $maxPlayerAuthorized): self
     {
-        $this->countPlayerMax = $countPlayerMax;
+        $this->maxPlayerAuthorized = $maxPlayerAuthorized;
 
         return $this;
     }
@@ -318,6 +337,30 @@ class LotoEvent
     public function setAssociation(?Association $association): self
     {
         $this->association = $association;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

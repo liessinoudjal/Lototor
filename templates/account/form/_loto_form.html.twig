@@ -43,7 +43,12 @@
                     <small>{{ form_help(form.uploadedImage) }}</small> 
                 {# </div> #}
                 </div>
-        </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.maxPlayerAuthorized) }}        
+                </div>
+            </div>
             <div class="row">
                 <div class="form-group row col-md-12">
                         {{ form_label(form.rules) }} 
@@ -53,9 +58,10 @@
                         <small>{{ form_help(form.rules) }}</small>  
                 </div>
                
-            </div>
+            </div> 
+            {{ form_help(form.address) }} 
              <div class="row">
-             {# {{ form_help(form.address) }}  #}
+            
                 <div class="form-group row col-md-9">
                     <div class="col-md-12">
                         {{ form_label(form.address.street) }} 

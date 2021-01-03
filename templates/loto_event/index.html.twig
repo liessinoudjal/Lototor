@@ -6,12 +6,19 @@
 {% block metaDescription %}
 
 {% endblock %}
+{% block stylesheets %}
+      {{ encore_entry_link_tags('popperjs') }}
+{% endblock %}
+{% block javascripts %}
+        {{ encore_entry_script_tags('popperjs') }}
+{% endblock %}
+
 {% block header %}
   <!-- Header -->
   <header class="container-fluid d-flex justify-content-center">
   <div class="jumbotron text-center">
-    <h1>Agenda des loto live de france</h1>
-    <p>Trouvez les lotos live organiséés par les associations</p> 
+    <h1>Agenda des lotos associatifs de france</h1>
+    <p>Trouvez les lotos organisés par les associations</p> 
    
   </div>
     
@@ -23,8 +30,17 @@
     <main class="container ">
       {% include 'adsense-horizontale.html' %}
       <section class="d-flex flex-column container">
-       {% for lotoEvent in liveLotoEvents %}
+        {% for lotoEvent in liveLotoEvents %}
           {% include 'account/_loto_card.html.twig' %}
+
+        {% else %}
+          <p>Pas de lotos à venir pour le moment.</p>
+          {% if app.user and app.user.isOrganizer %}
+            <p>Vous êtes partenaire <span><a href="{{path("account_add_loto")}}">Publiez un loto</a></span></p>
+          {% else %}
+            <p>Vous souhaitez devenir partenaire et publier vos lotos ? <span><a href="{{path("app_register")}}">Incrivez-vous</a></span></p>
+            <p>Vous êtes déjà partenaire ? <span><a href="{{path("app_login")}}">Connectez-vous</a></span></p>
+          {% endif %}
         {% endfor %}
       </section>
        

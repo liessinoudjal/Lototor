@@ -10,6 +10,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -52,6 +53,13 @@ class LotoEventType extends AbstractType
                 "label" => "Lien pour suivre votre direct",
                 "required" => false
             ]) */
+            ->add('maxPlayerAuthorized', NumberType::class, [
+                "label" => "Nombre maximum de participants",
+                "required" => false,
+                "html5" => true,
+                'attr' => ['min' => '0', 'max' => "500"],
+                "help" => "limité à 500 personnes"
+            ])
             ->add("association", EntityType::class, [
                 "label" => "Association",
                 "class" => Association::class,
@@ -85,8 +93,9 @@ class LotoEventType extends AbstractType
             ])
             ->add('address', AddressType::class,[
                 "help" => "Addresse où se déroule le loto",
+            
                 "required" => false,
-                'constraints' => [new \Symfony\Component\Validator\Constraints\Valid()],
+                // 'constraints' => [new \Symfony\Component\Validator\Constraints\Valid()],
             ])
             ->add("isLiveEvent", CheckboxType::class,[
                "label" => "Loto en ligne.",

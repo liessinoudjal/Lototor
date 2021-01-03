@@ -39,6 +39,11 @@ class UserType extends AbstractType
             ->add('address', AddressType::class,[
                 "label" => "Addresse"
             ])
+            ->add('username', TextType::class,[
+                'label' => "Pseudo",
+                "help" => "C'est le nom d'utilisateur qui sera affiché sur le site.",
+                ]
+            )
         ;
     }
 
