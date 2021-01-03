@@ -22,6 +22,7 @@ public function __construct(string $uploadImageDir,string $uploadAbsoluteUploadI
         $this->upload($lotoEvent);
         $lotoEvent->setCreateAt(new \DateTime);
         $lotoEvent->setOrganizer($this->security->getUser());
+        $lotoEvent->setStatus(true);
     }
 
     public function preUpdate (LotoEvent $lotoEvent){
