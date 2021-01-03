@@ -241,6 +241,7 @@ class LotoEvent
     public function setUploadedImage(UploadedFile $uploadedImage)
     {
         $this->uploadedImage = $uploadedImage;
+        $this->setUpdatedAt(new \DateTime());
 
         return $this;
     }

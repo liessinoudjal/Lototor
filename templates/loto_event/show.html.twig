@@ -6,6 +6,13 @@
 {% block metaDescription %}
 
 {% endblock %}
+
+{% block stylesheets %}
+      {{ encore_entry_link_tags('modalImage') }}
+{% endblock %}
+{% block javascripts %}
+        {{ encore_entry_script_tags('modalImage') }}
+{% endblock %}
 {% block header %}
   <!-- Header -->
   <header class="container-fluid d-flex justify-content-center">
@@ -30,4 +37,5 @@
        
              
     </main>
+    {% include 'account/modal/_image_modal.html.twig'  %}
 {% endblock %}

@@ -43,7 +43,7 @@ Encore
      .addEntry('login', './assets/js/login.js')
      .addEntry('account', './assets/js/account.js')
      .addEntry('flatpickr', './assets/js/flatpickr/flatpickr.js')
-     .addEntry('popperjs', './assets/js/popperjs/popperjs.js')
+     .addEntry('modalImage', './assets/js/modal/modalImage.js')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 

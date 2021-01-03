@@ -2,12 +2,9 @@
     <div class="card-body row">
     <div class="col-md-4">
         <img class="rounded mx-auto d-block" 
-            id="img-{{lotoEvent.id}}" aria-describedby="tooltip-img-{{lotoEvent.id}}"
-            src="{{ asset('loto_event/image_upload/') ~ lotoEvent.image }}"alt="flyer publicitaire du loto"  
+            id="img-{{lotoEvent.id}}" data-id="{{lotoEvent.id}}"
+            src="{{ asset('loto_event/image_upload/') ~ lotoEvent.image }}"alt="flyer publicitaire du loto {{lotoEvent.title}}"  
             height= "200px">
-   
-            <div id="tooltip-img-{{lotoEvent.id}}" role="tooltip">I'm a tooltip</div>
-            
         <p class="bagde badge-light ">{{lotoEvent.dateEvent| format_datetime("full", 'medium', locale='fr', timezone='Europe/Paris')}}</p>
     </div>
     <div class="col-md-6">
