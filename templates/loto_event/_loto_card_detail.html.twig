@@ -1,11 +1,15 @@
 <article class="card">
     <div class="card-body row">
     <div class="col-md-4">
+    {% if lotoEvent.image %}
         <img class="img-thumbnail" 
         src="{{ asset('loto_event/image_upload/') ~ lotoEvent.image }}"
         id="img-{{lotoEvent.id}}"
         alt="flyer publicitaire du loto {{lotoEvent.title}}" height="200" data-id="{{lotoEvent.id}}">
-        {# <p class="bagde badge-light ">{{lotoEvent.dateEvent| format_datetime("full", 'medium', locale='fr', timezone='Europe/Paris')}}</p> #}
+    {% else %}
+        <img src="{{asset("build/images/empty.png")}}" alt="flyer publicitaire du loto" class="rounded mx-auto d-block" height= "200px"/>
+    {% endif %}
+         {# <p class="bagde badge-light ">{{lotoEvent.dateEvent| format_datetime("full", 'medium', locale='fr', timezone='Europe/Paris')}}</p> #}
         {% if lotoEvent.address %}
             <p class="card-text">{{lotoEvent.address.street}}</p>
             <p class="card-text">{{lotoEvent.address.postalCode}}, {{lotoEvent.address.city}}, {{lotoEvent.address.country}}</p>

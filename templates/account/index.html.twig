@@ -24,16 +24,16 @@
 <h1 >Mon compte</h1>
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="#profil">Profil</a>
+    <a class="nav-link active" data-toggle="tab" data-target="profil" href="#profil">Profil</a>
   </li>
     {% if is_granted("ROLE_ORGANIZER") %}
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#associations">Associations</a>
+        <a class="nav-link" data-toggle="tab" data-target="associations" href="#associations">Associations</a>
     </li>
   {% endif %}
     {% if is_granted("ROLE_ORGANIZER") %}
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#lotos">Mes lotos</a>
+        <a class="nav-link" data-toggle="tab" data-target="lotos" href="#lotos">Mes lotos</a>
     </li>
   {% endif %}
 </ul>

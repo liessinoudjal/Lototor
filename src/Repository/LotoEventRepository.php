@@ -19,6 +19,19 @@ class LotoEventRepository extends ServiceEntityRepository
         parent::__construct($registry, LotoEvent::class);
     }
 
+    public function findAllNextQuery(int $userId= null){
+        $query=  $this->createQueryBuilder('l')
+        ->andWhere("l.dateEvent > CURRENT_TIMESTAMP()")
+       ;
+        if($userId != null){
+            $query-> innerJoin('l.organizer','o', 'with', 'o.id = :userId')
+            ->setParameter('userId', $userId)
+            ->orderBy('l.dateEvent', 'DESC');
+        }else{
+            $query ->orderBy('l.dateEvent', 'ASC');
+        }
+        return $query->getQuery();
+    }
     public function findAllNext(){
         return $this->createQueryBuilder('l')
         ->andWhere("l.dateEvent > CURRENT_TIMESTAMP()")

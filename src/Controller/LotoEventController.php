@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\LotoEvent;
 use App\Repository\LotoEventRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,13 +12,25 @@ use Symfony\Component\Routing\Annotation\Route;
 class LotoEventController extends AbstractController
 {
     /**
-     * @Route("/loto/agenda", name="loto_list")
+     * @Route("/lotos/agenda/{page<\d*>?1}", name="loto_list")
      */
-    public function list(LotoEventRepository $lotoEventRepository)
+    public function list(LotoEventRepository $lotoEventRepository, PaginatorInterface $paginator, Request $request, int $page)
     {
-        
+        $liveLotoEvents = $lotoEventRepository->findAllNextQuery();
+
+
+        // Paginate the results of the query
+        $liveLotoEventsPaginated = $paginator->paginate(
+            // Doctrine Query, not results
+            $liveLotoEvents,
+            // Define the page parameter
+            $page,
+            // Items per page
+            10
+        );
         return $this->render('loto_event/index.html.twig', [
-            'liveLotoEvents' => $lotoEventRepository->findAllNext(),
+            'liveLotoEventsPaginated' => $liveLotoEventsPaginated,
+            'liveLotoEvents' =>  $lotoEventRepository->findAllNext()
         ]);
     }
 
@@ -39,7 +52,6 @@ class LotoEventController extends AbstractController
      */
     public function getImageAjax(Request $request,LotoEvent $lotoEvent){
 
-            dump($lotoEvent);
             return $this->json( $this->container->get("twig")->render("loto_event/ajax/image.html.twig", ["lotoEvent" => $lotoEvent]));
      
     }

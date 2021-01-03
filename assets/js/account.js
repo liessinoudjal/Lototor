@@ -129,6 +129,61 @@ if("organizer" == typeAccount){
         });
     
     })
+    // gestion des cookie pour la selection du tab-pane. Pour rester sur le tab des lotos lors la selection de la pagination
+    const tabCookieName= "selected-tab";
+    document.querySelectorAll('.nav-tabs .nav-link').forEach((link)=>{
+        let selectedTab = getCookie(tabCookieName)
+        const target = link.dataset.target;
+      
+
+        link.addEventListener("click",(e)=>{
+            setCookie(tabCookieName, target, 1);
+
+            document.querySelectorAll('.nav-tabs .nav-link').forEach((link)=>{
+                link.classList.remove("active")
+                document.querySelector('#'+link.dataset.target).classList.remove("active", "show")
+            })
+            e.currentTarget.classList.add("active")
+            document.querySelector("#"+target).classList.add("active" ,"show")
+        })
+        
+    })
+    const selectedTab = getCookie(tabCookieName)
+     //si le cookie n'existe pas, on active le premier tab
+     if(selectedTab != null ){
+        document.querySelectorAll('.nav-tabs .nav-link').forEach((link)=>{
+            const target = link.dataset.target
+            if(target == selectedTab){
+                link.classList.add("active")
+                document.querySelector("#"+target).classList.add("active" ,"show")
+            }else{
+                link.classList.remove("active")
+                document.querySelector("#"+target).classList.remove("active" ,"show")
+            }
+        
+            
+        })
+    }
 
 
+    function setCookie(name,value,days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+    
 }

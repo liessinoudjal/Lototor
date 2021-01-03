@@ -32,7 +32,7 @@
     <main class="container ">
       {% include 'adsense-horizontale.html' %}
       <section class="d-flex flex-column container">
-        {% for lotoEvent in liveLotoEvents %}
+        {% for lotoEvent in liveLotoEventsPaginated %}
           {% include 'account/_loto_card.html.twig' %}
 
         {% else %}
@@ -44,7 +44,11 @@
             <p>Vous êtes déjà partenaire ? <span><a href="{{path("app_login")}}">Connectez-vous</a></span></p>
           {% endif %}
         {% endfor %}
+         <div class="navigation">
+              {{ knp_pagination_render(liveLotoEventsPaginated) }}
+             </div>
       </section>
+     
        {% if liveLotoEvents|length > 0 %}
           {% include 'account/modal/_image_modal.html.twig'  %}
        {% endif %}

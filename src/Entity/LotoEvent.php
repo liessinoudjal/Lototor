@@ -34,7 +34,7 @@ class LotoEvent
     protected $title;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable= false)
      * @Assert\NotBlank( message="Sélectionnez une date et une heure pour votre événement")
      */
     protected $dateEvent;
@@ -156,7 +156,7 @@ class LotoEvent
         return $this->dateEvent;
     }
 
-    public function setDateEvent(\DateTimeInterface $dateEvent): self
+    public function setDateEvent(?\DateTimeInterface $dateEvent): self
     {
         $this->dateEvent = $dateEvent;
 

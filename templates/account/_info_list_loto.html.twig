@@ -3,12 +3,12 @@
     {% if user.canOrganize() %}
         <a class="btn btn-primary cursor angle-r" href="{{ path("account_add_loto")}}" id="js_add_loto" title="Ajouter un loto"><i class="fas fa-plus"></i></a>
        
-        {% for lotoEvent in user.lotoEvents %}
+        {% for lotoEvent in liveLotoEventsPaginated %}
           {% include 'account/_loto_card.html.twig' %}
         {% else %}
             <li>Vous n'avez pas encore créé de loto</li>
         {% endfor %}
-
+        {{ knp_pagination_render(liveLotoEventsPaginated) }}
     {% else %}
     <p>Vous devez lier votre association à votre compte pour ajouter des lotos.</p>
     {% endif %}    

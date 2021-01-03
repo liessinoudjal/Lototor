@@ -30,12 +30,18 @@
         {{ encore_entry_link_tags('fontawesome') }}
         {{ encore_entry_link_tags('app') }}
         {{ encore_entry_link_tags('flatpickr') }}
+        {{ encore_entry_link_tags('RGBD') }}
+        
         {% block stylesheets %}
               
         {% endblock %}
         {{ encore_entry_script_tags('app') }}
         {{ encore_entry_script_tags('bootstrap') }}
         {{ encore_entry_script_tags('flatpickr') }}
+        {{ encore_entry_script_tags('RGBD') }}
+       {#  {% for js in encore_entry_js_files('RBGD') %}
+            <script src="{{ asset(js) }}" type="text/javascript" defer="defer"></script>
+{% endfor %} #}
         
         
     </head> 

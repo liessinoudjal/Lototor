@@ -44,6 +44,7 @@ Encore
      .addEntry('account', './assets/js/account.js')
      .addEntry('flatpickr', './assets/js/flatpickr/flatpickr.js')
      .addEntry('modalImage', './assets/js/modal/modalImage.js')
+     .addEntry('RGBD', './assets/js/cookies.js')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 

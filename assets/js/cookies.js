@@ -3,14 +3,23 @@ require('../css/rgbd.scss');
 // console.log(readCookie("doSomethingOnlyOnce"))
 
 //si les RGBD n'ont pas été accepté on affichge le message d'alert et on set l'event sur le boutton d'acceptation
-if(readCookie("RGBD-accepted") == null){
-		document.querySelector('.rgbd').classList.remove("d-none");
-		document.querySelector('.rgbd  button').addEventListener("click", (event) =>{
+
+window.onload = function (){
+
+	if(readCookie("RGBD-accepted") == null){
+		document.querySelector('#rgbd').classList.remove("d-none");
+		document.querySelector('#rgbd  button').addEventListener("click", (event) =>{
 			event.preventDefault();
-			document.cookie = "RGBD-accepted=true; expires=Fri, 31 Dec 9999 23:59:59 GMT;SameSite=Strict";
-			document.querySelector('.rgbd').classList.add("d-none")
+			// document.cookie = "RGBD-accepted=true; expires=Fri, 31 Dec 9999 23:59:59 GMT;SameSite=Strict";
+			setCookie("RGBD-accepted", "true", 30)
+			document.querySelector('#rgbd').classList.add("d-none")
 			})	
+	}else{
+		document.querySelector('#rgbd').classList.add("d-none")
+	}
 }
+	
+
 
 
 
@@ -21,7 +30,17 @@ function createCookie(name,value,days) {
 		var expires = "; expires="+date.toGMTString();
 	}
 	else var expires = "";
-	document.cookie = name+"="+value+expires+"; path=/";
+	document.cookie = name+"="+value+expires+"; path=/;SameSite=Strict";
+}
+function setCookie(name,value,days) {
+	var expires = "";
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime() + (days*24*60*60*1000));
+		expires = "; expires=" + date.toUTCString();
+		console.log( date.toUTCString())
+	}
+	document.cookie = name + "=" + (value || "")  + expires + "; path=/";
 }
 
 function readCookie(name) {

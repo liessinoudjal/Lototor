@@ -11,7 +11,9 @@ use App\Form\ResetPasswordType;
 use App\Form\UserType;
 use App\Lototo\Manager\AccountManager;
 use App\Lototo\Manager\AssociationApiManager;
+use App\Repository\LotoEventRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,16 +28,29 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 class AccountController extends AbstractController
 {
     /**
-     * @Route("/", name="account")
+     * @Route("/{page<\d*>?1}", name="account")
      */
-    public function account()
+    public function account(LotoEventRepository $lotoEventRepository, PaginatorInterface $paginator, int $page)
     {
         $user = $this->getUser();
 
+        $liveLotoEvents = $lotoEventRepository->findAllNextQuery($user->getId());
+
+
+        // Paginate the results of the query
+        $liveLotoEventsPaginated = $paginator->paginate(
+            // Doctrine Query, not results
+            $liveLotoEvents,
+            // Define the page parameter
+            $page,
+            // Items per page
+            10
+        );
         // dd($user);
      
         return $this->render('account/index.html.twig', [
-            'user' => $user
+            'user' => $user,
+            "liveLotoEventsPaginated" => $liveLotoEventsPaginated
         ]);
     }
 
