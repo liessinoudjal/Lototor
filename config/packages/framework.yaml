@@ -1,5 +1,6 @@
 framework:
     default_locale: 'fr'
+    disallow_search_engine_index: false
     translator:
         default_path: '%kernel.project_dir%/translations'
         enabled: true

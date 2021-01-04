@@ -117,7 +117,7 @@ class LotoEvent
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default": true})
      */
     private $status;
 

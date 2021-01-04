@@ -5,7 +5,8 @@ const French = require("flatpickr/dist/l10n/fr.js").default.fr;
 // or import { Russian } from "flatpickr/dist/l10n/ru.js"
 flatpickr.localize(French);
 
-window.onload = () => {
+
+    console.log(document.querySelector(".birthday_flatpickr"));
     //date de naissance
     const _18ans = 366*18;
     let dateNow= new Date()
@@ -29,4 +30,4 @@ window.onload = () => {
             instance.close();
         } */
     });
-}
+

@@ -22,6 +22,7 @@ class LotoEventRepository extends ServiceEntityRepository
     public function findAllNextQuery(int $userId= null){
         $query=  $this->createQueryBuilder('l')
         ->andWhere("l.dateEvent > CURRENT_TIMESTAMP()")
+        ->andWhere("l.status = 1")
        ;
         if($userId != null){
             $query-> innerJoin('l.organizer','o', 'with', 'o.id = :userId')
@@ -35,6 +36,7 @@ class LotoEventRepository extends ServiceEntityRepository
     public function findAllNext(){
         return $this->createQueryBuilder('l')
         ->andWhere("l.dateEvent > CURRENT_TIMESTAMP()")
+        ->andWhere("l.status = 1")
         ->getQuery()
         ->getResult();
     }
