@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+ Lototor - Agenda des lotos associatifs de France
+{% endblock %}
+
+{% block metaDescription %}
+  {% for lotoEvent in liveLotoEvents %}
+    loto {{lotoEvent.title}} en {{lotoEvent.isLiveEvent? "ligne": "salle"}} du {{lotoEvent.dateEvent| format_datetime("full", 'medium', locale='fr', timezone='Europe/Paris')}} organisé par  {{lotoEvent.organizer.username}},
+  {% endfor %}
+{% endblock %}
+{% block stylesheets %}
+      {{ encore_entry_link_tags('modalImage') }}
+{% endblock %}
+{% block javascripts %}
+        {{ encore_entry_script_tags('modalImage') }}
+{% endblock %}
+
+{% block header %}
+  <!-- Header -->
+  <header class="container-fluid d-flex justify-content-center">
+  <div class="jumbotron text-center">
+    <h1>Agenda des lotos associatifs de france</h1>
+    <p>Trouvez les lotos organisés par les associations</p> 
+   
+  </div>
+    
+  </header>
+{% endblock %}
+
+{% block body %}
+
+    <main class="container ">
+      {% include 'adsense-horizontale.html' %}
+      <section class="d-flex flex-column container">
+        {% for lotoEvent in liveLotoEventsPaginated %}
+          {% include 'account/_loto_card.html.twig' %}
+
+        {% else %}
+          <p>Pas de lotos à venir pour le moment.</p>
+          {% if app.user and app.user.isOrganizer %}
+            <p>Vous êtes partenaire <span><a href="{{path("account_add_loto")}}">Publiez un loto</a></span></p>
+          {% else %}
+            <p>Vous souhaitez devenir partenaire et publier vos lotos ? <span><a href="{{path("app_register")}}">Incrivez-vous</a></span></p>
+            <p>Vous êtes déjà partenaire ? <span><a href="{{path("app_login")}}">Connectez-vous</a></span></p>
+          {% endif %}
+        {% endfor %}
+         <div class="navigation">
+              {{ knp_pagination_render(liveLotoEventsPaginated) }}
+             </div>
+      </section>
+     
+       {% if liveLotoEvents|length > 0 %}
+          {% include 'account/modal/_image_modal.html.twig'  %}
+       {% endif %}
+             
+    </main>
+{% endblock %}

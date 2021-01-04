@@ -1,22 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{parent()}} - grilles loto quine à télécharger gratuitement{% endblock %}
-{% block metaDescription %}Générateur de grilles Loto quine gratuites. Idéal pour les lotos d'associatifs ou entre amis. {% endblock %}
+{% block title %}Lototor - cartons loto quine à télécharger gratuitement{% endblock %}
+{% block metaDescription %}Générateur de cartons Loto quine gratuites. Idéal pour les lotos associatifs ou entre amis. {% endblock %}
 
+{% block header %}
+  <!-- Header -->
+  <header class="container-fluid d-flex justify-content-center">
+  <div class="jumbotron text-center">
+    <h1>Des grilles de loto quine gratuites !</h1>
+    <p>Lototor vous offre 50 plaques de 6 cartons de lotoquine à télécharger et imprimer gratuitement.  </p> 
+   
+  </div>
+    
+  </header>
+{% endblock %}
 
 {% block body %}
 <section class="masthead">
     <div class="container">
         <div class="intro-text jumbotron">
-        	<h1 class="intro-heading ">Des grilles de loto quine gratuites !</h1>
-            <div class="intro-lead-in">Lototor vous offre 50 plaques de 6 grilles de lotoquine à télécharger et imprimer gratuitement.  </div>
+            <div class="intro-lead-in">Lototor vous offre 50 plaques de 6 cartons de lotoquine à télécharger et imprimer gratuitement.  </div>
          	<div>
          		<p>Lototor vous garantie que chaque plaque est unique et melangée aléatoirement.</p>
          		<div class="row text-center">
-                  <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger mt-3" href="{{ path('loto_quine_generator') }}">
-            	Télécharger les plaques lotoquine gratuites <i class="fas fa-futbol" aria-hidden="true"></i>> 
+                  <a class="btn btn-primary btn-xl text-uppercase btn-block my-1" href="{{ path('loto_quine_generator') }}">
+            	Télécharger
                 </a>
-                 <img src="{{asset("build/images/lotoquine.png")}}" alt="plaque lotoquine" class="img-fluid"/>
+                 <img src="{{asset("build/images/lotoquine.png")}}" alt="Exemple de Cartons téléchargeables sur Lototor" class="img-fluid"/>
 
                 </div>
 

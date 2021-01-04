@@ -14,71 +14,57 @@
         {% include 'adsense.html' %}
         
 
-        <title>{% block title %}LototoR - Simulateur de loterie {% endblock %}</title>
+        <title>{% block title %}LototoR - Simulateur de loterie - agenda des loto quine {% endblock %}</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="{% block metaDescription %}simulateur euromillion, lottery simulator, loto {% endblock %}">
+        <meta name="description" content="{% block metaDescription %}Agenda des lotos Live, loto quine. Simulateur de loteries loto et Euromillion.{% endblock %}">
+        {% block metaRobots %}
+        {% endblock %}
+
         <meta name="author" content="Liess INOUDJAL">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        {{ encore_entry_link_tags('app') }}
+        
         {{ encore_entry_link_tags('bootstrap') }}
         {#} {{ encore_entry_link_tags('agency-bootstrap') }}#}
+        {{ encore_entry_link_tags('sketchy') }}
         {{ encore_entry_link_tags('fontawesome') }}
+        {{ encore_entry_link_tags('app') }}
+        {{ encore_entry_link_tags('flatpickr') }}
+        {{ encore_entry_link_tags('RGBD') }}
+        
         {% block stylesheets %}
               
         {% endblock %}
-    </head> 
-    <body  id="page-top">
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="{{ path('homepage') }}"> LototoR <i class="fas fa-futbol" aria-hidden="true"></i> <i class="fas fa-futbol" aria-hidden="true"></i> <i class="fas fa-futbol" aria-hidden="true"></i></a></a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fa fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav text-uppercase ml-auto">
-                 <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="{{path('loto_quine')}}">Loto Quine</a>
-                    </li>
-                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Simulateurs
-                        </a>
-                        <div class="dropdown-menu bg-dark ml-3" aria-labelledby="navbarDropdown">
-                           <a class="nav-link" href="{{ path('simulateur',{'lotteryName': 'euromillion'}) }}">Euromillion</a>
-                             <a class="nav-link" href="{{ path('simulateur',{'lotteryName': 'loto'}) }}">Loto</a>
-                          <div class="dropdown-divider"></div>
-                            <a class="nav-link" href="{{ path('pertinance') }}">Comment ça marche</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="{{path('CGU')}}">CGU</a>
-                    </li>
-                    
-              
-                </ul>
-            </div>
-        </div>
-    </nav>
-        {% block body %}{% endblock %}
-
-             
-                <div class="rgbd d-none">  
-                        <div class="form-group"> Lototor conserve vos données de navigation pour ses statistiques. Vos données personnelles ne sont pas conservées ou utlisées.
-                        </div>
-                        <div class="form-group">    
-                            <button class="btn btn-success"> J'ai compris</button>
-                            <a href="{{ path('CGU') }}"> plus d'info</a>
-                        </div>
-                </div> 
- 
         {{ encore_entry_script_tags('app') }}
         {{ encore_entry_script_tags('bootstrap') }}
-        {% block javascripts %}
-             
+       
+        {{ encore_entry_script_tags('RGBD') }}
+       {#  {% for js in encore_entry_js_files('RBGD') %}
+            <script src="{{ asset(js) }}" type="text/javascript" defer="defer"></script>
+{% endfor %} #}
+        
+        
+    </head> 
+    <body  id="page-top">
+        {% include '_nav.html.twig'  %}
+        {% block header %}
+
         {% endblock %}
 
+        {% block flash_message %}
+            {% include '_flash_message.html.twig'  %}
+        {% endblock %}
+   
+        {% block body %}{% endblock %}  
 
+        {% block footer %}
+            {% include '_footer.html.twig'  %}
+        {% endblock %}
 
+        {% include '_rgbd.html.twig'  %}
+        {{ encore_entry_script_tags('flatpickr') }}
+        {% block javascripts %}
+            
+        {% endblock %}
     </body>
 </html>

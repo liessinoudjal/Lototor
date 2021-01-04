@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}lototor - Inscription{% endblock %}
+{% block metaDescription %}
+Page d'inscription au site{% endblock %}
+{% block stylesheets %}
+      {{ encore_entry_link_tags('login') }}
+{% endblock %}
+
+{% block body %}
+    <section class="container jumbotron">
+       
+            <div class="login_form">
+                <h1 class="h3 mb-3 font-weight-normal">Inscription</h1>
+
+                {{ form_start(registrationForm) }}
+                    {{ form_row(registrationForm.email) }}
+                    {{ form_row(registrationForm.username) }}
+                    {{ form_row(registrationForm.birthday) }}
+                    {# {{ form_row(registrationForm.birthdayInput) }} #}
+                    {{ form_row(registrationForm.plainPassword) }}
+                    {{ form_row(registrationForm.isAssociation) }}
+                    {{ form_row(registrationForm.agreeTerms) }}
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block">S'inscrire</button>
+                    </div>
+                   
+                {{ form_end(registrationForm) }}
+            </div>
+     
+    </section>
+    
+{% endblock %}

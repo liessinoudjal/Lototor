@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{buttonLabel}} un loto{% endblock %}
+{% block metaRobots %}
+   <meta name="robots" content="noindex,nofollow">
+{% endblock %}
+
+
+{% block body %}
+<section  class="container jumbotron">
+      <h1>Formulaire de {% if buttonLabel == "Publier"%}publication{% else %}modification{% endif %} de votre événement</h1>
+      {% include "account/form/_loto_form.html.twig" with {"form" :liveLotoForm, "button_label": buttonLabel}%}
+   
+</section>
+
+{% endblock %}

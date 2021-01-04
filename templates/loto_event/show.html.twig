@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+ loto {{lotoEvent.title}} en {{lotoEvent.isLiveEvent? "ligne": "salle"}} du {{lotoEvent.dateEvent| format_datetime("full", 'medium', locale='fr', timezone='Europe/Paris')}} organisé par  {{lotoEvent.organizer.username}}
+{% endblock %}
+
+{% block metaDescription %}
+   loto {{lotoEvent.title}} en {{lotoEvent.isLiveEvent? "ligne": "salle"}} du {{lotoEvent.dateEvent| format_datetime("full", 'medium', locale='fr', timezone='Europe/Paris')}} organisé par  {{lotoEvent.organizer.username}}
+{% endblock %}
+
+{% block stylesheets %}
+      {{ encore_entry_link_tags('modalImage') }}
+{% endblock %}
+{% block javascripts %}
+        {{ encore_entry_script_tags('modalImage') }}
+{% endblock %}
+{% block header %}
+  <!-- Header -->
+  <header class="container-fluid d-flex justify-content-center">
+  <div class="jumbotron text-center">
+    <h1>{{lotoEvent.title}}</h1>
+    <p>Loto {{lotoEvent.title}} en {{lotoEvent.isLiveEvent? "ligne": "salle"}} du {{lotoEvent.dateEvent| format_datetime("full", 'medium', locale='fr', timezone='Europe/Paris')}}</p> 
+   
+  </div>
+    
+  </header>
+{% endblock %}
+
+{% block body %}
+
+    <main class="container ">
+      {% include 'adsense-horizontale.html' %}
+      <section class="d-flex flex-column container">
+       
+          {% include 'loto_event/_loto_card_detail.html.twig' %}
+        
+      </section>
+       
+             
+    </main>
+    {% include 'account/modal/_image_modal.html.twig'  %}
+{% endblock %}

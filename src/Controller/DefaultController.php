@@ -24,10 +24,6 @@ class DefaultController extends AbstractController
      */
     public function indexAction (Request $request)
     {
-
-
-
-
         return $this->render('default/index.html.twig');
     }
 
@@ -37,9 +33,6 @@ class DefaultController extends AbstractController
      */
     public function cgu(Request $request)
     {
-
-    
-
         return $this->render('default/CGU.html.twig', [
 
         ]);

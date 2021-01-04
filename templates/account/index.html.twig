@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+{% block metaRobots %}
+   <meta name="robots" content="noindex,nofollow">
+{% endblock %}
+
+
+{% block stylesheets %}
+      {{ encore_entry_link_tags('account') }}
+      {{ encore_entry_link_tags('modalImage') }}
+{% endblock %}
+  
+{% block javascripts %}
+        {{ encore_entry_script_tags('account') }}
+        {{ encore_entry_script_tags('modalImage') }}
+{% endblock %}
+
+{% block body %}
+
+{% set typeAccount =   is_granted("ROLE_ORGANIZER") ? "organizer" : "user"%}
+<section  class="container jumbotron" id="js_account_page" data-type-account="{{typeAccount}}">
+{# {{dump(user)}} #}
+<h1 >Mon compte</h1>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" data-target="profil" href="#profil">Profil</a>
+  </li>
+    {% if is_granted("ROLE_ORGANIZER") %}
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" data-target="associations" href="#associations">Associations</a>
+    </li>
+  {% endif %}
+    {% if is_granted("ROLE_ORGANIZER") %}
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" data-target="lotos" href="#lotos">Mes lotos</a>
+    </li>
+  {% endif %}
+</ul>
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade active show" id="profil">
+    {% include 'account/_info_perso.html.twig'  %}
+  </div>
+  <div class="tab-pane fade " id="associations">
+    {% include 'account/_info_asso.html.twig'  %}
+  </div>
+  <div class="tab-pane fade " id="lotos">
+    {% include 'account/_info_list_loto.html.twig'  %}
+  </div>
+</div>
+   
+    {% include 'account/modal/_account_modal.html.twig'  %}
+    {% include 'account/modal/_image_modal.html.twig'  %}
+</section>
+
+{% endblock %}

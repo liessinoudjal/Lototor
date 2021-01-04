@@ -1,0 +1,24 @@
+img[id^='img-']{
+  cursor: pointer;
+}
+
+#modal_image{
+  // background-color: black;
+ 
+  .modal-content{
+    background-color: black;
+    // width: inherit !important;
+     margin: 2rem !important;
+    .modal-header{
+      border-bottom: none! important;
+    }
+    .modal-footer{
+      border-top: none! important;
+    }
+    .modal-body{
+      img{
+        width: 100% !important;
+      }
+    }
+  }
+}

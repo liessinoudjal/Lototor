@@ -1,4 +1,7 @@
 {
+    "behat/transliterator": {
+        "version": "v1.3.0"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -108,8 +111,17 @@
             "./config/routes/fos_js_routing.yaml"
         ]
     },
+    "gedmo/doctrine-extensions": {
+        "version": "v2.4.42"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
+    },
+    "knplabs/knp-components": {
+        "version": "v3.0.0"
+    },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v5.4.2"
     },
     "monolog/monolog": {
         "version": "1.24.0"
@@ -157,6 +169,18 @@
         },
         "files": [
             "./config/packages/sensio_framework_extra.yaml"
+        ]
+    },
+    "stof/doctrine-extensions-bundle": {
+        "version": "1.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.2",
+            "ref": "6c1ceb662f8997085f739cd089bfbef67f245983"
+        },
+        "files": [
+            "./config/packages/stof_doctrine_extensions.yaml"
         ]
     },
     "swiftmailer/swiftmailer": {
@@ -356,11 +380,17 @@
             "./tests/.gitignore"
         ]
     },
+    "symfony/polyfill-intl-grapheme": {
+        "version": "v1.20.0"
+    },
     "symfony/polyfill-intl-icu": {
         "version": "v1.11.0"
     },
     "symfony/polyfill-intl-idn": {
         "version": "v1.11.0"
+    },
+    "symfony/polyfill-intl-normalizer": {
+        "version": "v1.20.0"
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.11.0"
@@ -370,6 +400,9 @@
     },
     "symfony/polyfill-php73": {
         "version": "v1.11.0"
+    },
+    "symfony/polyfill-php80": {
+        "version": "v1.20.0"
     },
     "symfony/process": {
         "version": "v4.3.3"
@@ -433,6 +466,9 @@
     },
     "symfony/stopwatch": {
         "version": "v4.3.3"
+    },
+    "symfony/string": {
+        "version": "v5.2.1"
     },
     "symfony/swiftmailer-bundle": {
         "version": "2.5",
@@ -552,6 +588,15 @@
     },
     "tecnickcom/tcpdf": {
         "version": "6.3.5"
+    },
+    "twig/extra-bundle": {
+        "version": "v3.1.1"
+    },
+    "twig/intl-extra": {
+        "version": "v3.1.1"
+    },
+    "twig/string-extra": {
+        "version": "v3.1.1"
     },
     "twig/twig": {
         "version": "v2.11.3"
