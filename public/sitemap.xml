@@ -9,33 +9,48 @@
 
 <url>
   <loc>https://www.lototor.com/</loc>
-  <lastmod>2020-01-01T15:55:26+00:00</lastmod>
+  <lastmod>2021-01-03T15:55:26+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://www.lototor.com/lotoquine</loc>
-  <lastmod>2020-06-05T15:55:26+00:00</lastmod>
+  <lastmod>2021-01-03T15:55:26+00:00</lastmod>
   <priority>1</priority>
 </url>
 <url>
   <loc>https://www.lototor.com/simulateur/euromillion</loc>
-  <lastmod>2020-01-01T15:55:26+00:00</lastmod>
+  <lastmod>2021-01-03T15:55:26+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.lototor.com/simulateur/loto</loc>
-  <lastmod>2019-01-01T15:55:26+00:00</lastmod>
+  <lastmod>2021-01-03T15:55:26+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.lototor.com/CGU</loc>
-  <lastmod>2019-12-23T15:55:26+00:00</lastmod>
+  <lastmod>2021-01-03T15:55:26+00:00</lastmod>
   <priority>0.50</priority>
 </url>
 <url>
   <loc>https://www.lototor.com/fiabilite-du-tirage-aleatoire</loc>
   <lastmod>2020-01-01T15:55:26+00:00</lastmod>
   <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://www.lototor.com/lotos/agenda</loc>
+  <lastmod>2021-01-03T15:55:26+00:00</lastmod>
+  <priority>1</priority>
+</url>
+<url>
+  <loc>https://www.lototor.com/inscription</loc>
+  <lastmod>2021-01-03T15:55:26+00:00</lastmod>
+  <priority>1</priority>
+</url>
+<url>
+  <loc>https://www.lototor.com/connexion</loc>
+  <lastmod>2021-01-03T15:55:26+00:00</lastmod>
+  <priority>1</priority>
 </url>
 
 

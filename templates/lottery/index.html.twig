@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+ {{parent()}}   -  Simulateurs Loto et Euromillion
+{% endblock %}
+{% block header %}
+  <!-- Header -->
+  <header class="container-fluid d-flex justify-content-center">
+  <div class="jumbotron text-center">
+    <h1>Combien gagne-t-on réélement au loto ou à l'euromillion?</h1>
+    <p>Lototor simule et estime vos gains sur une période données</p> 
+  </div>
+    
+  </header>
+{% endblock %}
+
+{% block body %}
+
+    <section class="container jumbotron">
+         
+        {% include 'adsense-horizontale.html' %}
+        <div class="text-center mt-1 mb-2">
+            <iframe  src="https://www.youtube.com/embed/29GuUuf8CqQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        
+        <div class="row">
+          <a class="custom_card_linked col-sm-6" href="{{ path('simulateur',{'lotteryName': 'loto'}) }}">
+            <div class="custom_card text-center   cursor">
+                    <div class="custom_card_header">
+                        <h2>Simulateur Loto</h2>
+                    
+                    </div>
+                    
+                    <div class="customer_card_content">
+                        
+                    
+                    </div>
+
+                </div>
+            </a>
+           
+             <a class="custom_card_linked col-sm-6" href="{{ path('simulateur',{'lotteryName': 'euromillion'}) }}">
+                <div class="custom_card text-center cursor">
+                    <div class="custom_card_header">
+                        <h2>Simulateur euromillion </h2>
+                    </div>
+                    
+                    <div class="customer_card_content">
+                        
+                    
+                    </div>
+
+                </div>
+             </a>
+           
+        
+        </div>
+             
+    </section>
+  
+
+{% endblock %}

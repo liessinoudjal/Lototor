@@ -1,0 +1,36 @@
+<article class="card">
+    <div class="card-body row">
+    <div class="col-md-4">
+    {% if lotoEvent.image %}
+        <img class="rounded mx-auto d-block" 
+            id="img-{{lotoEvent.id}}" data-id="{{lotoEvent.id}}"
+            src="{{ asset('loto_event/image_upload/') ~ lotoEvent.image }}"alt="flyer publicitaire du loto {{lotoEvent.title}}"  
+            height= "200px">
+    {% else %}
+         <img src="{{asset("build/images/empty.png")}}" alt="flyer publicitaire du loto" class="rounded mx-auto d-block" height= "200px"/>
+
+    {% endif %}
+        <p class="bagde badge-light ">{{lotoEvent.dateEvent| format_datetime("full", 'medium', locale='fr', timezone='Europe/Paris')}}</p>
+    </div>
+    <div class="col-md-6">
+        <h2 class="card-title">{{lotoEvent.title}} </h2>
+       
+        <p class="card-text">Loto en {{lotoEvent.isLiveEvent ? 'ligne' : 'salle'}}</p>
+        <p class="card-text">En faveur de l'association  {{lotoEvent.association.name}}</p>
+        <p class="card-text">{{lotoEvent.rules|u.truncate(200, '...')}}</p>
+
+    </div>
+    
+    <div class="col-md-2"> 
+ 
+        <p><a href="{{path("loto_show", {slug : lotoEvent.slug})}}" class="btn btn-primary ">Voir le détail</a></p>
+     
+    {% if app.user %}
+        {% if lotoEvent.isOwner(app.user.id) %}
+            <p><a rel="nofollow" href="{{path("account_edit_loto", {id : lotoEvent.id})}}" class="btn btn-primary ">Modifier</a></p>
+        {% endif %}
+    {% endif %}    
+    </div>
+    
+
+</article>

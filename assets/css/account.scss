@@ -1,0 +1,30 @@
+.container{
+   
+   
+    .form{
+        background-color: white;
+        width: 90%;
+        border-radius: 2%;
+        -webkit-box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.54);
+        -moz-box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.54);
+        box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.54);
+        margin : 0 auto;
+        padding: 1em;
+        background-color: lightgrey;
+
+    }
+
+    #js_toggle_info_list:hover{
+        cursor : pointer;
+    }
+    #js_info_list{
+        height: 100px;
+        -webkit-transition: height .3s ease;
+        transition : height .3s ease;
+        &.closed{   
+            height: 0;
+            overflow: hidden;
+        }
+        
+    }
+}

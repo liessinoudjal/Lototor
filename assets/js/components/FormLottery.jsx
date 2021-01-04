@@ -99,20 +99,20 @@ render(){
 
 return	( 
 	    <div>
-	        <form onSubmit={this.simuler} id="form-lottery"  autoComplete="off">
+	        <form onSubmit={this.simuler} id="form-lottery" className="text-center" autoComplete="off">
 	          <h1><span>Simulateur </span> {this.state.lotteryName}</h1>
 	          <div className={(this.state.error)?"alert alert-danger":"alert alert-danger d-none"} role="alert">
 						 Formulaire non conforme !
 				</div>
 			  
-	          <h2>Choisissez sur combien d'années vous voulez simuler</h2>
-	           	<div className="d-flex flex-row bd-highlight mb-1 ans">
+	          <h2 >Choisissez sur combien d'années vous voulez simuler</h2>
+	           	<div className="d-flex flex-row bd-highlight mb-1 ans justify-content-center">
 			        {this.state.anneesDeTirages.map((	annees, index) =>
 						<Annees handleAnnees={_form.handleAnnees} key={"annees-"+index} annees={annees} checked={(index ==0)?true:false}/>
 			        )}
 			
 				</div>  
-				<div className="d-flex flex-column flex-md-row">
+				<div className="d-flex flex-column flex-md-row justify-content-around">
 		         	<div className="mt-3 ml-3">
 		         		 <h2>Saisir {this.state.nb_numero} numeros entre {this.state.min} et {this.state.maxNumero}</h2>
 				          <TypeNumeroProvider value= {{typeNumero:'numero'}}>
@@ -135,7 +135,7 @@ return	(
 		            </div>
 		        </div>
 		        <div className="form-group">
-		        	<button className={ this.state.error == true? 'btn btn-success btn-block disabled': 'btn btn-success btn-block'} type="submit" > simuler !</button>
+		        	<button className={ this.state.error == true? 'btn btn-primary btn-block disabled': 'btn btn-primary btn-block'} type="submit" > simuler !</button>
 		        </div>
 	        </form>
 	    </div>

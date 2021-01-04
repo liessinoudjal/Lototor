@@ -5,13 +5,9 @@ import FormLottery from './FormLottery'
 import {fetch as fetchPolify}  from 'whatwg-fetch'
 
 const App = () => {
-
-
-
     return  <div>
-          
                 <FormLottery root={document.getElementById('root').dataset.state}/> 
-             
+          
             </div>
 }
 

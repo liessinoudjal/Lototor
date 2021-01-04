@@ -1,0 +1,18 @@
+<div class="custom_card ">
+    <h2>Lotos organisés <span class="badge badge-pill badge-primary"> {{user.lotoEvents|length}} </span> </h2>
+    {% if user.canOrganize() %}
+        <a class="btn btn-primary cursor angle-r" href="{{ path("account_add_loto")}}" id="js_add_loto" title="Ajouter un loto"><i class="fas fa-plus"></i></a>
+       
+        {% for lotoEvent in liveLotoEventsPaginated %}
+          {% include 'account/_loto_card.html.twig' %}
+        {% else %}
+            <li>Vous n'avez pas encore créé de loto</li>
+        {% endfor %}
+        {{ knp_pagination_render(liveLotoEventsPaginated) }}
+    {% else %}
+    <p>Vous devez lier au moins une asssociation à votre compte pour ajouter des lotos.</p>
+    {% endif %}    
+    <ul>
+    
+    </ul>
+</div>
