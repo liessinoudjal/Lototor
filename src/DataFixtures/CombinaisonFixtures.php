@@ -3,7 +3,7 @@
 namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use App\Entity\EuromillionCombinaison;
 use App\Entity\LotoCombinaison;
 
@@ -156,7 +156,7 @@ class CombinaisonFixtures extends Fixture
         "0,1" =>    '
                     <i class="far fa-star text-success"></i>'
     ];
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         
          foreach($this->gainsMoyenParRang as $rang => $gainMoyen){
