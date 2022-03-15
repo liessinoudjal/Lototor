@@ -5,13 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use App\Entity\Grille;
 use App\Entity\Stat;
-use App\Form\GrilleType;
-use App\Entity\EuromillionCombinaison;
 use  Doctrine\ORM\EntityManagerInterface;
 use App\Lototo\Lottery\Simulator\TirageEuromillion;
 
@@ -19,8 +13,7 @@ class DefaultController extends AbstractController
 {
    
     /**
-     * @Route("/", name="homepage")
-     * @Method({"GET", "POST"})
+     * @Route("/", name="homepage", methods={"GET", "POST"})
      */
     public function indexAction (Request $request)
     {
@@ -28,8 +21,7 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/CGU", name="CGU")
-     * @Method({"POST","GET"})
+     * @Route("/CGU", name="CGU", methods={"GET", "POST"})
      */
     public function cgu(Request $request)
     {
@@ -40,8 +32,7 @@ class DefaultController extends AbstractController
 
     /**
      * utilisé pour remplir la base de données de tirages aléatoires. Ces données seront utilisées pour démontrer la pertinance du simulateur
-     * @Route("/stat/{nbTirage?100}", name="stat")
-     * @Method({"GET"})
+     * @Route("/stat/{nbTirage?100}", name="stat", methods={"GET"})
      */
     public function stat( int $nbTirage,EntityManagerInterface $em, TirageEuromillion $tirageEuromillion ){
             

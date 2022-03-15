@@ -6,7 +6,6 @@ namespace App\Controller;
 use App\Lototo\LotoQuine\LotoQuineGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 
 class LotoQuineController extends AbstractController
 {

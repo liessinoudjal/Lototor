@@ -5,12 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use App\Lototo\Lottery\LotteryManager;
-use App\Lototo\Lottery\Euromillion;
-use App\Lototo\Lottery\Grille\Grille;
 use App\Repository\StatRepository;
 
 class LotteryController extends AbstractController
@@ -25,8 +20,7 @@ class LotteryController extends AbstractController
     }
 
      /**
-     * @Route("/simulateur/{lotteryName}",options={"expose"=true}, name="simulateur")
-     * @Method({"POST","GET"})
+     * @Route("/simulateur/{lotteryName}",options={"expose"=true}, name="simulateur", methods={"GET", "POST"})
      */
     public function euromillion(Request $request, $_route, LotteryManager $lotteryManager, string $lotteryName)
     {
@@ -61,8 +55,7 @@ class LotteryController extends AbstractController
 
      /**
       * not yet functionnal, don't use
-     * @Route("/api/simulator/{$LotteryName}", name="apiSimulator")
-     * @Method({"POST"})
+     * @Route("/api/simulator/{$LotteryName}", name="apiSimulator", methods={"POST"})
      *
      */
     public function apiSimulator (Request $request, string $LotteryName, LotteryManager $lotteryManager)
@@ -75,8 +68,7 @@ class LotteryController extends AbstractController
     }
 
     /**
-     * @Route("/fiabilite-du-tirage-aleatoire", name="pertinance")
-     * @Method({"GET"})
+     * @Route("/fiabilite-du-tirage-aleatoire", name="pertinance", methods={"GET"})
      */
     public function stat(StatRepository $statRepo){
             //récupération en BDD des hits (nombre de tirage pour chaque nombre du simulateur pour N simulation)

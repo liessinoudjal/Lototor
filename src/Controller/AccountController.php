@@ -3,9 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Association;
-use App\Entity\IndoorLotoEvent;
 use App\Entity\LotoEvent;
-use App\Form\IndoorLotoEventType;
 use App\Form\LotoEventType;
 use App\Form\ResetPasswordType;
 use App\Form\UserType;
