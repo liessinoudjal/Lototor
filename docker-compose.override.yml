@@ -1,0 +1,65 @@
+services:
+    caddy:
+        image: ${IMAGE_PREFIX:-}${COMPOSE_PROJECT_NAME}-caddy-prod
+        build:
+            target: caddy-prod
+            args:
+                PHP_VERSION: ${PHP_VERSION:-8}
+                PHP_EXTENSIONS: ${PHP_EXTENSIONS:-}
+                COMPOSER_VERSION: ${COMPOSER_VERSION:-lts}
+                NODE_VERSION: ${NODE_VERSION:-18}
+        environment:
+            APP_ENV: prod
+        ports:
+            - '80:80'
+            - '443:443'
+            - '443:443/udp'
+        volumes:
+            - public_media:/srv/public/media:ro
+            - public_uploads:/srv/public/uploads:ro
+        depends_on:
+            php:
+                condition: service_healthy
+        restart: unless-stopped
+
+    php:
+        image: ${IMAGE_PREFIX:-}${COMPOSE_PROJECT_NAME}-php-prod
+        build:
+            target: php-prod
+            args:
+                NODE_VERSION: ${NODE_VERSION:-18}
+        environment:
+            APP_ENV: prod
+        volumes:
+            - public_media:/var/www/html/public/media
+            - public_uploads:/var/www/html/public/uploads
+        depends_on:
+            db:
+                condition: service_healthy
+        healthcheck:
+            test: 'FCGI_CONNECT=/var/run/php/php-fpm.sock /usr/local/bin/healthcheck.sh'
+            start_period: ${HEALTHCHECK_WAIT:-5s}
+            timeout: 5s
+            interval: 5s
+            retries: ${HEALTHCHECK_RETRIES:-5}
+        restart: unless-stopped
+
+    db:
+        image: ${IMAGE_PREFIX:-}${COMPOSE_PROJECT_NAME}-mariadb-prod
+        build:
+            target: mariadb-prod
+        environment:
+            APP_ENV: prod
+        ports:
+            - '3306:3306'
+        healthcheck:
+            test: ['CMD', '/usr/local/bin/healthcheck.sh', '--innodb_initialized']
+            start_period: ${HEALTHCHECK_WAIT:-5s}
+            timeout: 5s
+            interval: 5s
+            retries: ${HEALTHCHECK_RETRIES:-5}
+        restart: unless-stopped
+
+volumes:
+    public_media:
+    public_uploads:
