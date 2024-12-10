@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Partie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method Partie|null find($id, $lockMode = null, $lockVersion = null)

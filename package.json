@@ -2,11 +2,12 @@
     "devDependencies": {
         "@babel/preset-react": "^7.0.0",
         "@fortawesome/fontawesome-free": "^5.11.2",
-        "@symfony/webpack-encore": "^0.27.0",
+        "@symfony/webpack-encore": "^5.0.0",
         "core-js": "^3.0.0",
-        "node-sass": "^4.13.1",
+        "file-loader": "^6.2.0",
         "regenerator-runtime": "^0.13.2",
-        "sass-loader": "7.0.1",
+        "sass": "^1.82.0",
+        "sass-loader": "16.0.4",
         "webpack-notifier": "^1.6.0"
     },
     "license": "UNLICENSED",

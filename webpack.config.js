@@ -79,7 +79,9 @@ Encore
             corejs: 3
         }
     )
-
+    .configureWatchOptions(options => {
+        options.poll = 1000;
+      })
     // enables Sass/SCSS support
     .enableSassLoader()
 

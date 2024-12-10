@@ -39,7 +39,7 @@ class LotoLifecycleSubscriber implements EventSubscriber
     public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getObject();
-        
+
         if (!$entity instanceof LotoEventAbstract) {
             return;
         }

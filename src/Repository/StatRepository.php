@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Stat;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method Stat|null find($id, $lockMode = null, $lockVersion = null)
@@ -22,7 +22,7 @@ class StatRepository extends ServiceEntityRepository
      /**
       * @return int[] Returns an array of hits
       */
-    
+
     public function findHits(): array
     {
         $result = $this->createQueryBuilder('s')
@@ -36,7 +36,7 @@ class StatRepository extends ServiceEntityRepository
                return $hit['hit'];
         }, $result);
     }
-    
+
 
     /*
     public function findOneBySomeField($value): ?Stat

@@ -16,7 +16,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class LotoEvent
 {
-    
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -54,7 +54,7 @@ class LotoEvent
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="lotoEvents")
      * @ORM\JoinColumn(name="organizer_id", referencedColumnName="id",nullable=false)
-     * 
+     *
      */
     protected $organizer;
 
@@ -75,7 +75,7 @@ class LotoEvent
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * 
+     *
      */
     protected $url;
 
@@ -204,11 +204,11 @@ class LotoEvent
         return $this;
     }
 
-    
+
 
     /**
      * Get the value of image
-     */ 
+     */
     public function getImage(): ?string
     {
         return $this->image;
@@ -218,7 +218,7 @@ class LotoEvent
      * Set the value of image
      *
      * @return  self
-     */ 
+     */
     public function setImage(?string $image): self
     {
         $this->image = $image;
@@ -230,7 +230,7 @@ class LotoEvent
      * Get $uploadedImage
      *
      * @return  UploadedFile
-     */ 
+     */
     public function getUploadedImage()
     {
         return $this->uploadedImage;
@@ -242,7 +242,7 @@ class LotoEvent
      * @param  UploadedFile  $uploadedImage  $uploadedImage
      *
      * @return  self
-     */ 
+     */
     public function setUploadedImage(UploadedFile $uploadedImage)
     {
         $this->uploadedImage = $uploadedImage;
@@ -293,13 +293,13 @@ class LotoEvent
         return $this;
     }
 
-    
+
 
     /**
      * Get $isLiveEvent
      *
      * @return  Bool
-     */ 
+     */
     public function getIsLiveEvent():bool
     {
         return $this->isLiveEvent;
@@ -311,7 +311,7 @@ class LotoEvent
      * @param  Bool  $isLiveEvent  $isLiveEvent
      *
      * @return  self
-     */ 
+     */
     public function setIsLiveEvent(Bool $isLiveEvent)
     {
         $this->isLiveEvent = $isLiveEvent;
