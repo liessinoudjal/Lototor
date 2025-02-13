@@ -1,4 +1,4 @@
-require('../../css/chartjs/chartjs.scss');
+require('../../styles/chartjs/chartjs.scss');
 
 import Chart from 'chart.js';
 

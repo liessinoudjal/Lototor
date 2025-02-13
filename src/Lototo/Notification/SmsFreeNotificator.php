@@ -26,7 +26,7 @@ class SmsFreeNotificator{
             'msg' => $message
         ]);
 		try{
-			$this->client->request('GET',$this->freePath."?".$paylod);
+			$this->client->request('GET',$this->freePath."?".$paylod, ['timeout' => 2.5]);
 		}catch(ClientException $e){
 	        //voir pour envoyer un mail de notification
 		} 

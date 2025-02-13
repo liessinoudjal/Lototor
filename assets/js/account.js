@@ -7,7 +7,7 @@
 
 // any CSS you require will output into a single css file (app.css in this case)
 
-require('../css/account.scss');
+require('../styles/account.scss');
 
 const routes = require('../../public/js/fos_js_routes.json');
 import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';

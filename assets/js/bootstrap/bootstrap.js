@@ -1,5 +1,5 @@
 //scss
-require('../../css/bootstrap/scss/bootstrap.scss');
+require('../../styles/bootstrap/scss/bootstrap.scss');
 // require('../../css/bootstrap/scss/startboostrap-agency.scss');
 // import all js bootstrap plugin
 import 'bootstrap';

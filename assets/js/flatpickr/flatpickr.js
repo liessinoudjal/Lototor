@@ -1,4 +1,4 @@
-require('../../css/flatpickr/flatpickr.scss');
+require('../../styles/flatpickr/flatpickr.scss');
 
 import flatpickr from "flatpickr";
 const French = require("flatpickr/dist/l10n/fr.js").default.fr;

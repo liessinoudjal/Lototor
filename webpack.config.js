@@ -1,4 +1,4 @@
-var Encore = require('@symfony/webpack-encore');
+const Encore = require('@symfony/webpack-encore');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -14,30 +14,28 @@ Encore
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
     .copyFiles({
-           from: './assets/img',
-               // optional target path, relative to the output dir
-                //to: 'images/[path][name].[ext]',
-    
-             // if versioning is enabled, add the file hash too
-             to: 'images/[path][name].[hash:8].[ext]',
-    
-             // only copy files matching this pattern
-                 //pattern: /\.(png|jpg|jpeg)$/
-         })
+        from: './assets/img',
+            // optional target path, relative to the output dir
+             //to: 'images/[path][name].[ext]',
+ 
+          // if versioning is enabled, add the file hash too
+          to: 'images/[path][name].[hash:8].[ext]',
+ 
+          // only copy files matching this pattern
+              //pattern: /\.(png|jpg|jpeg)$/
+      })
+
     /*
      * ENTRY CONFIG
-     *
-     * Add 1 entry for each "page" of your app
-     * (including one that's included on every page - e.g. "app")
      *
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('app', './assets/js/app.js')
+    .addEntry('app', './assets/app.js')
     .addEntry('bootstrap',['./assets/js/bootstrap/bootstrap.js'])
    // .addEntry('agency-bootstrap','./assets/css/bootstrap/scss/startboostrap-agency.scss') 
-   .addEntry('sketchy','./assets/css/bootswatch-sketchy/_bootswatch_sketchy.scss') 
-    .addEntry('fontawesome', './assets/css/fontawesome/scss/fontawesome.scss')
+   .addEntry('sketchy','./assets/styles/bootswatch-sketchy/_bootswatch_sketchy.scss') 
+    .addEntry('fontawesome', './assets/styles/fontawesome/scss/fontawesome.scss')
     .addEntry('AppComponent', './assets/js/components/App.jsx')
      .addEntry('chartjs', './assets/js/chartjs/chart.js')
      .addEntry('login', './assets/js/login.js')
@@ -45,9 +43,12 @@ Encore
      .addEntry('flatpickr', './assets/js/flatpickr/flatpickr.js')
      .addEntry('modalImage', './assets/js/modal/modalImage.js')
      .addEntry('RGBD', './assets/js/cookies.js')
+
+    // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
+    .enableStimulusBridge('./assets/controllers.json')
+
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
-
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
@@ -66,19 +67,15 @@ Encore
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
 
+    .configureBabel((config) => {
+        config.plugins.push('@babel/plugin-proposal-class-properties');
+    })
+
     // enables @babel/preset-env polyfills
-    .configureBabel((babelConfig) => {
-         // add additional presets
-        // babelConfig.presets.push('env');
-        //babelConfig.presets.push('es2015');
-        //babelConfig.presets.push('stage-0');
-        babelConfig.plugins.push('@babel/plugin-proposal-class-properties');
-        }, 
-        {
-            useBuiltIns: 'usage',
-            corejs: 3
-        }
-    )
+    .configureBabelPresetEnv((config) => {
+        config.useBuiltIns = 'usage';
+        config.corejs = 3;
+    })
 
     // enables Sass/SCSS support
     .enableSassLoader()
@@ -86,16 +83,15 @@ Encore
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
 
+    // uncomment if you use React
+    .enableReactPreset()
+
     // uncomment to get integrity="..." attributes on your script & link tags
     // requires WebpackEncoreBundle 1.4 or higher
     //.enableIntegrityHashes(Encore.isProduction())
 
     // uncomment if you're having problems with a jQuery plugin
     .autoProvidejQuery()
-
-    // uncomment if you use API Platform Admin (composer req api-admin)
-    .enableReactPreset()
-    //.addEntry('admin', './assets/js/admin.js')
 ;
 
 module.exports = Encore.getWebpackConfig();
